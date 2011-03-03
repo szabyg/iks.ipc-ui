@@ -362,7 +362,7 @@ if(withAloha)alohaconfig();
 								}
 							});
 							var children = data.getRelevantChildren(constraints);
-							for(var wbsIndex in children){
+							for(var wbsIndex in children)if(children.hasOwnProperty(wbsIndex)){
 								var childNode = children[wbsIndex];
 								// TODO fix this
 								if(true || Number(wbsIndex)){
