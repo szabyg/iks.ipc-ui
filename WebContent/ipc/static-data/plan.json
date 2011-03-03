@@ -1,0 +1,1345 @@
+[{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"5"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-planned":"7"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"2"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"4"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"3"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-planned":"1"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-planned":"9"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-planned":"0"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-planned":"8"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-planned":"6"
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-planned":"0"
+	}
+]

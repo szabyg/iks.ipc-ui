@@ -1,0 +1,1537 @@
+[{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-spent":"9.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-spent":"6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-spent":"5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-spent":"3.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"2.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"0.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"5.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"1.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"1.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"6.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"5.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"4.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"3.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"6.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"3.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"4.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"7.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"3.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"6.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"9.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"0.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-spent":"9.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-spent":"0.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-spent":"7.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-spent":"0.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"9.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"4.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"0.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"8.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"0.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"5.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"2.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"2.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"9.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"3.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"7.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"1.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"4.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"4.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"7.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"9.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"8.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"2.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"1.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"3.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"1.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"9.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"0.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"0.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"3.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"6.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"4.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"0.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"0.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"5.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"9.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"1.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"1.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"2.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"3.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"1.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-spent":"5.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-spent":"1.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-spent":"2.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.1",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-spent":"0.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"6.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"9.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"9.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"4.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"3.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"2.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"8.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"5.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"8.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"7.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"6.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"2.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"5.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"6.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"9.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"2.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"1.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"9.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"2.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-spent":"6.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-spent":"9.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-spent":"4.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"2.2",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-spent":"7.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-spent":"1.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-spent":"7.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-spent":"9.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-spent":"7.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"9.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"7.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"5.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"1.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"7.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"0.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"5.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"9.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"8.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"1.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"8.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"6.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"8.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"0.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"4.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"3.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"7.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"3.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.1",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q1",
+		"pm-spent":"8.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q2",
+		"pm-spent":"3.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q3",
+		"pm-spent":"8.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p1",
+		"period":"2010Q4",
+		"pm-spent":"4.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"2.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"3.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"2.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"4.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"1.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"0.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"9.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"5.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"6.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"6.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"1.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"6.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"4.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"3.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"4.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.2",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"0.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"1.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"5.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"5.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"5.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"2.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"8.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"1.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"1.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"2.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"0.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"6.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"4.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"3.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"9.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"9.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"4.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"1.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"1.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"4.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"5.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-spent":"0.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-spent":"0.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-spent":"1.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.3",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-spent":"7.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q2",
+		"pm-spent":"7.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q3",
+		"pm-spent":"3.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q4",
+		"pm-spent":"4.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p2",
+		"period":"2010Q1",
+		"pm-spent":"1.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"6.5",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"9.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"2.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q2",
+		"pm-spent":"5.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q3",
+		"pm-spent":"8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q4",
+		"pm-spent":"3.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p3",
+		"period":"2010Q1",
+		"pm-spent":"8.1",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"6.9",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"4.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"9.4",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"9.2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q2",
+		"pm-spent":"9.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q3",
+		"pm-spent":"6.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q4",
+		"pm-spent":"7.7",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p4",
+		"period":"2010Q1",
+		"pm-spent":"2",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q2",
+		"pm-spent":"6.8",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q3",
+		"pm-spent":"5.6",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q4",
+		"pm-spent":"5.3",
+		"progress-description":""
+	},
+	{
+		"project":"Project A",
+		"wbs":"3.4",
+		"partner":"p5",
+		"period":"2010Q1",
+		"pm-spent":"9.2",
+		"progress-description":""
+	}
+]

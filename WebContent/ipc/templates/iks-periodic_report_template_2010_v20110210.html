@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<title>{project_label} Project periodic report</title>
+</head>
+<body>
+<h1> Project progress report</h1>
+<div id="basic data">
+<h2>{project_label} project periodic report for {period yyyyy}</h2>
+<p>Grant Agreement number: {project_grant_agreement_number}</P>
+<p>Project acronym: <abbr>{project_acronym}</abbr></P>
+<p>Project title:{project_label}</P>
+<p>Funding Scheme:{funding_scheme}</P>
+<p>Date of latest version of Annex I against which the assessment will be made: {project_contract_date}</P>
+
+<div id="period">
+<form id="reportingperiod" action="">
+  <p>Periodic report: 
+    <input type="radio" name="1st period" value="1"> 1st period
+    <input type="radio" name="2nd period" value="2"> 2nd period
+    <input type="radio" name="3rd period" value="3"> 3rd period
+    <input type="radio" name="4th period" value="3"> 4th period</p>
+</form>
+<p>Period covered: from {date picker} to {date picker} </p>
+</div>
+<div id="address_of_scientific_representative_of_project">
+<p>Name, title and organisation of the scientific representative of the project's coordinator</B>:</p>
+<p>Name:</p>
+<p>Organisation: {lead-organisation}</p>
+<p>Tel:</p>
+<p>Fax:</p>
+<p>E-mail:</p>
+</div>
+
+<p>Project website address: {project_website_url}</P>
+</div>
+<div id="declaration of coordinator"><h2>Declaration by the scientific representative of the project coordinator </h2>
+I, as scientific representative of the coordinator of this project and in line with the obligations as stated in Article II.2.3 of the Grant Agreement declare that:
+<ul>
+    <li>The attached periodic report represents an accurate description of the work carried out in this project for this reporting period;</FONT></P>
+	<li><p> The project (tick as appropriate): </p>
+	<div id="goals">
+    <form id="achieved goals" action="">
+        <p> <input type="radio" name="achieved full" value="1"> has fully achieved its objectives and technical goals for the period;</p>
+        <p> <input type="radio" name="achieved most" value="2"> has achieved most of its objectives and technical goals for the period with relatively minor deviations.</p>
+        <p> <input type="radio" name="failed" value="3"> has failed to achieve critical objectives and/or is not at all on schedule.</p>
+    </form></li></div>		
+	<li><p>The public website, if applicable</p>
+	<form id="website status" action="">
+        <p> <input type="radio" name="achieved full" value="1"> is up to date</p>
+        <p> <input type="radio" name="achieved most" value="2"> is not up to date</p>
+    </form></li>
+	<li>To my best knowledge, the financial statements which are being submitted as part of this report are in line with the actual work carried out and are consistent with the report on the resources used for the project (section 3.4) and if applicable with the certificate on financial statement.</li>
+	<li>All beneficiaries, in particular non-profit public bodies, secondary and higher education establishments, research organisations and SMEs, have declared to have verified their legal status. Any changes have been reported under section 3.2.3 (Project Management) in accordance with Article II.3.f of the Grant Agreement.</p></li>
+</ul>
+
+<div id="signature"><p>Signature</p> 
+<p>Name of scientific representative of the Coordinator: {signature}</p>
+<p>Date: <time datetime="{datetime}"></time></p>
+For most of the projects, the signature of this declaration could be done directly via the IT reporting tool through an adapted IT mechanism.</FONT></FONT></P>
+</div>
+</div>
+<div id="publishable summary"><h2>Publishable summary</h2>
+{link to publishable summary}
+</div>
+<div id="project objectives and work progress">
+<h2>Core of the report for the period: Project objectives, work progress and achievements, project management</h2>
+<h3>Project objectives for the period</h3>
+<h4> Project objectives for period from AnnexI</h4>
+<p> {project-objectives-for-period-from-AnnexI} </p>
+<h4> Recommendations from previous reviews</h4>
+<p> {summary of the recommendations from the previous reviews (if any) and indicate how these have been taken into account}.</p>
+<h3>Work progress and achievements during the period</h3>
+<p>Please provide a concise overview of the progress of the work in line with the structure of Annex I to the Grant Agreement.</P>
+<ol>
+<li> {for each workpackage, active in reporting period, not for the management workpackage}</li>
+    <ul>
+    <li> {for each workpackage and its tasks: decription planned}</li>
+    <li contenteditable> {free text input: summary of progress and details of task}</li>
+    <li>{table for each workpackage: planned vs. spent effort per beneficiary * transposition}</li>
+    <li contenteditble> {a statement on use of resources, deviations and planning}</li>
+    <li contenteditable> <strong>{free text input: significant results}</strong></li>
+    <li contenteditable> <strong> optional {free text input: reasons for failing critical objectives}</strong></li>
+    <li contenteditble> optional {possible corrective actions}</li>
+    </ul>
+</ol>
+</div>
+<div id="project management""><h3>Project management during the period</h3>
+<h4>Consortium management tasks and achievements</h4>
+<p contenteditable> free text: Consortium management tasks and achievements</p>
+<h4>Problems which have occurred and how they were solved or envisaged solutions</h4>
+<p contenteditable> free text: Problems which have occurred and how they were solved or envisaged solutions </p>
+<h4>Changes in the consortium</h4>
+<p contenteditable> free text: Changes in the consortium</p>
+<h4>List of project meetings, dates and venues</h4>
+<p>{project meetings, dates and venues}</p>
+<h4>Project planning and status</h4>
+<p> {table: planned vs. actual vs. deviation per project/workpackage/task per reporting period (year/quarter) * (transposition}
+<p contenteditable>free text description</p>
+<h4>Impact of possible deviations from the planned milestones and deliverables</h4>
+<p contenteditable>possible deviations from the planned milestones and deliverables</p>
+<h4> Any changes to the legal status of any of the beneficiaries, in particular non-profit public bodies, secondary and higher education establishments, research organisations and SMEs</h4>
+<p contenteditable>change in legal status</p>
+<h4>Development of the Project website</h4>
+<p contenteditable>free text: development of website</p>
+<h4>Information on co-ordination activities during the period in question, such as communication between beneficiaries, possible co-operation with other projects/programmes etc.</h4>
+<p contenteditable>free text: communication and co-operation</p>
+</div>
+<div id="deliverables and milestones tables"><h2>Deliverables and milestones tables</h2>
+<h4>Deliverables</h4>
+
+{table of all deliverables which are due from project start to end of reporting period} <br>
+Labels for collumns <br>
+Del. no. <br>
+Deliverable name <br>
+Version <br>
+WP no. <br>
+Lead beneficiary <br>
+Nature <br>
+Dissemination level <br>
+Delivery date from Annex I (proj month) <br>
+Actual / Forecast delivery date (Dd/mm/yyyy <br>
+Status (Not submitted/Submitted <br>
+Contractual (Yes/No) <br>
+Comments (editable textfield) <br>
+
+<h4>Milestones</h4>
+Milestone no. <br>
+Milestone name<br>
+Work package no<br>
+Lead beneficiary<br>
+Delivery date  from Annex I (dd/mm/yyyy)<br>
+Achieved (Yes/No) <-- rule based><br>
+Actual / Forecast achievement date (dd/mm/yyyy)<br>
+<p contenteditable>Free text Comments</p>
+
+</div>
+<div id="explanation of use of resources">not yet implemented</div>
+<div id="FormC">not yet implemented</div>
+</body>
+</html>

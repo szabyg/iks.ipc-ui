@@ -1,0 +1,809 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title>IKS - Intelligent Project Controlling tool</title>
+<script src="js/loader.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // setting directory variables
+	var srcroot = "js/";
+	var libroot = "js/lib/";
+	var cssroot = "./css/";
+	var rgraphroot = "js/lib/rgraph/";
+	var withAloha = true;
+ 
+	// loading all .CSS style-files
+	load_css([ 
+	           libroot + "jquery.sheet/jquery.sheet.css",
+	           libroot + "jquery.sheet/plugins/menu.css",
+	           libroot + "jquery.sheet/plugins/jquery.colorPicker.css",
+	           cssroot + "ui-lightness/jquery-ui-1.8.5.custom.css",
+	           cssroot + "style.css",
+	           cssroot + "rdfa.css" ]);
+
+	// loading rdfQuery and jQuery (v 1.4.3) script-files
+	load_scripts([ 
+				libroot + "jquery/1.4/jquery-1.4.3.js", // min.
+				libroot + "jquery/1.4/jquery-ui-1.8.6.custom.js", // min.,
+				]);
+  	</script>
+  	<script type="text/javascript">
+	
+	if(withAloha)
+		var aloharoot = libroot + "Aloha-Editor/build/out/aloha-nightly";
+		load_scripts([ 
+				// Aloha-Editor
+				libroot + "jquery.cookie.js",
+				aloharoot + "/aloha/aloha-nojquery.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Format/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.HighlightEditables/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Table/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.List/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Link/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.HighlightEditables/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.TOC/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Link/delicious.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Link/LinkList.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Paste/plugin.js",
+				aloharoot + "/aloha/plugins/com.gentics.aloha.plugins.Paste/wordpastehandler.js",
+	             ]);
+    load_scripts([
+				libroot + "jquery/jquery.tmpl.js", // min.,
+				libroot + "json.min.js",
+				// libroot + "jquery/1.4/jquery.tools.min.js",
+				libroot + "jquery.sheet/jquery.sheet.js", // min.
+				libroot + "jquery.sheet/plugins/mbMenu.min.js",
+				
+				libroot + "jquery.sheet/plugins/raphael-min.js", 
+				libroot + "jquery.sheet/plugins/g.raphael-min.js", 
+				libroot + "jquery.sheet/plugins/g.pie-min.js", 
+				libroot + "jquery.sheet/plugins/g.line-min.js", 
+				libroot + "jquery.sheet/plugins/g.dot-min.js", 
+				libroot + "jquery.sheet/plugins/g.bar-min.js", 
+				       
+				libroot + "jquery.sheet/plugins/jquery.colorPicker.min.js",
+				libroot + "jquery.sheet/jquery.sheet.advancedfn.js",
+				srcroot + "jquery.iks.projectselector.js",
+				srcroot + "jquery.iks.timerangeselector.js",
+				libroot + "rdfquery/jquery.uri.js", // needs to be loaded here as rdfaEditor has dependency on this
+				
+				// loading IKS Editor widget
+				libroot + "../widgets/uiwidgets.entity-information-0.1.js",
+				srcroot + "WBSTree.js",
+				srcroot + "ipc.dataAccess.js",
+				srcroot + "ipc.tools.js",
+				srcroot + "ipc.monitoring.js",
+				"static-data/ipc.rules.js",
+				srcroot + "jquery.iks.controldatavis.js"
+             ]);
+    load_scripts([
+			rgraphroot + "RGraph.common.core.js",
+			rgraphroot + "RGraph.common.annotate.js",
+			rgraphroot + "RGraph.common.context.js",
+
+			rgraphroot + "RGraph.common.tooltips.js",
+			rgraphroot + "RGraph.common.resizing.js",
+			rgraphroot + "RGraph.bar.js"
+    	]);
+  	</script>
+<script type="text/javascript">
+/*
+// binding jQuery (v 1.4.3) to variable as rdfQuery currently only supports jQuery (v 1.3)
+	var jQuery14 = $.noConflict();
+	
+	// loading RDFQuery and JQuery (v 1.4.3) script-files
+	load_scripts([ 
+	               libroot + "jquery/1.3/jquery-1.3.min.js",
+	               libroot + "jquery/1.3/jquery.json-1.3.min.js",
+	               libroot + "jquery/1.3/jquery-ui-personalized-1.6rc6.min.js",
+	               libroot + "rdfquery/jquery.rdfquery.core-1.0.js",
+	               libroot + "rdfquery/jquery.rdfquery.rdfa-1.0.js",
+	               libroot + "rdfquery/jquery.rdfquery.rules-1.0.js"
+	]);
+*/
+  </script>
+<script type="text/javascript">
+/*
+	// binding jQuery (v 1.3) to variable as rdfQuery currently only supports jQuery (v 1.3)
+	var jQuery13 = $.noConflict();
+	// Our default is the newest jQuery.
+	jQuery = $ = jQuery14;
+*/
+function alohaconfig(){
+	GENTICS.Aloha.Repositories.delicious.settings.username = "iks";
+	GENTICS.Aloha.settings = {
+		    logLevels: {'error': true, 'warn': true, 'info': true, 'debug': false},
+		    errorhandling : false,
+		    ribbon: false,    
+		    "i18n": {
+		        // you can either let the system detect the users language (set acceptLanguage on server)
+		        // In PHP this would would be '<?=$_SERVER['HTTP_ACCEPT_LANGUAGE']?>' resulting in 
+		        // "acceptLanguage": 'de-de,de;q=0.8,it;q=0.6,en-us;q=0.7,en;q=0.2'
+		        // or set current on server side to be in sync with your backend system 
+		        "current": "en" 
+		    },
+		    "repositories": {
+		         "com.gentics.aloha.repositories.LinkList": {
+		             data: [
+		                 { name: 'Aloha Developers Wiki', url:'http://www.aloha-editor.com/wiki', type:'website', weight: 0.50 },
+		                 { name: 'Aloha Editor - The HTML5 Editor', url:'http://aloha-editor.com', type:'website', weight: 0.90  },
+		                 { name: 'Aloha Demo', url:'http://www.aloha-editor.com/demos.html', type:'website', weight: 0.75  },
+		                 { name: 'Aloha Wordpress Demo', url:'http://www.aloha-editor.com/demos/wordpress-demo/index.html', type:'website', weight: 0.75  },
+		                 { name: 'Aloha Logo', url:'http://www.aloha-editor.com/images/aloha-editor-logo.png', type:'image', weight: 0.10  }
+		             ]
+		        }
+		    },
+		    "plugins": {
+		         "com.gentics.aloha.plugins.Format": {
+		             // all elements with no specific configuration get this configuration
+		            config : [ 'b', 'i','sub','sup'],
+		              editables : {
+		                // no formatting allowed for title
+		                '#title'    : [ ], 
+		                // formatting for all editable DIVs
+		                'div'        : [ 'b', 'i', 'del', 'sub', 'sup'  ], 
+		                // content is a DIV and has class .article so it gets both buttons
+		                '.article'    : [ 'b', 'i', 'p', 'title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat']
+		              }
+		        },
+		         "com.gentics.aloha.plugins.List": { 
+		             // all elements with no specific configuration get an UL, just for fun :)
+		            config : [ 'ul' ],
+		              editables : {
+		                // Even if this is configured it is not set because OL and UL are not allowed in H1.
+		                '#title'    : [ 'ol' ], 
+		                // all divs get OL
+		                'div'        : [ 'ol' ], 
+		                // content is a DIV. It would get only OL but with class .article it also gets UL.
+		                '.article'    : [ 'ul' ]
+		              }
+		        },
+		         "com.gentics.aloha.plugins.Link": {
+		             // all elements with no specific configuration may insert links
+		            config : [ 'a' ],
+		              editables : {
+		                // No links in the title.
+		                '#title'    : [  ]
+		              },
+		              // all links that match the targetregex will get set the target
+		             // e.g. ^(?!.*aloha-editor.com).* matches all href except aloha-editor.com
+		              targetregex : '^(?!.*aloha-editor.com).*',
+		              // this target is set when either targetregex matches or not set
+		            // e.g. _blank opens all links in new window
+		              target : '_blank',
+		              // the same for css class as for target
+		              cssclassregex : '^(?!.*aloha-editor.com).*',
+		              cssclass : 'aloha',
+		              // use all resources of type website for autosuggest
+		              objectTypeFilter: ['website'],
+		              // handle change of href
+		              onHrefChange: function( obj, href, item ) {
+		                  if ( item ) {
+		                    jQuery(obj).attr('data-name', item.name);
+		                  } else {
+		                    jQuery(obj).removeAttr('data-name');
+		                  }
+		              }
+		        },
+		         "com.gentics.aloha.plugins.Table": { 
+		             // all elements with no specific configuration are not allowed to insert tables
+		            config : [ ],
+		              editables : {
+		                // Allow insert tables only into .article
+		                '.article'    : [ 'table' ] 
+		              }
+		        }
+		      }
+		};
+}	
+if(withAloha)alohaconfig();
+	(function($) {
+		$(document).ready(function(){
+			// $("#mode-selector").buttonset();
+			$("#mode-selector input").change(function(){
+				var switchValue = $('#mode-selector input:checked').val();
+				switch(switchValue){
+				case "plan":
+					$("#pathApp").html("Browse Plan");
+					$("#tabs-control").show();
+					$("#tabs-monitor").hide();
+					$("#tabs-report").hide();
+					// $("#accordion").accordion("destroy");
+					break;
+				case "monitor":
+					$("#pathApp").html("Monitor Project");
+					$("#tabs-control").hide();
+					$("#tabs-report").hide();		
+					$("#tabs-monitor").show();
+					monitoringInit();
+					break;			
+				case "report":
+					$("#pathApp").html("Write Report");
+					$("#tabs-control").hide();
+					$("#tabs-monitor").hide();
+					$("#tabs-report").show();
+					$("#accordion").accordion('resize');
+					// $("#accordion").accordion();
+					break;
+				default:
+					alert("sorry, not implemented yet");
+					
+				}
+			}).trigger("change");
+			window.getLifecyclemode = function(){return $('input[name=lifecyclemode]:checked').val() || '';}
+//			iks.ipc.dataStorage.getData(["spentPmByWbsPeriodPartner"], function(data){
+//				debugger;
+//			});
+
+			
+			// Layout the tabs
+			// $("#tabs").tabs();
+			// Header functionality
+			iks.ipc.dataStorage.getProjectData(function(fields, projects){
+				// $("#project-selector").projectautocomplete({fields: [{id: "acronym", label: "Select project"}], projects: projects});
+				$("#project-selector").bind("projectSelection", function(event, data){
+					$("#projects").html(data.acronyms.join(", "));
+
+				});
+				
+				$("#org-selector").projectautocomplete({fields: [{id: "partners", label: "Partner"}], projects: projects, fieldElement: "input"});
+				$("#org-selector").bind("projectSelection", function(event, data){
+					$("#organisation").html(data.fieldValue);
+
+				});
+
+				$("#timerange-selector").timerangeselector({
+					periodLabel: '3. Select Period', 
+					startDateLabel: '', 
+					endDateLabel: 'to<br/>',
+					dateFormat: "yy-mm-dd",
+					startYear: 2009
+				});
+				// .find("input").css("margin-left", "8px");
+				$("#timerange-selector").bind("rangeSelected", function(e, timeRange){
+					$("#timerange").html(
+							"<b>value: </b>" + timeRange.value + 
+							"<b> label: </b>" + timeRange.label + 
+							"<b> start date: </b>" + timeRange.startDate +
+							"<b> end date: </b>" + timeRange.endDate);
+				});
+				
+			});
+		});
+		// Collect the set constraints from all the UI filter elements.
+		iks.ipc.collectConstraints = function (){
+			var res = {};
+			// $.extend(res, $("#project-selector").projectautocomplete("getConstraints"));
+			$.extend(res, $("#org-selector").projectautocomplete("getConstraints"));
+			$.extend(res, $("#timerange-selector").timerangeselector("getConstraints"));
+			return res;
+		}
+	})(jQuery);
+	</script>
+</head>
+<body>
+	<div id="header">
+		<div id="breadcrumb">
+			<a href="#">Home</a> > <a href="#">IKS</a> > <a href="#" id="pathApp">Monitor Project</a>
+		</div>
+		<div id="userprofile" title="No user management implemented.">
+			User: SRFG (Wernher Behrendt) 
+		</div>
+	</div>
+	<div id="wrapper">
+		<div class="sidebar">
+			<div id="project-selector">
+				<b>1. Select project</b><br/>
+				<input size="10"/><br/>
+				<select>
+					<option>Select Project</option>
+					<option>IKS</option>
+					<option>KiWi</option>
+				</select>
+			</div>
+		 	<div id="mode-selector">
+		 		<b>2. Select activity</b><br/>
+		 		<input type='radio' name='lifecyclemode' class='lifecyclemode' value='plan' id='lifecyclemode-plan'> <label for='lifecyclemode-plan'>Browse Plan</label><br/>
+		 		<input type='radio' name='lifecyclemode' class='lifecyclemode' value='monitor' id='lifecyclemode-monitor'> <label for='lifecyclemode-monitor'>Monitor Project</label><br/>
+		 		<input type='radio' name='lifecyclemode' class='lifecyclemode' value='report' checked="true" id='lifecyclemode-report'> <label for='lifecyclemode-report'>Write Report</label><br/>
+		 	</div>
+			<span id="timerange-selector">
+				time range selector
+			</span>
+	<!-- 
+	 		<div id="org-selector">
+				organisation selector
+			</div>
+			<div class="debug">
+				<div style="clear:left;">project: <span id="projects"></span></div>
+				<div style="clear:left;">organisation: <span id="organisation"></span></div>
+				<div style="clear:left;">Time range: <span id="timerange"></span></div>
+			</div>
+	 -->		
+		</div>
+		<div id="tabs">
+			<div id="tabs-monitor">
+				<script type="text/javascript">
+				// Initialize the tab on activating it
+				$("#tabs").bind("tabsselect", function(event, ui){if(ui.panel.id=="tabs-monitor"){
+					monitoringInit();
+				}});
+				function monitoringInit(){
+					$("#monitor-accordion").accordion();
+					// Collect UI constraints for the presentation
+					var constraints = iks.ipc.collectConstraints();
+					
+					$("#monitoring-01").monitoring({
+						dataStore: iks.ipc.dataStorage, 
+						constraints: constraints,
+						onLoad: function(){
+							$("#monitor-accordion").accordion("resize");
+						},
+						waitMsg: "collecting data...",
+						tableConf: function(data){
+							var tableConf = {
+								metadata: {
+									"title" : "Spent vs. Planned Effort", //  for <project> <period>",
+									"col_widths" : {"c0" : "120", "c1" : "120", "c2" : "120", "c3" : "120", "c4": "120", "c5": "80", "c6" : "220"}
+								},
+								conf: {
+									style: "height: 50px !important;"
+								},
+								rows: []
+							};
+							tableConf.rows.push({
+								fields: [data.childrenLabel, "Planned Effort", "Spent Effort", "Deviation (abs)", "Deviation (%)", "Status", "Graph"],
+								conf: {
+									cl: "styleBold"
+								}
+							});
+							var children = data.getRelevantChildren(constraints);
+							for(var wbsIndex in children){
+								var childNode = children[wbsIndex];
+								// TODO fix this
+								if(true || Number(wbsIndex)){
+									// var rowLabel = data.planned.children[wbsIndex].wbsLabel.singular + " " + wbsIndex;
+									var rowLabel = childNode.label;
+									tableConf.rows.push({
+										fields: [
+										    // iks.ipc.tools.sheet.buildLink(rowLabel, '$("#%sheetID%").trigger', ['TableZoom', [childNode.id, "e"]]),
+										    $.ipc.monitoring.prototype.buildZoomLink(rowLabel, childNode.id),
+										    "=Math.round(" + childNode.computeSum("pm-planned") + ")",
+										    "=Math.round(" + childNode.computeSum("pm-spent") + ")",
+										    "=(C%R0%-B%R0%)<0?Math.round(C%R0%-B%R0%):(\"+\" + Math.round(C%R0%-B%R0%))",
+										    "=(C%R0%-B%R0%)<0? Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\" :\"+\" + Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\"",
+										    "=iks.ipc.monitoring.deviationRule(Math.round((C%R0%-B%R0%)/B%R0% *100))",
+										    "=CHART.HBAR(B%R0%:C%R0%)"
+										]
+									});
+								}
+							}
+							tableConf.rows.push({
+								fields: [
+								         "TOTAL",
+								         "=SUM(B2:B%R-1%)",
+								         "=SUM(C2:C%R-1%)",
+								         "=(C%R0%-B%R0%)<0?(C%R0%-B%R0%):(\"+\" + (C%R0%-B%R0%))",
+								         "=(C%R0%-B%R0%)<0? Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\" :\"+\" + Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\"",
+								         "=iks.ipc.monitoring.deviationRule(Math.round((C%R0%-B%R0%)/B%R0% *100))",
+								         "=CHART.HBAR(B%R0%:C%R0%)"
+								         ],
+								         conf: { 
+								        	 cl: "styleBold"
+								         }
+							});
+							return tableConf;
+						}
+					});
+
+					// Fill out the deliverable status table
+					iks.ipc.dataStorage.getData(["planDeliverables", "delivDocs"], function(data){
+						var delivDocsObj = {};
+						$(data.delivDocs).each(function(){delivDocsObj[this.key] = this.value;});
+						var templateData = [];
+						$(data.planDeliverables).each(function(){
+							var delivObj = {
+								wbs: this.value._id,
+								deadline: this.value.deadline,
+							};
+							if(delivDocsObj[delivObj.wbs]){
+								var delivDoc = delivDocsObj[delivObj.wbs];
+								delivObj.label = delivDoc["rdfs:label"];
+								delivObj.history = delivDoc.deliveryStatusInformation;
+								delivObj.source = delivDoc["dc:source"];
+							} else {
+								delivObj.label = this.value["rdfs:label"];
+								delivObj.history = [];
+								delivObj.source = "javascript:void(false);";
+							}
+							
+							templateData.push(delivObj);
+						});
+						$("#monitoring-03 .content").html("");
+						$('#monitoringDelivStatusTableStatic').tmpl([{}]).appendTo("#monitoring-03 .content");
+						$('#monitoringDelivStatusTable').tmpl(templateData, {
+							getHistory: function(history){
+								var res = "", firstLine = "", rest = "";
+								var toggleClass = "historyToggle" + Math.round(Math.random() * 100000000);
+								$(history).each(function(i, hist){
+									if(i==0){
+										firstLine += "<p><u><a onclick='$(\"." + toggleClass + "\").toggle()'>";
+										firstLine += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+										firstLine += "</a></u></p>"
+									} else {
+										rest += "<p >";
+										rest += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+										rest += "</p>"										
+									}
+								});
+								res = 
+									"<div class='firstLine'>" + 
+									firstLine + 
+									"</div>" +
+									"<div class='" + toggleClass + "' style='display:none'>" + 
+									rest + 
+									"</div>";
+								return res;
+							}
+						})
+						.appendTo('#monitoring-03 table.monitoringDelivStatusTable');
+					});
+					
+				}
+				</script>
+				<div class="accordion" id="monitor-accordion">
+					<h3><a href="#">Status of Spent vs. Planned Effort for IKS</a></h3>
+					<div id="monitoring-01"></div>
+					<h3><a href="#">Overview of Costs for IKS</a></h3>
+					<div id="monitoring-02"></div>
+					<h3><a href="#">Status of Deliverables for IKS</a></h3>
+					<div id="monitoring-03">
+						<div class="content"></div>
+						<script id="monitoringDelivStatusTableStatic" type="text/x-jquery-tmpl">
+							<table class="monitoringDelivStatusTable" style="border: solid 1px #ccc;>
+								<tr style="background-color: #eee;">
+									<th>Deliverables</th>
+									<th>Deadline</th>
+									<th>Name</th>
+									<th>History</th>
+								</tr>
+							</table>
+						</script>
+						<script id="monitoringDelivStatusTable" type="text/x-jquery-tmpl">
+							<tr style="vertical-align: top;">
+								<td>${wbs}</td>
+								<td>${deadline}</td>
+								<td><a href="${source}" target="_blank">${label}</a></td>
+								<td>{{html $item.getHistory(history)}}</td>
+							</tr>
+						</script>
+						<div id="testdiv">
+						</div>
+					</div>
+					<h3><a href="#">List of Meetings for IKS</a></h3>
+					<div id="monitoring-04"></div>
+					<h3><a href="#">List of Publications for IKS</a></h3>
+					<div id="monitoring-05"></div>
+				</div>
+			</div>
+	
+			<div id="tabs-control">
+				<script type="text/javascript">
+					// Initialize the tab on activating it
+/*
+					$("#tabs").bind("tabsselect", function(event, ui){if(ui.panel.id=="tabs-control"){
+						controlInit();
+					}});
+ */
+					$(document).ready(function(){
+						controlInit();
+					});
+					function controlInit(){
+						var constraints = iks.ipc.collectConstraints();
+						$('#control-rgraph').controldatavis({
+							dataStore: iks.ipc.dataStorage, 
+							constraints: constraints,
+							waitMsg: "collecting data..."
+						});
+					}
+				</script>
+				<div id="control-rgraph"></div>
+			</div>
+			<div id="tabs-report">
+				<script type="text/javascript">
+					// Initialize the tab on activating it
+					$(document).ready(function(){
+						reportInit();
+						reportFillOut();
+					});
+					function reportInit(){
+						$("#accordion").accordion();
+					}
+					function reportFillOut() {
+						// $('#tmpl').tmpl(json).appendTo('#element')
+						// var period = getConstraints().getPeriod();
+
+						// TODO Move this to the database
+						iks.ipc.partners = [
+							"urn:organisation:srfg",
+							"urn:organisation:dfki",
+							"urn:organisation:hsg",
+							"urn:organisation:cnr",
+							"urn:organisation:upb",
+							"urn:organisation:srdc",
+							"urn:organisation:nuxeo",
+							"urn:organisation:alkacon",
+							"urn:organisation:txt",
+							"urn:organisation:pisano",
+							"urn:organisation:nemein",
+							"urn:organisation:day",
+							"urn:organisation:hfu"];
+						iks.ipc.isQuarterInPeriod = function(key, period){
+							if(this.periods[key] && this.periods[key]["startdate"].indexOf(period) != -1)
+								return true;
+							else
+								return false;
+						};
+						var period = "2010";
+						iks.ipc.dataStorage.getData([
+						    "plannedEffortPerPartnerPerQuartalPerWBS", 
+						    "spenteffortByprojectWBS", 
+						    "periods", 
+						    "planWorkpackages"],
+							function(data){
+								iks.ipc.periods = data.periods;
+								
+								var templateDataObj = {};// Obj of WPs
+								// var plannedPerWP = {};
+								for(var wpI = 0; wpI < data.planWorkpackages.length;wpI++){
+									var wp = data.planWorkpackages[wpI].value;
+									var wpObj = templateDataObj[wp._id] = {
+										wpLabel: wp["rdfs:label"],
+										wpDescription: wp["dc:description"],
+										jsId: wp._id.replace(".","_"),
+										spentVsPlannedByPartner: {}
+									};
+									for(var p = 0;p < iks.ipc.partners.length; p++){
+										var partner = iks.ipc.partners[p];
+										wpObj.spentVsPlannedByPartner[partner] = {plan: 0, spent:0, 
+												partnerId: partner,
+												jsId: wp._id.replace(".","_")+partner,
+												partnerLabel: partner.substring(partner.lastIndexOf(":")+1,partner.length).toUpperCase()};// TODO
+										
+									}
+								}
+								// Iterate through PLAN values
+								$(data.plannedEffortPerPartnerPerQuartalPerWBS.rows).each(function(){
+									var wpWbs = this.key[2]+"."+this.key[3];
+									var partnerUri = this.key[0];
+									var recordPeriod = this.key[1];
+									if( templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri] &&
+											iks.ipc.isQuarterInPeriod(recordPeriod), period){
+										// console.info(this);
+										templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].plan += this.value;
+									} else
+										console.error(this);
+								});
+								// Iterate through SPENT values
+								$(data.spenteffortByprojectWBS.rows).each(function(){
+									var wpWbs = this.key[2]+"."+this.key[3];
+									var partnerUri = this.key[0];
+									var recordPeriod = this.key[1];
+									if(templateDataObj[wpWbs][partnerUri] &&
+											iks.ipc.isQuarterInPeriod(recordPeriod), period)
+										templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].spent += this.value;
+									else
+										console.error(this);
+								});
+								// Convert templateDataObject to templateData array
+								var templateData = [];
+								for(var wpI = 0; wpI < data.planWorkpackages.length;wpI++){
+									var wp = data.planWorkpackages[wpI].value;
+									// debugger;
+									var wpObj = {
+										spentVsPlannedByPartner: [],
+										wpLabel: wp["rdfs:label"],
+										wpDescription: wp["dc:description"]
+									};
+									templateData.push(wpObj);
+									for(var p = 0;p < iks.ipc.partners.length; p++){
+										var partner = iks.ipc.partners[p];
+										wpObj.spentVsPlannedByPartner.push(templateDataObj[wp._id].spentVsPlannedByPartner[partner]);
+									}
+								}
+								// console.info(templateData);
+								// debugger;
+
+								$('#workProgressPerWP').tmpl(templateData, {
+									test: function(){
+										debugger;
+										return "Template function testBlah";
+									}
+								})
+								.appendTo('#project_objectives_and_work_progress .workProgressPerWPList');
+								$('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
+							}
+						);
+						
+						
+					}
+				</script>
+				<script id="workProgressPerWP" type="text/x-jquery-tmpl">
+					<!-- {for each workpackage, active in reporting period, not for the management workpackage} -->
+						<h2>${wpLabel}</h2>
+					    <ul>
+						    <li><b>Objectives</b>: <i>${wpDescription}</i></li>
+					    	<li>Progress: <div class="editable freeText" id="${jsId}_progress">
+ Because of the redesign, the final version of D1.1 is planned to be available at the end of July but the first experimental exercise will be delivered to the industrial partners early July, such that the delay for Task 1.2 is reduced.
+							</div></li>
+					    
+					    	<li>Planned vs. Spent efforts per Partner
+								<!-- {table for this workpackage: planned vs. spent effort per beneficiary * transposition} -->
+								<table>
+
+									<tr><td>Partner</td><td>Planned effort</td><td>Spent effort</td><td>Deviation</td><td>Explanation</td></tr>
+
+									{{each spentVsPlannedByPartner}}
+										<tr>
+										<tr>
+	<td>${partnerLabel}</td>
+	<td>${Math.round(plan)}</td>
+	<td>${Math.round(spent)}</td>
+	<td>${Math.round(spent-plan)}</td>
+	<td><div id="${jsId}_explanation" class="editable freeText">Explanation...</div></td></tr>
+										</tr>
+									{{/each}}
+
+								</table>
+							</li>
+					    
+					    	<li>Explanation of use of resources: <div class="editable freeText" id="${jsId}_expl"> {a statement on use of resources, deviations and planning}</div></li>
+					    	<li>Significant results: <div class="editable freeText" id="${jsId}_signResults"> <strong>{free text input: significant results}</strong></div></li>
+					    	<li>Corrective actions: <div class="editable freeText" id="${jsId}_corrActions"> optional {possible corrective actions}</div></li>
+				    	</ul>
+				</script>
+				<div id="accordion">
+
+				<h2><a href="#"> 1. IKS project periodic report for 2010</a></h2>
+				<div id="basic_data">
+					<p>Grant Agreement number: {project_grant_agreement_number}</P>
+					<p>Project acronym: <abbr>{project_acronym}</abbr></P>
+					<p>Project title:{project_label}</P>
+					<p>Funding Scheme:{funding_scheme}</P>
+					<p>Date of latest version of Annex I against which the assessment will be made: {project_contract_date}</P>
+
+					<div id="period">
+						<form id="reportingperiod" action="">
+						  <p>Periodic report: 
+						    <input type="radio" name="1st period" value="1"> 1st period
+						    <input type="radio" name="2nd period" value="2"> 2nd period
+						    <input type="radio" name="3rd period" value="3"> 3rd period
+						    <input type="radio" name="4th period" value="3"> 4th period</p>
+						</form>
+						<p>Period covered: from {date picker} to {date picker} </p>
+					</div>
+					<div id="address_of_scientific_representative_of_project">
+						<p>Name, title and organisation of the scientific representative of the project's coordinator</B>:</p>
+						<p>Name:</p>
+						<p>Organisation: {lead-organisation}</p>
+						<p>Tel:</p>
+						<p>Fax:</p>
+						<p>E-mail:</p>
+					</div>
+
+					<p>Project website address: {project_website_url}</P>
+				</div>
+				
+				<h2><a href="#"> 2. Declaration by the scientific representative of the project coordinator </a></h2>
+				<div id="declaration_of_coordinator">
+					I, as scientific representative of the coordinator of this project and in line with the obligations as stated in Article II.2.3 of the Grant Agreement declare that:
+					<ul>
+					    <li>The attached periodic report represents an accurate description of the work carried out in this project for this reporting period;</FONT></P>
+						<li><p> The project (tick as appropriate): </p>
+							<div id="goals">
+							    <form id="achieved goals" action="">
+							        <p> <input type="radio" name="achieved full" value="1"> has fully achieved its objectives and technical goals for the period;</p>
+							        <p> <input type="radio" name="achieved most" value="2"> has achieved most of its objectives and technical goals for the period with relatively minor deviations.</p>
+							        <p> <input type="radio" name="failed" value="3"> has failed to achieve critical objectives and/or is not at all on schedule.</p>
+							    </form>
+							</div>		
+						</li>
+						<li><p>The public website, if applicable</p>
+							<form id="website status" action="">
+						        <p> <input type="radio" name="achieved full" value="1"> is up to date</p>
+						        <p> <input type="radio" name="achieved most" value="2"> is not up to date</p>
+						    </form>
+						</li>
+						<li>To my best knowledge, the financial statements which are being submitted as part of this report are in line with the actual work carried out and are consistent with the report on the resources used for the project (section 3.4) and if applicable with the certificate on financial statement.</li>
+						<li>All beneficiaries, in particular non-profit public bodies, secondary and higher education establishments, research organisations and SMEs, have declared to have verified their legal status. Any changes have been reported under section 3.2.3 (Project Management) in accordance with Article II.3.f of the Grant Agreement.</li>
+					</ul>
+					
+					<div id="signature">
+						<p>Signature</p> 
+						<p>Name of scientific representative of the Coordinator: {signature}</p>
+						<p>Date: <time datetime="{datetime}"></time></p>
+						For most of the projects, the signature of this declaration could be done directly via the IT reporting tool through an adapted IT mechanism.</FONT></FONT></P>
+					</div>
+				</div>
+				
+				<h2><a href="#"> 3. Publishable summary</a></h2>
+				<div id="publishable summary">
+					{link to publishable summary}
+				</div>
+				
+				<h2><a href="#"> 4. Project objectives, work progress and achievements during the period</a></h2>
+				<div id="project_objectives_and_work_progress">
+					<h3> Project objectives for period from AnnexI</h3>
+					<p> {project-objectives-for-period-from-AnnexI} </p>
+					<h3> Recommendations from previous reviews</h3>
+					<p> {summary of the recommendations from the previous reviews (if any) and indicate how these have been taken into account}.</p>
+					<h3>Work progress and achievements during the period</h3>
+					<p>Please provide a concise overview of the progress of the work in line with the structure of Annex I to the Grant Agreement.</P>
+					<div class="workProgressPerWPList"></div>
+				</div>
+				
+				<h2><a href="#"> 5. Project management during the period</a></h2>
+				<div id="project_management">
+					<h3>Consortium management tasks and achievements</h3>
+					<p contenteditable> free text: Consortium management tasks and achievements</p>
+					<h3>Problems which have occurred and how they were solved or envisaged solutions</h3>
+					<p contenteditable> free text: Problems which have occurred and how they were solved or envisaged solutions </p>
+					<h3>Changes in the consortium</h3>
+					<p contenteditable> free text: Changes in the consortium</p>
+					<h3>List of project meetings, dates and venues</h3>
+					<p>{project meetings, dates and venues}</p>
+					<h3>Project planning and status</h3>
+					
+					<p> {table: planned vs. actual vs. deviation per task per reporting period (year) * (transposition}
+					
+					<p contenteditable>free text description</p>
+					<h3>Impact of possible deviations from the planned milestones and deliverables</h3>
+					<p contenteditable>possible deviations from the planned milestones and deliverables</p>
+					<h3> Any changes to the legal status of any of the beneficiaries, in particular non-profit public bodies, secondary and higher education establishments, research organisations and SMEs</h3>
+					<p contenteditable>change in legal status</p>
+					<h3>Development of the Project website</h3>
+					<p contenteditable>free text: development of website</p>
+					<h3>Information on co-ordination activities during the period in question, such as communication between beneficiaries, possible co-operation with other projects/programmes etc.</h3>
+					<p contenteditable>free text: communication and co-operation</p>
+				</div>
+
+				<h2><a href="#"> 6. Deliverables and milestones tables</a></h2>
+				<div id="deliverables_and_milestones_tables">
+					<h3>Deliverables</h3>
+					
+					{table of all deliverables which are due from project start to end of reporting period} <br>
+					Labels for collumns <br>
+					Del. no. <br>
+					Deliverable name <br>
+					Version <br>
+					WP no. <br>
+					Lead beneficiary <br>
+					Nature <br>
+					Dissemination level <br>
+					Delivery date from Annex I (proj month) <br>
+					Actual / Forecast delivery date (Dd/mm/yyyy <br>
+					Status (Not submitted/Submitted <br>
+					Contractual (Yes/No) <br>
+					Comments (editable textfield) <br>
+					
+					<h3>Milestones</h3>
+					Milestone no. <br>
+					Milestone name<br>
+					Work package no<br>
+					Lead beneficiary<br>
+					Delivery date  from Annex I (dd/mm/yyyy)<br>
+					Achieved (Yes/No) <-- rule based><br>
+					Actual / Forecast achievement date (dd/mm/yyyy)<br>
+					<p contenteditable>Free text Comments</p>
+				
+				</div>
+				<h2><a href="#"> 7. explanation of use of resources</a></h2>
+				<div id="explanation_of_use_of_resources">not yet implemented</div>
+			</div>
+		</div>
+	</div>
+	<span id="inlineMenu" style="display: none;"><span><a href="#" onclick="sheetInstance.controlFactory.addRow(); return false;" title="Insert Row After Selected"><img alt="Insert Row After Selected" src="pics/icons/sheet_row_add.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addRow(null, true); return false;" title="Insert Row Before Selected"><img alt="Insert Row Before Selected" src="pics/icons/sheet_row_add.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addRow(null, null, ':last'); return false;" title="Add Row At End"><img alt="Add Row" src="pics/icons/sheet_row_add.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addRowMulti(); return false;" title="Add Multi-Rows"><img alt="Add Multi-Rows" src="pics/icons/sheet_row_add_multi.png"/></a><a href="#" onclick="sheetInstance.deleteRow(); return false;" title="Delete Row"><img alt="Delete Row" src="pics/icons/sheet_row_delete.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addColumn(); return false;" title="Insert Column After Selected"><img alt="Insert Column After Selected" src="pics/icons/sheet_col_add.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addColumn(null, true); return false;" title="Insert Column Before Selected"><img alt="Insert Column Before Selected" src="pics/icons/sheet_col_add.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addColumn(null, null, ':last'); return false;" title="Add Column At End"><img alt="Add Column At End" src="pics/icons/sheet_col_add.png"/></a><a href="#" onclick="sheetInstance.controlFactory.addColumnMulti(); return false;" title="Insert Multi-Columns"><img alt="Add Multi-Columns" src="pics/icons/sheet_col_add_multi.png"/></a><a href="#" onclick="sheetInstance.deleteColumn(); return false;" title="Delete Column"><img alt="Delete Column" src="pics/icons/sheet_col_delete.png"/></a><a href="#" onclick="sheetInstance.getTdRange(null, sheetInstance.obj.formula().val()); return false;" title="Get Cell Range"><img alt="Get Cell Range" src="pics/icons/sheet_get_range.png"/></a><a href="#" onclick="sheetInstance.s.fnSave(); return false;" title="Save Sheets"><img alt="Save Sheet" src="pics/icons/disk.png"/></a><a href="#" onclick="sheetInstance.deleteSheet(); return false;" title="Delete Current Sheet"><img alt="Delete Current Sheet" src="pics/icons/table_delete.png"/></a><a href="#" onclick="sheetInstance.calc(sheetInstance.i); return false;" title="Refresh Calculations"><img alt="Refresh Calculations" src="pics/icons/arrow_refresh.png"/></a><a href="#" onclick="sheetInstance.cellFind(); return false;" title="Find"><img alt="Find" src="pics/icons/find.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleBold'); return false;" title="Bold"><img alt="Bold" src="pics/icons/text_bold.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleItalics'); return false;" title="Italic"><img alt="Italic" src="pics/icons/text_italic.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleUnderline', 'styleLineThrough'); return false;" title="Underline"><img alt="Underline" src="pics/icons/text_underline.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleLineThrough', 'styleUnderline'); return false;" title="Strikethrough"><img alt="Strikethrough" src="pics/icons/text_strikethrough.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleLeft', 'styleCenter styleRight'); return false;" title="Align Left"><img alt="Align Left" src="pics/icons/text_align_left.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleCenter', 'styleLeft styleRight'); return false;" title="Align Center"><img alt="Align Center" src="pics/icons/text_align_center.png"/></a><a href="#" onclick="sheetInstance.cellStyleToggle('styleRight', 'styleLeft styleCenter'); return false;" title="Align Right"><img alt="Align Right" src="pics/icons/text_align_right.png"/></a><a href="#" onclick="sheetInstance.fillUpOrDown(); return false;" title="Fill Down"><img alt="Fill Down" src="pics/icons/arrow_down.png"/></a><a href="#" onclick="sheetInstance.fillUpOrDown(true); return false;" title="Fill Up"><img alt="Fill Up" src="pics/icons/arrow_up.png"/></a><span class="colorPickers"><input title="Foreground color" class="colorPickerFont" style="background-image: url('pics/icons/palette.png') ! important; width: 16px; height: 16px;"/><input title="Background Color" class="colorPickerCell" style="background-image: url('pics/icons/palette_bg.png') ! important; width: 16px; height: 16px;"/></span><a href="#" onclick="sheetInstance.obj.formula().val('=HYPERLINK(\'' + prompt('Enter Web Address', 'http://www.visop-dev.com/') + '\')').keydown(); return false;" title="HyperLink"><img alt="Web Link" src="pics/icons/page_link.png"/></a><a href="#" onclick="sheetInstance.toggleFullScreen(); $('#lockedMenu').toggle(); return false;" title="Toggle Full Screen"><img alt="Web Link" src="pics/icons/arrow_out.png"/></a><!--<a href="#" onclick="insertAt('jSheetControls_formula', '~np~text~'+'/np~');return false;" title="Non-parsed"><img alt="Non-parsed" src="pics/icons/noparse.png"/></a>--></span></span>
+</body>
+</html>

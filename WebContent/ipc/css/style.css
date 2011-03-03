@@ -1,0 +1,108 @@
+/*
+ * IKS IPC CSS rules
+ */
+
+/* Layout */
+#header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 40px;
+	background-color: #eee;
+}
+#header #userprofile {
+	position: absolute;
+	float: none;
+	right: 10px;
+	top: 10px;
+}
+#header #breadcrumb {
+	position: absolute;
+	float: none;
+	left: 10px;
+	top: 10px;
+}
+#wrapper .sidebar {
+	position: relative;
+	top: 40px;
+	height: 100%;
+	padding: 10px;
+	float: left;
+	width: 160px;
+}
+#wrapper .sidebar > div, #wrapper .sidebar > span {
+	padding: 0 0 30px 0;
+}
+#wrapper .sidebar select {
+	width: 130px;
+}
+#wrapper #tabs {
+	padding: 10px;
+	float: left;
+	width: 80%;
+	min-width: 900px;
+	margin-top: 30px;
+}
+/*
+#wrapper #tabs {
+	width: 400px;
+}
+
+.sidebar input,
+.sidebar select {
+	padding: 5px 8px;
+}
+*/
+#tabs {
+	/* clear: left;*/
+}
+
+#tabs-control .switch {
+	padding: 0 10px;
+}
+#mode-selector {
+	clear: left;
+	white-space: nowrap;
+	padding: 1em 0;
+}
+#mode-selector .ui-button-text {
+	padding: 0.1em 0.5em;
+}
+
+#tabs-control .bcElement .ui-button-text {
+	padding: 0.1em 0.5em;
+}
+
+/* Typo */
+#header #userprofile {
+	/* font-size: 80%;*/
+}
+
+/* Colours */
+#header #userprofile {
+	/* color: #ccc; */
+}
+
+.debug {
+	font-size: 80%;
+	color: #999;
+}
+
+/* controldatavis */
+.modeSwitches {
+	height: 1px;
+	position: relative;
+	text-align: right;
+	top: 2px;
+	right: -13px;
+	z-index: 10;
+	width: 650px;
+}
+.breadCrumbs {
+	height: 1px;
+	position: relative;
+	z-index: 10;
+	top: 1px;
+}
+	

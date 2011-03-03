@@ -1,0 +1,44 @@
+/*
+ * IKS IPC CSS rules
+ */
+
+/* Layout */
+#header div {
+	padding: 10px;
+	float: left;
+}
+
+#header input,
+#header select {
+	padding: 5px 8px;
+}
+
+#header #userprofile {
+	position: absolute;
+	float: none;
+	right: 10px;
+	top: 0;
+}
+
+#tabs {
+	clear: left;
+}
+
+#tabs-control .switch {
+	padding: 0 10px;
+}
+
+/* Typo */
+#header #userprofile {
+	font-size: 80%;
+}
+
+/* Colours */
+#header #userprofile {
+	color: #ccc;
+}
+
+.debug {
+	font-size: 80%;
+	color: #999;
+}

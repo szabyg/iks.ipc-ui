@@ -1,0 +1,19 @@
+{
+    "selected": [ 
+        "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label", 
+        "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type"], 
+    "offset": "0", 
+    "limit": "3", 
+    "constraints": [{ 
+        "type": "reference", 
+        "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
+        "value": "Project", 
+    },
+     { 
+       "type": "text", 
+       "patternType": "wildcard", 
+       "text": "IK*", 
+       "field": "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label" 
+    }
+    ]
+}

@@ -1,0 +1,24 @@
+{ projects_fields: [
+	 {id: "no", label: "Project No."},
+	 {id: "acronym", label: "Acronym"}, 
+	 {id: "label", label: "Title"},
+	 {id: "coordinator", label: "Coordinator"},
+	 {id: "topics", label: "Topics"},
+	 {id: "partners", label: "Partners"},
+	 {id: "staff", label: "Staff"},
+	 {id: "reviewstatus", label: "reviewstatus"},
+	 {id: "projectstatus", label: "projectstatus"},
+	 {id: "nextmilestone", label: "nextmilestone", 
+	 	formatString: function(doc){
+		 	var res = $(doc).map(function(i,milestone){
+		 		return milestone.deadline + " (" +  milestone.label + ")";
+		 	});
+	 	return res.toArray().join(", ");
+	 }},
+	 {id: "upcomingdeliverables", label: "upcomingdeliverables", formatString: function(doc){
+	 	var res = $(doc).map(function(i, deliverable){
+	 		return deliverable.label + " (deadline: " + deliverable.deadline + ")";
+	 	});
+	 	return res.toArray().join(", ");
+	 }}
+]}

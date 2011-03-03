@@ -1,0 +1,47 @@
+IKS - Use Case Application 'Intelligent Project Controlling' User Interface
+===========================================================================
+
+Author: Szaby Grünwald - Salzburg Research
+
+1. Introduction
+
+2. UI Parts
+
+3. Widgets
+
+ 
+The static data included in the folder structure is only for demonstration purpose. It shows the data format expected to come from the back-end.
+
+2. UI Parts
+   ========
+2.0 Overall UI frame
+--------------------
+
+2.1 Plan
+2.2 Execute
+2.3 Monitor
+-----------
+2.4 Control
+
+2.5 Report
+
+ 
+3. Widgets
+   =======
+3.1 iks.projectselector widget
+------------------------------
+
+
+3.2 iks.timerangeselector widget
+--------------------------------
+
+
+
+
+
+The Autocomplete functionality comes from the jQuery UI library
+
+Prerequisites
+=============
+
+JSONP must be enabled in Couchdb. That means in the file /etc/couchdb/default.ini the setting for allow_jsonp must be true.
