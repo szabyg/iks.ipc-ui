@@ -209,7 +209,21 @@ if(withAloha)alohaconfig();
 		$(document).ready(function(){
 		    $.stanbolConnector.getSites(function(sites){
 		        console.info(sites);
-		    }, {stanbolUrl: "http://stanbol.iksfordrupal.net:9000/"});
+		        }, {
+//		        stanbolUrl: "http://stanbol.iksfordrupal.net:9000/"
+		    });
+		    
+            var site = "srfg";
+            $.stanbolConnector.entityhubQuery(site, "grub", function( data ) {
+				console.info( $.map( data, function( item ) {
+					return {
+						label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
+						value: item.id,
+						item: item
+					}
+				}));
+            });
+
 			// $("#mode-selector").buttonset();
 			$("#mode-selector input").change(function(){
 				var switchValue = $('#mode-selector input:checked').val();
@@ -305,13 +319,52 @@ if(withAloha)alohaconfig();
 		<div class="sidebar">
 			<div id="project-selector">
 				<b>1. Select project</b><br/>
-				<input size="10"/><br/>
+				<input size="10" id="projectlookup"/><br/>
 				<select>
 					<option>Select Project</option>
 					<option>IKS</option>
 					<option>KiWi</option>
 				</select>
 			</div>
+			<script>
+			$( "#projectlookup" ).autocomplete({
+			    source: function( request, response ) {
+                    console.info(request.term);
+                    $.stanbolConnector.entityhubQuery("srfg", request.term, function( data ) {
+                        data = _.reject(data, function(item){return item.id.indexOf("INTERN") != -1});
+				        response( $.map( data, function( item ) {
+				        console.info(item);
+					        return {
+						        label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
+						        value: item["http://www.w3.org/2000/01/rdf-schema#label"][0]
+					        }
+				        }));
+                    });
+			    },
+
+			    minLength: 2,
+			    select: function( event, ui ) {
+				    console.log( ui.item ?
+					    "Selected: " + ui.item.label :
+					    "Nothing selected, input was " + this.value);
+					if(ui.item){
+					    var label = ui.item.label;
+					    console.info(label);
+					    $.stanbolConnector.entityhubQuery("srfg", label, function( data ) {
+                            var id = data[0].id;
+				            console.info(id);
+				            
+				        });
+					}
+			    },
+			    open: function() {
+				    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+			    },
+			    close: function() {
+				    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+			    }
+		    });
+			</script>
 		 	<div id="mode-selector">
 		 		<b>2. Select activity</b><br/>
 		 		<input type='radio' name='lifecyclemode' class='lifecyclemode' value='plan' id='lifecyclemode-plan'> <label for='lifecyclemode-plan'>Browse Plan</label><br/>
