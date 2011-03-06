@@ -30,7 +30,7 @@ $.stanbolConnector = {
                 "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label", 
                 "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type"], 
             "offset": "0", 
-            "limit": "11", 
+            "limit": "0", 
             "constraints": [{ 
                "type": "text", 
                "patternType": "wildcard", 
@@ -38,6 +38,8 @@ $.stanbolConnector = {
                "field": "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label" 
             }]
         };
+        if(options && options.constraints)
+            $.each(options.constraints, function(){fieldQuery.constraints.push(this);});
         var postData = {query: JSON.serialize(fieldQuery)};
         this.stanbolRequest(uri,{
             method: "POST",
@@ -62,7 +64,16 @@ $.stanbolConnector = {
         });
     },
     getEntity: function(site, uri, cb, options){
-    
+        var uri = this.options.stanbolUrl + "entityhub/site/" + site + "/entity?id="+uri;
+        $.extend(this.options, options);
+        var that = this;
+        this.stanbolRequest(uri,{
+            acceptHeader: "application/json", 
+//            data: {id: uri},
+            success: function (data, textStatus, jqXHR){
+                cb(data);
+            }
+        });
     },
     /**
      * generic call to a stanbol backend through a proxy
@@ -84,11 +95,6 @@ $.stanbolConnector = {
         $.extend(ajaxOpt.data, options.data);
         $.ajax(ajaxOpt);
         
-    },
-    autocompleteFn: function(sites, options){
-        
-    },
-    
-    
+    }
 }
 })(jQuery)

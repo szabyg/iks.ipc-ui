@@ -1,0 +1,15 @@
+{
+    "selected": [ 
+        "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label", 
+        "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type"], 
+    "offset": "0", 
+    "limit": "10", 
+    "constraints": [
+     { 
+       "type": "text", 
+       "patternType": "wildcard", 
+       "text": "*", 
+       "field": "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label" 
+    }
+    ]
+}

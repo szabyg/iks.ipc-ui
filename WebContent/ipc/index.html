@@ -339,7 +339,7 @@ if(withAloha)alohaconfig();
 						        value: item["http://www.w3.org/2000/01/rdf-schema#label"][0]
 					        }
 				        }));
-                    });
+                    },{stanbolUrl: "http://isr03:8080"});
 			    },
 
 			    minLength: 2,
@@ -353,7 +353,9 @@ if(withAloha)alohaconfig();
 					    $.stanbolConnector.entityhubQuery("srfg", label, function( data ) {
                             var id = data[0].id;
 				            console.info(id);
-				            
+				            $.stanbolConnector.getEntity("srfg", id, function(data){
+				                console.info(data);
+				            });
 				        });
 					}
 			    },
