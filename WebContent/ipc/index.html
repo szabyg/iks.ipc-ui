@@ -213,16 +213,6 @@ if(withAloha)alohaconfig();
 //		        stanbolUrl: "http://stanbol.iksfordrupal.net:9000/"
 		    });
 		    
-            var site = "srfg";
-            $.stanbolConnector.entityhubQuery(site, "grub", function( data ) {
-				console.info( $.map( data, function( item ) {
-					return {
-						label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
-						value: item.id,
-						item: item
-					}
-				}));
-            });
 
 			// $("#mode-selector").buttonset();
 			$("#mode-selector input").change(function(){
@@ -330,7 +320,7 @@ if(withAloha)alohaconfig();
 			$( "#projectlookup" ).autocomplete({
 			    source: function( request, response ) {
                     console.info(request.term);
-                    $.stanbolConnector.entityhubQuery("srfg", request.term, function( data ) {
+                    $.stanbolConnector.entityhubQuery("srfg", '*'+request.term+'*', function( data ) {
                         data = _.reject(data, function(item){return item.id.indexOf("INTERN") != -1});
 				        response( $.map( data, function( item ) {
 				        console.info(item);
@@ -395,7 +385,7 @@ if(withAloha)alohaconfig();
 					monitoringInit();
 				}});
 				function monitoringInit(){
-					$("#monitor-accordion").accordion();
+					$("#monitor-accordion").accordion({clearStyle: true});
 					// Collect UI constraints for the presentation
 					var constraints = iks.ipc.collectConstraints();
 					

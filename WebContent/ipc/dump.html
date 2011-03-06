@@ -28,43 +28,58 @@
 	(function($) {
 		$(document).ready(function(){
 		    $.stanbolConnector.getSites(function(sites){
+		        $('#sites').html(JSON.serialize(sites));
+		        $('#sites').html("<select size=" + sites.length + "></select>");
+		        var options = "<% _.each(sites, function(name){ %> <option> <%= name %> </option><% }); %>";
+		        var opts = _.template(options, {sites:sites});
+		        console.info(opts);
+		        $('#sites select').html(opts);
 		        console.info(sites);
 		        }, {
 //		        stanbolUrl: "http://stanbol.iksfordrupal.net:9000/"
 		    });
-		    
-            var site = "srfg";
-            $.stanbolConnector.entityhubQuery(site, "", function( data ) {
-                $('#result').html(data.length);
-                _.each(data, function(item){
-                    $('#result').append("<p>"+JSON.serialize(item)+"</p>");
-                    $.stanbolConnector.getEntity("srfg", item.id.replace(" ", "%20"), function(fullItem){
-                        $('#result').append("<p>"+JSON.serialize(fullItem)+"</p>");
+		    $('#dumpbutton').click(function(){
+		        $('#result').html('');
+		        function write(txt){
+		            $('#result').append("<p>"+txt+"</p>");
+		        };
+                var site = $('#sites select').val();
+                $.stanbolConnector.entityhubQuery(site, $('#query').val(), function( data ) {
+                    $('#result').html(data.length);
+                    _.each(data, function(item){
+                        write("Entity: <strong>" + item.id + "</strong><br/>" + JSON.serialize(item));
+                        $.stanbolConnector.getEntity("srfg", item.id/*.replace(" ", "%20")*/, function(fullItem){
+                            write(JSON.serialize(fullItem));
+                        },
+                        // options
+                        {
+                            error: function(jqXHR, textStatus, errorThrown){
+                                write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
+                                    "response: " + jqXHR.response);
+                                console.info(jqXHR);
+                            }
+                        });
                     });
-                });
-				console.info( $.map( data, function( item ) {
-					return {
-						label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
-						value: item.id,
-						item: item
-					}
-				}));
-            }
-            /*{constraints: [
-                { 
-                    "type": "reference", 
-                    "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
-                    "value": "http:\/\/dbpedia.org\/ontology\/Person", 
-//                    "value": $('#contentType').val(), 
                 },
-            ]}*/
-            );
+                // options
+                {
+                    limit: $('#limit').val(),
+                    error: function(jqXHR, textStatus, errorThrown){
+                        write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
+                            "response: " + jqXHR.response);
+                        console.info(jqXHR);
+                    }
+                });
+		    });
         });
     })(jQuery);
   	</script>
 </head>
 <body>
-type: <input id="contentType" value="Project"/><button>dump!</button>
+<div id="sites"></div>
+query: <input id="query" value="*"/><br/>
+limit: <input id="limit" value="100"/><br/>
+<button id="dumpbutton">dump!</button>
 <h2>Result</h2>
 <div id="result">nothing yet...</div>
 

@@ -1,3 +1,8 @@
+/**
+ * This software is for demonstration and testing purposes.
+ * (c) 2011 Szaby Gruenwald, Salzburg Research
+ * The IKS Stanbol connector is freely distributable under the MIT license.
+ */
 (function($){
 $.stanbolConnector = {
     options: {
@@ -25,16 +30,19 @@ $.stanbolConnector = {
     },
     entityhubQuery: function(site, s, cb, options){
         var uri = this.options.stanbolUrl + "entityhub/site/" + site + "/query";
+        if(!options)options={};
         var fieldQuery = {
             "selected": [ 
                 "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label", 
-                "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type"], 
+                "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type",
+                "http://xmlns.com/foaf/0.1/homepage"
+            ], 
             "offset": "0", 
-            "limit": "0", 
+            "limit": options.limit || "1000", 
             "constraints": [{ 
                "type": "text", 
                "patternType": "wildcard", 
-               "text": "*" + s + "*", 
+               "text": s, 
                "field": "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label" 
             }]
         };
@@ -58,6 +66,7 @@ $.stanbolConnector = {
                     return res;
                 }));
             },
+            error: options.error,
             data: postData,
             processData: false,
             dataType: "string"
@@ -72,7 +81,8 @@ $.stanbolConnector = {
 //            data: {id: uri},
             success: function (data, textStatus, jqXHR){
                 cb(data);
-            }
+            },
+            error: options.error
         });
     },
     /**
