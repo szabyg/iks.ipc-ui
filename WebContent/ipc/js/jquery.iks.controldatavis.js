@@ -6,7 +6,7 @@
  */
 $.widget('ipc.controldatavis', {
 	_create: function(){
-		this.position = ['iks', '8'];
+		this.position = ['iks'];
 		
 		// DOM element for the mode switches
 		this.element.append($('<div class="modeSwitches"/>'));
@@ -48,7 +48,9 @@ $.widget('ipc.controldatavis', {
 		this.canvasId = this.canvasElement.getUID();
 		var dataArrays = this.getDataArrays();
 
-		if(this.showPlanned){
+        console.info(dataArrays.plannedEffortDetail);
+		if(this.showPlanned && (!this.showDetails || dataArrays.plannedEffortDetail[0].length==0)){
+		    console.info("show planned");
 			// BarChart for planned data
 			var planBarChart = new RGraph.Bar(this.canvasId, dataArrays.planArr);
 			RGraph.SetConfig(planBarChart, 
@@ -65,7 +67,8 @@ $.widget('ipc.controldatavis', {
 			RGraph.Register(planBarChart);
 		}
 
-		if(this.showSpent){
+		if(this.showSpent && !this.showDetails){
+		    console.info("show spent");
 			// BarChart for spent data
 			var spentBarChart = new RGraph.Bar(this.canvasId, dataArrays.spentArr);
 			RGraph.SetConfig(spentBarChart, 
@@ -75,38 +78,10 @@ $.widget('ipc.controldatavis', {
 					})
 			);
 			spentBarChart.Draw();
-
-			// Can only register one chart for being redrawn?
-/*
-			RGraph.Register(spentBarChart);
-			spentBarChart.canvas.onclick = function (e)
-			{
-				RGraph.Redraw();
-				
-				var canvas  = e.target;
-				var context = canvas.getContext('2d');
-				var obj     = canvas.__object__;
-				var coords  = obj.getBar(e);
-				
-				if (coords) {
-					var top    = coords[1];
-					var left   = coords[2];
-					var width  = coords[3];
-					var height = coords[4];
-					
-					context.beginPath();
-					context.strokeStyle = 'black';
-					context.fillStyle = 'rgba(255,255,255,0.5)';
-					context.strokeRect(top, left, width, height);
-					context.fillRect(top, left, width, height);
-					context.stroke();
-					context.fill();
-				}
-			};
-*/
 	    }
 		
-		if(this.showDetails){
+		if(this.showDetails && dataArrays.plannedEffortDetail[0].length){
+		    console.info("show details");
 			// BarChart for planned data
 			var plannedDetailBarChart = new RGraph.Bar(this.canvasId, dataArrays.plannedEffortDetail);
 			RGraph.SetConfig(plannedDetailBarChart, 
