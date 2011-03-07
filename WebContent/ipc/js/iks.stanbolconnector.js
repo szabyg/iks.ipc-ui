@@ -73,7 +73,7 @@ $.stanbolConnector = {
         });
     },
     getEntity: function(site, uri, cb, options){
-        var uri = this.options.stanbolUrl + "entityhub/site/" + site + "/entity?id="+uri;
+        var uri = this.options.stanbolUrl + "entityhub/site/" + site + "/entity?id="+ /*escape*/(uri);
         $.extend(this.options, options);
         var that = this;
         this.stanbolRequest(uri,{
@@ -105,6 +105,12 @@ $.stanbolConnector = {
         $.extend(ajaxOpt.data, options.data);
         $.ajax(ajaxOpt);
         
+    },
+    setConfig: function(options){
+        $.extend(this.options, options);
+    },
+    isAlive: function(cb){
+        this.stanbolRequest(this.options.stanbolUrl, {success: function(){cb(true);}, error: function(){cb(false);}})
     }
 }
 })(jQuery)

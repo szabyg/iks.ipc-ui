@@ -11,8 +11,6 @@
 	var srcroot = "js/";
 	var libroot = "js/lib/";
 	var cssroot = "./css/";
-	var rgraphroot = "js/lib/rgraph/";
-	var withAloha = false;
  
 	// loading rdfQuery and jQuery (v 1.4.3) script-files
 	load_scripts([ 
@@ -27,55 +25,63 @@
 <script type="text/javascript">
 	(function($) {
 		$(document).ready(function(){
-		    $.stanbolConnector.getSites(function(sites){
-		        $('#sites').html(JSON.serialize(sites));
-		        $('#sites').html("<select size=" + sites.length + "></select>");
-		        var options = "<% _.each(sites, function(name){ %> <option> <%= name %> </option><% }); %>";
-		        var opts = _.template(options, {sites:sites});
-		        console.info(opts);
-		        $('#sites select').html(opts);
-		        console.info(sites);
-		        }, {
-//		        stanbolUrl: "http://stanbol.iksfordrupal.net:9000/"
-		    });
-		    $('#dumpbutton').click(function(){
-		        $('#result').html('');
-		        function write(txt){
-		            $('#result').append("<p>"+txt+"</p>");
-		        };
-                var site = $('#sites select').val();
-                $.stanbolConnector.entityhubQuery(site, $('#query').val(), function( data ) {
-                    $('#result').html(data.length);
-                    _.each(data, function(item){
-                        write("Entity: <strong>" + item.id + "</strong><br/>" + JSON.serialize(item));
-                        $.stanbolConnector.getEntity("srfg", item.id/*.replace(" ", "%20")*/, function(fullItem){
-                            write(JSON.serialize(fullItem));
+		    var stanbolUrl = "http://localhost:8080/";
+		    $.stanbolConnector.setConfig({stanbolUrl: stanbolUrl});
+		    $.stanbolConnector.isAlive(function(alive){
+		        if(!alive)
+		            alert(stanbolUrl + "is not reachable!");
+		        else {
+		            $('#stanbol-addr').html(stanbolUrl);
+		            $.stanbolConnector.getSites(function(sites){
+		                $('#sites').html(JSON.serialize(sites));
+		                $('#sites').html("<select size=" + sites.length + "></select>");
+		                var options = "<% _.each(sites, function(name){ %> <option> <%= name %> </option><% }); %>";
+		                var opts = _.template(options, {sites:sites});
+		                console.info(opts);
+		                $('#sites select').html(opts);
+		                console.info(sites);
+		                });
+		            $('#dumpbutton').click(function(){
+		                $('#result').html('');
+		                function write(txt){
+		                    $('#result').append("<p>"+txt+"</p>");
+		                };
+                        var site = $('#sites select').val();
+                        $.stanbolConnector.entityhubQuery(site, $('#query').val(), function( data ) {
+                            $('#result').html(data.length);
+                            _.each(data, function(item){
+                                write("Entity: <strong>" + item.id + "</strong><br/>" + JSON.serialize(item));
+                                $.stanbolConnector.getEntity(site, item.id/*.replace(" ", "%20")*/, function(fullItem){
+                                    write(JSON.serialize(fullItem));
+                                },
+                                // options
+                                {
+                                    error: function(jqXHR, textStatus, errorThrown){
+                                        write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
+                                            "response: " + jqXHR.response);
+                                        console.info(jqXHR);
+                                    }
+                                });
+                            });
                         },
                         // options
                         {
+                            limit: $('#limit').val(),
                             error: function(jqXHR, textStatus, errorThrown){
                                 write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
                                     "response: " + jqXHR.response);
                                 console.info(jqXHR);
                             }
                         });
-                    });
-                },
-                // options
-                {
-                    limit: $('#limit').val(),
-                    error: function(jqXHR, textStatus, errorThrown){
-                        write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
-                            "response: " + jqXHR.response);
-                        console.info(jqXHR);
-                    }
-                });
+		            });
+		        }
 		    });
         });
     })(jQuery);
   	</script>
 </head>
 <body>
+<div>Connected to <span id="stanbol-addr">none</span></div>
 <div id="sites"></div>
 query: <input id="query" value="*"/><br/>
 limit: <input id="limit" value="100"/><br/>
