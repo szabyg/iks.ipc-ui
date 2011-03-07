@@ -223,7 +223,7 @@ if(withAloha)alohaconfig();
 					$("#tabs-control").show();
 					$("#tabs-monitor").hide();
 					$("#tabs-report").hide();
-					// $("#accordion").accordion("destroy");
+					// $("#reportAccordion").accordion("destroy");
 					break;
 				case "monitor":
 					$("#pathApp").html("Monitor Project");
@@ -237,8 +237,8 @@ if(withAloha)alohaconfig();
 					$("#tabs-control").hide();
 					$("#tabs-monitor").hide();
 					$("#tabs-report").show();
-					$("#accordion").accordion('resize');
-					// $("#accordion").accordion();
+					$("#reportAccordion").accordion('resize');
+					// $("#reportAccordion").accordion();
 					break;
 				default:
 					alert("sorry, not implemented yet");
@@ -385,7 +385,8 @@ if(withAloha)alohaconfig();
 					monitoringInit();
 				}});
 				function monitoringInit(){
-					$("#monitor-accordion").accordion({clearStyle: true});
+					$("#monitor-accordion").accordion({clearStyle: true, autoHeight: false})
+					    .accordion('resize');
 					// Collect UI constraints for the presentation
 					var constraints = iks.ipc.collectConstraints();
 					
@@ -545,12 +546,6 @@ if(withAloha)alohaconfig();
 	
 			<div id="tabs-control">
 				<script type="text/javascript">
-					// Initialize the tab on activating it
-/*
-					$("#tabs").bind("tabsselect", function(event, ui){if(ui.panel.id=="tabs-control"){
-						controlInit();
-					}});
- */
 					$(document).ready(function(){
 						controlInit();
 					});
@@ -569,11 +564,12 @@ if(withAloha)alohaconfig();
 				<script type="text/javascript">
 					// Initialize the tab on activating it
 					$(document).ready(function(){
-						reportInit();
+						// reportInit();
 						reportFillOut();
 					});
 					function reportInit(){
-						$("#accordion").accordion();
+						$("#reportAccordion").accordion({clearStyle: true, autoHeight: false});
+						console.info("report clearstyle: " + $("#reportAccordion").accordion("option", "clearStyle"));
 					}
 					function reportFillOut() {
 						// $('#tmpl').tmpl(json).appendTo('#element')
@@ -677,7 +673,9 @@ if(withAloha)alohaconfig();
 									}
 								})
 								.appendTo('#project_objectives_and_work_progress .workProgressPerWPList');
-								$('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
+								if(withAloha)
+								    $('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
+								reportInit();
 							}
 						);
 						
@@ -718,7 +716,7 @@ if(withAloha)alohaconfig();
 					    	<li>Corrective actions: <div class="editable freeText" id="${jsId}_corrActions"> optional {possible corrective actions}</div></li>
 				    	</ul>
 				</script>
-				<div id="accordion">
+				<div id="reportAccordion">
 
 				<h2><a href="#"> 1. IKS project periodic report for 2010</a></h2>
 				<div id="basic_data">
