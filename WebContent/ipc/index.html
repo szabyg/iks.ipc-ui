@@ -14,7 +14,8 @@
 	var rgraphroot = "js/lib/rgraph/";
 	var withAloha = true;
 	var stanbolUrl = "http://isr03:8080/";
- 
+	var couchdbUrl = "http://isr03:5984/ipctest/";
+
 	// loading all .CSS style-files
 	load_css([ 
 	           libroot + "jquery.sheet/jquery.sheet.css",
@@ -100,6 +101,14 @@ $.stanbolConnector.isAlive(function(alive){
         alert(stanbolUrl + "is not reachable!");
     else {
         console.info("Connection to stanbol at " + stanbolUrl + " is OK");
+    }
+});
+iks.ipc.dataStorage.setConfig({couchdbUrl: couchdbUrl});
+iks.ipc.dataStorage.isAlive(function(alive){
+    if(!alive)
+        alert(stanbolUrl + "is not reachable!");
+    else {
+        console.info("Connection to couchdb at " + couchdbUrl + " is OK");
     }
 });
     

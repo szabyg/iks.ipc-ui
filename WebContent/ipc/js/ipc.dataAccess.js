@@ -17,7 +17,9 @@ if (typeof iks.ipc.dataStorage == 'undefined' || !iks.ipc.dataStorage) {
 }
 
 $.extend(iks.ipc.dataStorage, {
-	
+    options: {
+        couchdbUrl: "http://localhost:5984/ipctest/"
+    },
 	/**
 	 * Get projects-data and fields-data and call the callback function 
 	 */
@@ -51,34 +53,35 @@ $.extend(iks.ipc.dataStorage, {
 	},
 	/**
 	 * List of webservice addresses
+	 * @TODO replace address with getter in order it's depending on change of options.
 	 */
 	repository: {
-		spentPmByWbsPeriodPartner: {
-			address: "http://localhost:5984/ipctest/_design/ipc/_view/spentPmByWbsPeriodPartner?callback=?",
+		"spentPmByWbsPeriodPartner": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/spentPmByWbsPeriodPartner?callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
 				return iks.ipc.dataStorage.getValues(data.rows);
 			}
 		},
-		planPmByWbsPeriod: {
-			address: "http://localhost:5984/ipctest/_design/ipc/_view/planPmByWbsPeriod?callback=?",
+		"planPmByWbsPeriod": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/planPmByWbsPeriod?callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
 				return iks.ipc.dataStorage.getValues(data.rows);
 			}
 		},
-		plannedEffortPerPartnerPerQuartalPerWBS: {
-			address: "http://127.0.0.1:5984/ipctest/_design/ipc/_view/plannedEffortPerPartnerPerQuartalPerWBS?group_level=4&callback=?",
+		"plannedEffortPerPartnerPerQuartalPerWBS": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/plannedEffortPerPartnerPerQuartalPerWBS?group_level=4&callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
 				return data;
 			}
 		},
-		periods: {
-			address: "http://localhost:5984/ipctest/_design/ipc/_view/periods?callback=?",
+		"periods": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/periods?callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
@@ -89,32 +92,32 @@ $.extend(iks.ipc.dataStorage, {
 				return res;
 			}
 		},
-		spenteffortByprojectWBS: {
-			address: "http://127.0.0.1:5984/ipctest/_design/ipc/_view/spenteffortByprojectWBS?group_level=4&callback=?",
+		"spenteffortByprojectWBS": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/spenteffortByprojectWBS?group_level=4&callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
 				return data;
 			}
 		},
-		delivDocs: {
-			address: "http://127.0.0.1:5984/ipctest/_design/ipc/_view/delivDocs?callback=?",
+		"delivDocs": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/delivDocs?callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
 				return data.rows;
 			}
 		},
-		planDeliverables: {
-			address: "http://127.0.0.1:5984/ipctest/_design/ipc/_view/planDeliverables?startkey=6&callback=?",
+		"planDeliverables": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/planDeliverables?startkey=6&callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
 				return data.rows;
 			}
 		},
-		planWorkpackages: {
-			address: "http://127.0.0.1:5984/ipctest/_design/ipc/_view/planWorkpackages?callback=?",
+		"planWorkpackages": {
+			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/planWorkpackages?callback=?";},
 			loaded: false,
 			data: null,
 			postProcess: function(data){
@@ -126,7 +129,7 @@ $.extend(iks.ipc.dataStorage, {
 	/**
 	 * If not yet loaded, gets the data from the webservices and calls the callback.
 	 * Recursive method, loads one data set at a time, then calls itself.
-	 * @param repositories List of data set names
+	 * @param repositories String array of data set names to load and mix in the result object.
 	 * @param callback To be called with all the asked data sets.
 	 * @param res 
 	 */
@@ -151,7 +154,7 @@ $.extend(iks.ipc.dataStorage, {
 					// new data to get, so get it
 					var that = this;
 					$.ajax({
-						type: "GET", url: repObj.address,
+						type: "GET", url: repObj.getAddress(),
 						dataType: "jsonp",
 						success: function(data){
 							// Data is here
@@ -193,53 +196,25 @@ $.extend(iks.ipc.dataStorage, {
 			callback(wbsTree);
 		});
 	},
-	/**
-	 * Recursive function to convert the flat WBS dataSet into a tree
-	 */
-	_WBS: function(dataSet, sumField, wbsLabels, level){
-		if(typeof level == "undefined")level = 0;
-		var that = this;
-		var isLeaf = false;
-		$.each(dataSet.data, function(i, d){
-			constraints = null;
-			if(that.applyToConstraints(constraints, d)){
-				// Do summing
-				if(!dataSet.pm)dataSet.pm = 0;
-				dataSet.pm += Number(d[sumField]);
-				
-				// build children
-				var wbsIndex = d.wbs.substring(0, 1 + 2 * level);
-				if(!d.wbs.charAt(2 * level)){
-					// This is a leaf
-					isLeaf = true;
-					return;
-				}
-				
-				// This is a branch, create the next level 
-				if(!dataSet.children)dataSet.children = {};
-				var subNodes = dataSet.children;
-				if(!subNodes[wbsIndex]){
-					subNodes.label = wbsLabels[level+1].plural;
-					subNodes[wbsIndex] = [];
-					subNodes[wbsIndex].data = [];
-					subNodes[wbsIndex]["wbsLabel"] = wbsLabels[level+1];
-					subNodes[wbsIndex]["wbsLevel"] = level+1;
-					subNodes[wbsIndex].label = wbsIndex;
-				}
-				subNodes[wbsIndex].data[subNodes[wbsIndex].data.length] = d;
-			}
-		});
-		if(!isLeaf){
-			// This is a branch with a next level, make them to subTrees
-			$.each(dataSet.children, function(i, child, c){
-				if($.isArray(child)){
-					// Recursive call
-					that._WBS(child, sumField, wbsLabels, level+1);
-				}
-			});
-		}
-	},
 	applyToConstraints: function(constraints, d){
 		return true;
-	}
+	},
+    setConfig: function(options){
+        $.extend(this.options, options);
+    },
+    isAlive: function(cb){
+        var that = this;
+        this.repository.test = {
+			getAddress: function(){return that.options.couchdbUrl;},
+			loaded: false,
+			data: null,
+			postProcess: function(data){
+				return data.rows;
+			}
+		};
+		this.getData(["test"], function(){
+		    cb(true);
+		});
+    }
+
 });
