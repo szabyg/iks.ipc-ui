@@ -194,9 +194,6 @@ $.extend(iks.ipc.dataStorage, {
 			callback(wbsTree);
 		});
 	},
-	applyToConstraints: function(constraints, d){
-		return true;
-	},
     setConfig: function(options){
         $.extend(this.options, options);
     },
