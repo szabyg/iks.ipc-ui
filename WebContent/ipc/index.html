@@ -564,7 +564,7 @@ if(withAloha)alohaconfig();
 				<script type="text/javascript">
 					// Initialize the tab on activating it
 					$(document).ready(function(){
-						// reportInit();
+						reportInit();
 						reportFillOut();
 					});
 					function reportInit(){
@@ -675,7 +675,6 @@ if(withAloha)alohaconfig();
 								.appendTo('#project_objectives_and_work_progress .workProgressPerWPList');
 								if(withAloha)
 								    $('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
-								reportInit();
 							}
 						);
 						
