@@ -53,7 +53,6 @@ $.extend(iks.ipc.dataStorage, {
 	},
 	/**
 	 * List of webservice addresses
-	 * @TODO replace address with getter in order it's depending on change of options.
 	 */
 	repository: {
 		"spentPmByWbsPeriodPartner": {
@@ -139,7 +138,6 @@ $.extend(iks.ipc.dataStorage, {
 		if(repositories.length == 0){
 			callback(res);			
 		} else {
-			
 			var rep = repositories.pop();
 			var repObj = this.repository[rep];
 			// Existing repository?
