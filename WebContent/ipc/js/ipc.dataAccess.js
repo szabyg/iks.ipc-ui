@@ -194,9 +194,15 @@ $.extend(iks.ipc.dataStorage, {
 			callback(wbsTree);
 		});
 	},
+	/**
+	 * set configuration
+	 */
     setConfig: function(options){
         $.extend(this.options, options);
     },
+    /**
+	 * send ping to couchdb server to know if it's reachabl, up and running.
+	 */
     isAlive: function(cb){
         var that = this;
         this.repository.test = {
