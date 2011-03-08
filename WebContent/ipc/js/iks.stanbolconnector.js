@@ -48,7 +48,16 @@ $.stanbolConnector = {
         };
         if(options && options.constraints)
             $.each(options.constraints, function(){fieldQuery.constraints.push(this);});
-        var postData = {query: JSON.serialize(fieldQuery)};
+        var fq;
+        if(JSON && JSON.serialize)
+            fq = JSON.serialize(fieldQuery);
+        else if(JSON && JSON.stringify)
+            fq = JSON.stringify(fieldQuery);
+        else {
+            alert("JSON modul not found");
+            console.error("JSON modul not found");
+        }
+        var postData = {query: fq};
         this.stanbolRequest(uri,{
             method: "POST",
             success: function (data, textStatus, jqXHR){
@@ -84,6 +93,18 @@ $.stanbolConnector = {
             },
             error: options.error
         });
+    },
+    getEntityLabel: function(item, lan){
+      var labels = item["http://www.w3.org/2000/01/rdf-schema#label"];
+      var defaultLabel = "";
+      for(lab in labels){
+        var label = labels[lab];
+        var language = label.substring(label.length-2,label.length);
+        cleanLabel = label.indexOf("@") != -1 ? label.substring(0,label.length-3):label;
+        if(defaultLabel == "")defaultLabel = cleanLabel;
+        if(!lan)return defaultLabel;
+        if(language == lan)return cleanLabel;
+      }
     },
     /**
      * generic call to a stanbol backend through a proxy
