@@ -313,13 +313,33 @@ if(withAloha)alohaconfig();
 			<div id="project-selector">
 				<b>1. Select project</b><br/>
 				<input size="10" id="projectlookup"/><br/>
-				<select>
+				<select id="projectselect">
 					<option>Select Project</option>
 					<option>IKS</option>
 					<option>KiWi</option>
 				</select>
 			</div>
 			<script>
+            $.stanbolConnector.entityhubQuery("srfg", "*", function( data ) {
+                data = _.reject(data, function(item){return item.id.indexOf("INTERN") != -1});
+                var projects = $.map( data, function( item ) {
+                    console.info(item);
+	                return {
+		                label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
+		                value: item.id
+	                }
+                });
+                projects = _(projects).sortBy(function(project){return project.label.toLowerCase()});
+                var options = "<% _.each(projects, function(project) { %> <option id='<%= project.value %>'><%= project.label %></option> <% }); %>";
+                $('#projectselect').html(_.template(options, {projects : projects}));
+                console.info(projects);
+            },{constraints:[{ 
+                "type": "reference", 
+                "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
+        /*        "value": "http:\/\/dbpedia.org\/ontology\/Person", */
+                "value": "Project", 
+            }]});
+
 			$( "#projectlookup" ).autocomplete({
 			    source: function( request, response ) {
                     console.info(request.term);
@@ -332,7 +352,7 @@ if(withAloha)alohaconfig();
 						        value: item["http://www.w3.org/2000/01/rdf-schema#label"][0]
 					        }
 				        }));
-                    },{stanbolUrl: "http://isr03:8080"});
+                    });
 			    },
 
 			    minLength: 2,
@@ -346,9 +366,28 @@ if(withAloha)alohaconfig();
 					    $.stanbolConnector.entityhubQuery("srfg", label, function( data ) {
                             var id = data[0].id;
 				            console.info(id);
+				            $.stanbolConnector.entityhubQuery("srfg", label, function( data ) {
+                                data = _.reject(data, function(item){return item.id.indexOf("INTERN") != -1});
+				                var projects = $.map( data, function( item ) {
+				                    console.info(item);
+					                return {
+						                label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
+						                value: item.id
+					                }
+				                });
+				                projects = _(projects).sortBy(function(project){return project.label.toLowerCase()});
+                                var options = "<% _.each(projects, function(project) { %> <option id='<%= project.value %>'><%= project.label %></option> <% }); %>";
+                                $('#projectselect').html(_.template(options, {projects : projects}));
+				                console.info(projects);
+                            },{constraints:[{ 
+                                "type": "reference", 
+                                "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
+                        /*        "value": "http:\/\/dbpedia.org\/ontology\/Person", */
+                                "value": "Project", 
+                            }]});
 				            $.stanbolConnector.getEntity("srfg", id, function(data){
-				                console.info(data);
 				            });
+				                console.info(data);
 				        });
 					}
 			    },
