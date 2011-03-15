@@ -10,23 +10,12 @@
 	var withAloha = true;
 	var localDBs = false;
 
-    // setting external webservice addresses
-	if (localDBs) {
-	    stanbolUrl = "http://localhost:8080/";
-	    couchdbUrl = "http://localhost:5984/ipctest/";
-	} else {
-	    stanbolUrl = "http://isr03:8080/";
-	    couchdbUrl = "http://isr03:5984/ipctest/";
-	}
-
     // setting directory variables
 	var srcroot = "js/";
 	var libroot = "js/lib/";
 	var cssroot = "./css/";
 	var rgraphroot = "js/lib/rgraph/";
 	var templateroot = "templates";
-	var stanbolUrl;
-	var couchdbUrl;
 
 	// loading all .CSS style-files
 	load_css([
@@ -64,8 +53,7 @@
 				aloharoot + "aloha/plugins/com.gentics.aloha.plugins.Link/LinkList.js",
 				aloharoot + "aloha/plugins/com.gentics.aloha.plugins.Paste/plugin.js",
 				aloharoot + "aloha/plugins/com.gentics.aloha.plugins.Paste/wordpastehandler.js",
-				libroot   + "stanbol.js",
-				srcroot   + "alohaconfig.js"
+				libroot   + "stanbol.js"
 	             ]);
 	}
     load_scripts([
@@ -90,6 +78,7 @@
 				// loading application specific files
 				srcroot + "ipc.js",
 				srcroot + "layout.js",
+				srcroot + "alohaconfig.js",
 				srcroot + "WBSTree.js", // could be reimplemented as Backbone model
 				srcroot + "ipc.dataAccess.js",
 				srcroot + "iks.stanbolconnector.js",
@@ -112,6 +101,14 @@
     	]);
   	</script>
     <script type="text/javascript">
+        // setting external webservice addresses
+	    if (localDBs) {
+	        iks.ipc.stanbolUrl = "http://localhost:8080/";
+	        iks.ipc.couchdbUrl = "http://localhost:5984/ipctest/";
+	    } else {
+	        iks.ipc.stanbolUrl = "http://isr03:8080/";
+	        iks.ipc.couchdbUrl = "http://isr03:5984/ipctest/";
+	    }
 	</script>
 </head>
 <body>

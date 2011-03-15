@@ -1,8 +1,8 @@
 (function(){
 	$(document).ready(function(){
-		controlInit();
+		iks.ipc.controlInit();
 	});
-	function controlInit(){
+	iks.ipc.controlInit = function(){
 		var constraints = iks.ipc.collectConstraints();
 		$('#control-rgraph').controldatavis({
 			dataStore: iks.ipc.dataStorage, 

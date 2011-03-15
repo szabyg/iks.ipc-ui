@@ -32,40 +32,37 @@
 			}
         }).trigger("change");
     }
-	$(document).ready(function(){
-        modeSelector_init();
-        
+    
+    function setupNav() {
 		// Header functionality
-		iks.ipc.dataStorage.getProjectData(function(fields, projects){
-			// $("#project-selector").projectautocomplete({fields: [{id: "acronym", label: "Select project"}], projects: projects});
-			$("#project-selector").bind("projectSelection", function(event, data){
-				$("#projects").html(data.acronyms.join(", "));
+        /*
+        iks.ipc.dataStorage.getProjectData(function(fields, projects){
+	        $("#org-selector").projectautocomplete({fields: [{id: "partners", label: "Partner"}], projects: projects, fieldElement: "input"});
+	        $("#org-selector").bind("projectSelection", function(event, data){
+		        $("#organisation").html(data.fieldValue);
+	        });
+        });
+        */
 
-			});
-			
-			$("#org-selector").projectautocomplete({fields: [{id: "partners", label: "Partner"}], projects: projects, fieldElement: "input"});
-			$("#org-selector").bind("projectSelection", function(event, data){
-				$("#organisation").html(data.fieldValue);
+        $("#timerange-selector").timerangeselector({
+	        periodLabel: '3. Select Period', 
+	        startDateLabel: '', 
+	        endDateLabel: 'to<br/>',
+	        dateFormat: "yy-mm-dd",
+	        startYear: 2009
+        });
+        $("#timerange-selector").bind("rangeSelected", function(e, timeRange){
+	        console.info(
+//			        "value: " + timeRange.value + 
+//			        "label: " + timeRange.label + 
+			        " start date: " + timeRange.startDate +
+			        " end date: " + timeRange.endDate);
+        });
+    };
 
-			});
-
-			$("#timerange-selector").timerangeselector({
-				periodLabel: '3. Select Period', 
-				startDateLabel: '', 
-				endDateLabel: 'to<br/>',
-				dateFormat: "yy-mm-dd",
-				startYear: 2009
-			});
-			// .find("input").css("margin-left", "8px");
-			$("#timerange-selector").bind("rangeSelected", function(e, timeRange){
-				$("#timerange").html(
-						"<b>value: </b>" + timeRange.value + 
-						"<b> label: </b>" + timeRange.label + 
-						"<b> start date: </b>" + timeRange.startDate +
-						"<b> end date: </b>" + timeRange.endDate);
-			});
-			
-		});
-	});
+	$(document).ready(function(){
+    	setupNav();
+        modeSelector_init();
+    });
 
 })(jQuery);
