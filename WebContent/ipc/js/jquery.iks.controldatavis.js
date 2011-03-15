@@ -48,7 +48,7 @@ $.widget('ipc.controldatavis', {
 		this.canvasId = this.canvasElement.getUID();
 		var dataArrays = this.getDataArrays();
 
-        console.info(dataArrays.plannedEffortDetail);
+        // console.info(dataArrays.plannedEffortDetail);
 		if(this.showPlanned && (!this.showDetails || dataArrays.plannedEffortDetail[0].length==0)){
 		    console.info("show planned");
 			// BarChart for planned data
@@ -292,8 +292,9 @@ $.widget('ipc.controldatavis', {
 		for(var recI = 0; recI<records.length; recI++){
 			var record = records[recI];
 			var perI = 0;
-			while(periods[perI][0]!=record.period || perI>periods.length)
+			while(periods[perI][0]!=record.period || perI>periods.length){
 				perI++;
+			}
 			if(periods[perI][0] == record.period)
 				periods[perI][1].push(record);
 			else
@@ -336,20 +337,14 @@ $.widget('ipc.controldatavis', {
 	},
 	getTotalPeriodsArray: function(periodIds){
 		// Sort them
-		periodIds.sort(function(A, B){
-			var nA, nB;
-			var kA, kB;
-			kA = A; kB = B;
-            nA = Number(kA.substring(kA.lastIndexOf(":")+2,kA.length));
-            nB = Number(kB.substring(kB.lastIndexOf(":")+2,kB.length));
-            return nA>nB;
-		});
+		function periodkeyToNumber (key){return Number(key.substring(key.lastIndexOf(":")+2,key.length))};
+		periodIds = _.sortBy(periodIds, function(key){return periodkeyToNumber(key);});
 		// Take the first key and the last and fill the gap using the prefix
 //		var aKey;for(var k in periodIds[0])aKey = k;
 		var prefix = periodIds[0].substring(0, periodIds[0].lastIndexOf(":")+2);
 		var first = periodIds[0], last = periodIds[periodIds.length-1];
-		var firstI = Number(first.substring(first.lastIndexOf(":")+2)),
-			lastI  = Number(last. substring(last. lastIndexOf(":")+2));
+		var firstI = periodkeyToNumber(first),
+			lastI  = periodkeyToNumber(last);
 		var res = [];
 		for(var i = firstI; i<= lastI; i++){
 			res.push(prefix+i);

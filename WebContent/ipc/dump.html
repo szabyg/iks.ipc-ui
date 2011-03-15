@@ -25,7 +25,7 @@
 <script type="text/javascript">
 	(function($) {
 		$(document).ready(function(){
-		    var stanbolUrl = "http://localhost:8080/";
+		    var stanbolUrl = "http://isr03:8080/";
 		    $.stanbolConnector.setConfig({stanbolUrl: stanbolUrl});
 		    $.stanbolConnector.isAlive(function(alive){
 		        if(!alive)
@@ -71,7 +71,13 @@
                                 write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
                                     "response: " + jqXHR.response);
                                 console.info(jqXHR);
-                            }
+                            },
+                            constraints:[{ 
+                                "type": "reference", 
+                                "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
+                        /*        "value": "http:\/\/dbpedia.org\/ontology\/Person", */
+                                "value": "http:\/\/xmlns.com\/foaf\/0.1\/Document"
+                            }]
                         });
 		            });
 		        }

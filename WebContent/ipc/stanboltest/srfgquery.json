@@ -13,7 +13,7 @@
      { 
        "type": "text", 
        "patternType": "wildcard", 
-       "text": "grü*", 
+       "text": "GLACHS Dietmar", 
        "field": "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label" 
     }
     ]

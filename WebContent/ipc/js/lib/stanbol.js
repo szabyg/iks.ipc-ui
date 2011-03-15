@@ -1,0 +1,1 @@
+/lab/aloha-editor/szabyg/Aloha-Plugin-StanbolRepository/stanbol.js
