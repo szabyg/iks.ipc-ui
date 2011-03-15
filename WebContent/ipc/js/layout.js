@@ -1,5 +1,5 @@
 (function($){
-	$(document).ready(function(){
+    function modeSelector_init(){
 	    // mode selector
 		$("#mode-selector input").change(function(){
 			var switchValue = $('#mode-selector input:checked').val();
@@ -16,7 +16,7 @@
 				$("#tabs-control").hide();
 				$("#tabs-report").hide();		
 				$("#tabs-monitor").show();
-				monitoringInit();
+				iks.ipc.monitoringInit();
 				break;			
 			case "report":
 				$("#pathApp").html("Write Report");
@@ -31,11 +31,10 @@
 				
 			}
         }).trigger("change");
-//          iks.ipc.dataStorage.getData(["spentPmByWbsPeriodPartner"], function(data){
-//              debugger;
-//          });
-
-		// Layout the tabs
+    }
+	$(document).ready(function(){
+        modeSelector_init();
+        
 		// Header functionality
 		iks.ipc.dataStorage.getProjectData(function(fields, projects){
 			// $("#project-selector").projectautocomplete({fields: [{id: "acronym", label: "Select project"}], projects: projects});

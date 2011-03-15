@@ -1,116 +1,125 @@
-/**
- * IKS Intelligent Project Planning tool JS library data manipulation for
- * monitoring
- * 
- * @author szabyg
- * @since 2010-11-10
- */
-
-if (typeof iks == 'undefined' || !iks) {
-	var iks = {};
-}
-if (typeof iks.ipc == 'undefined' || !iks.ipc) {
-	iks.ipc = {};
-}
-if (typeof iks.ipc.monitoring == 'undefined' || !iks.ipc.monitoring) {
-	iks.ipc.monitoring = {};
-}
-
-
-$.widget('ipc.monitoring', {
-	_create: function(){
-		var that = this;
-		this.data = {};
-		this.element.html(this.options.waitMsg);
-		// Get data from the data layer
-		this.options.dataStore.getPlanEffortData(this.options.constraints, function(wbsTree){
-			that.data = wbsTree;
-			
-			// Insert an element for the sheet
-			var html = "<div class='sheet'></div><div class='graph'></div>";
-			that.element.html(html);
-			that.sheetEl = $(that.element).find('.sheet');
-			that.graphEl = $(that.element).find('.graph');
-			// Insert an element for the graph
-			
-			// create the sheet
-			that._sheet = that.sheetEl.sheet({
-				autoFiller: true,
-				// inlineMenu: iks.ipc.tools.sheet.inlineMenu($.sheet.instance),
-				urlMenu: libroot + "jquery.sheet/menu.html",
-				buildSheet: false,
-				urlGet: false,
-				minSize: {rows: 3, cols: 3}
-			}).sheetInstance;
-			// Listen zoom event
-			that.element.bind("TableZoom", that.tableZoomEventHandler);
-			// Fill in data
-			that.tableZoom();
-			if(typeof that.options.onLoad == "function"){
-				that.options.onLoad();
-			}
-			// create the graph
-			
-		});
-	},
+(function(){
+    iks.ipc.monitoringInit = function(){
+	    $("#monitor-accordion").accordion({clearStyle: true, autoHeight: false})
+	        .accordion('resize');
+	    // Collect UI constraints for the presentation
+	    var constraints = iks.ipc.collectConstraints();
 	
-	/**
-	 * depends on 
-	 * jquery, jquery.sheet
-	 * iks.ipc.tools.sheet
-	 *  
-	 */
-	renderSheet : function(data, constraints, callback) {
-		var that = this;
-		var wbsLabels = data.wbsLabels;
-		var tableStatus = "o.k.";
-		var tableConf = this.options.tableConf(data);
+	    $("#monitoring-01").monitoring({
+		    dataStore: iks.ipc.dataStorage, 
+		    constraints: constraints,
+		    onLoad: function(){
+			    $("#monitor-accordion").accordion("resize");
+		    },
+		    waitMsg: "collecting data...",
+		    tableConf: function(data){
+			    var tableConf = {
+				    metadata: {
+					    "title" : "Spent vs. Planned Effort", //  for <project> <period>",
+					    "col_widths" : {"c0" : "120", "c1" : "120", "c2" : "120", "c3" : "120", "c4": "120", "c5": "80", "c6" : "220"}
+				    },
+				    conf: {
+					    style: "height: 50px !important;"
+				    },
+				    rows: []
+			    };
+			    tableConf.rows.push({
+				    fields: [data.childrenLabel, "Planned Effort", "Spent Effort", "Deviation (abs)", "Deviation (%)", "Status", "Graph"],
+				    conf: {
+					    cl: "styleBold"
+				    }
+			    });
+			    var children = data.getRelevantChildren(constraints);
+			    for(var wbsIndex in children)if(children.hasOwnProperty(wbsIndex)){
+				    var childNode = children[wbsIndex];
+				    // TODO fix this
+				    if(true || Number(wbsIndex)){
+					    // var rowLabel = data.planned.children[wbsIndex].wbsLabel.singular + " " + wbsIndex;
+					    var rowLabel = childNode.label;
+					    tableConf.rows.push({
+						    fields: [
+						        // iks.ipc.tools.sheet.buildLink(rowLabel, '$("#%sheetID%").trigger', ['TableZoom', [childNode.id, "e"]]),
+						        $.ipc.monitoring.prototype.buildZoomLink(rowLabel, childNode.id),
+						        "=Math.round(" + childNode.computeSum("pm-planned") + ")",
+						        "=Math.round(" + childNode.computeSum("pm-spent") + ")",
+						        "=(C%R0%-B%R0%)<0?Math.round(C%R0%-B%R0%):(\"+\" + Math.round(C%R0%-B%R0%))",
+						        "=(C%R0%-B%R0%)<0? Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\" :\"+\" + Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\"",
+						        "=iks.ipc.monitoring.deviationRule(Math.round((C%R0%-B%R0%)/B%R0% *100))",
+						        "=CHART.HBAR(B%R0%:C%R0%)"
+						    ]
+					    });
+				    }
+			    }
+			    tableConf.rows.push({
+				    fields: [
+				             "TOTAL",
+				             "=SUM(B2:B%R-1%)",
+				             "=SUM(C2:C%R-1%)",
+				             "=(C%R0%-B%R0%)<0?(C%R0%-B%R0%):(\"+\" + (C%R0%-B%R0%))",
+				             "=(C%R0%-B%R0%)<0? Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\" :\"+\" + Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\"",
+				             "=iks.ipc.monitoring.deviationRule(Math.round((C%R0%-B%R0%)/B%R0% *100))",
+				             "=CHART.HBAR(B%R0%:C%R0%)"
+				             ],
+				             conf: { 
+				            	 cl: "styleBold"
+				             }
+			    });
+			    return tableConf;
+		    }
+	    });
 
-		var tableObj = iks.ipc.tools.sheet.buildSheetJSON(tableConf);
-		// cb-return the tables to show.
-		callback([
-            tableObj
-		]);
-	},
-	buildZoomLink: function(label, childId){
-		return iks.ipc.tools.sheet.buildLink(label, '$("#%sheetID%").trigger', ['TableZoom', [childId, "e"]]);
-	},
-	/**
-	 * Event handler for the zooming click coming from the table
-	 */
-	tableZoomEventHandler: function(event, wbs, clickEvent){
-		$.noop();
-		clickEvent.stopPropagation();
-		if(clickEvent.shiftKey || clickEvent.ctrlKey)wbs = -1;
-		$(event.target).monitoring("tableZoom", wbs);
-	},
-	/**
-	 * Zoom in or out, then show the table
-	 * @param child id of the child to zoom in, -1 to zoom out, null for no zooming (initial loading)
-	 */
-	tableZoom: function(child){
-		// zoom to the right level
-		if(!child){
-			// root, no movement
-		} else if(child==-1 && this.data.parent){
-			// zoom out
-			this.data = this.data.parent;
-		} else if(this.data.children[child].children.length>0){
-			// zoom in one level
-			this.data = this.data.children[child];
-		} else {
-			// nowhere to go
-			return;
-		}
-		
-		// format the data for showing it in a jquery.sheet.
-		var that = this;
-		this.renderSheet(this.data, this.options.constraints, function(tableData){
-			that._sheet.openSheet($.sheet.makeTable.json(tableData));
-		});
-	}
-});
-
-iks.ipc.monitoring.deviationRule = function(deviationPercent){
-	return iks.ipc.rules.companyRules.statusByDeviationPercent(deviationPercent);
-};
+	    // Fill out the deliverable status table
+	    iks.ipc.dataStorage.getData(["planDeliverables", "delivDocs"], function(data){
+		    var delivDocsObj = {};
+		    $(data.delivDocs).each(function(){delivDocsObj[this.key] = this.value;});
+		    var templateData = [];
+		    $(data.planDeliverables).each(function(){
+			    var delivObj = {
+				    wbs: this.value._id,
+				    deadline: this.value.deadline,
+			    };
+			    if(delivDocsObj[delivObj.wbs]){
+				    var delivDoc = delivDocsObj[delivObj.wbs];
+				    delivObj.label = delivDoc["rdfs:label"];
+				    delivObj.history = delivDoc.deliveryStatusInformation;
+				    delivObj.source = delivDoc["dc:source"];
+			    } else {
+				    delivObj.label = this.value["rdfs:label"];
+				    delivObj.history = [];
+				    delivObj.source = "javascript:void(false);";
+			    }
+			
+			    templateData.push(delivObj);
+		    });
+		    $("#monitoring-03 .content").html("");
+		    $('#monitoringDelivStatusTableStatic').tmpl([{}]).appendTo("#monitoring-03 .content");
+		    $('#monitoringDelivStatusTable').tmpl(templateData, {
+			    getHistory: function(history){
+				    var res = "", firstLine = "", rest = "";
+				    var toggleClass = "historyToggle" + Math.round(Math.random() * 100000000);
+				    $(history).each(function(i, hist){
+					    if(i==0){
+						    firstLine += "<p><u><a onclick='$(\"." + toggleClass + "\").toggle()'>";
+						    firstLine += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+						    firstLine += "</a></u></p>"
+					    } else {
+						    rest += "<p >";
+						    rest += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+						    rest += "</p>"										
+					    }
+				    });
+				    res = 
+					    "<div class='firstLine'>" + 
+					    firstLine + 
+					    "</div>" +
+					    "<div class='" + toggleClass + "' style='display:none'>" + 
+					    rest + 
+					    "</div>";
+				    return res;
+			    }
+		    })
+		    .appendTo('#monitoring-03 table.monitoringDelivStatusTable');
+	    });
+	
+    }
+})();
