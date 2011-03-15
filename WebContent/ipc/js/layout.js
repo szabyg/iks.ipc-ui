@@ -52,6 +52,8 @@
 	        startYear: 2009
         });
         $("#timerange-selector").bind("rangeSelected", function(e, timeRange){
+            iks.ipc.constraints.set({'startdate': timeRange.startDate.clone()});
+            iks.ipc.constraints.set({'enddate': timeRange.endDate.clone()});
 	        console.info(
 //			        "value: " + timeRange.value + 
 //			        "label: " + timeRange.label + 

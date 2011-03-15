@@ -108,7 +108,7 @@ TreeNode.prototype = {
 				return true;
 			var node = this;
 			if(this.records){
-				for(var i in this.records) if(this.records.hasOwnProperty(i)){
+			    for(var i in this.records) if(this.records.hasOwnProperty(i)){
 					if(node._isRecordRelevant(this.records[i], constraints))
 						return true;
 				}
@@ -125,6 +125,8 @@ TreeNode.prototype = {
 		 */
 		_isRecordRelevant: function(record, constraints){
 			// constraits: {period: '2010', organisation: ['srfg', 'srdc']}
+			return constraints.checkRecord(record);
+			/*
 			var res = true;
 			for(var c in constraints) if(constraints.hasOwnProperty(c)){
 				var _res = false;
@@ -142,6 +144,7 @@ TreeNode.prototype = {
 				res = res && _res;
 			}
 			return res;
+			*/
 		},
 		_createLabel: function(node, record){
 			this.parent._createLabel(node, record);

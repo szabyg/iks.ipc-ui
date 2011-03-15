@@ -6,17 +6,15 @@
  */
 $.widget('ipc.controldatavis', {
 	_create: function(){
-		this.position = ['iks'];
+ 		this.position = ['iks'];
 		
 		// DOM element for the mode switches
 		this.element.append($('<div class="modeSwitches"/>'));
 		this.modeSwitchElement = $(".modeSwitches", this.element);
-		this.prepareModeSwitches();
 		
 		// DOM element for the breadCrumbs
 		this.element.append($('<div class="breadCrumbs"/>'));
 		this.breadCrumbsElement = $(".breadCrumbs", this.element);
-		this.preparebreadCrumbs();
 		
 		// Canvas DOM element 
 		this.element.append($('<canvas class="controlCanvas" width="650" height="400" style="border: 1px solid #CCCCCC;top:0;position:relative;"/>'));
@@ -29,17 +27,38 @@ $.widget('ipc.controldatavis', {
 	 * get data tree and show graph in the canvas
 	 */
 	init: function(){
-		var that = this;
-		// Get planned and effort data
-		this.options.dataStore.getPlanEffortData(this.options.constraints, function(data){
-			that.data = data;
-			that.refresh();
+	    iks.ipc.browseplanWidget = this;
+	    this.options.constraints.bind('change', function(){
+	        console.info("CHANGE!! :-)");
+	        var widget = iks.ipc.browseplanWidget
+	        // backbone doesn't allow using that._initialized
+	        if(!widget._initialized){
+        		widget.prepareModeSwitches();
+		        widget.preparebreadCrumbs();
+		        var that = widget;
+		        // Get planned and effort data
+		        that._initialized = true;
+	        }
+
+	        var constraints = widget.options.constraints.attributes;
+    		if(constraints && constraints.projectId){
+        		widget.options.dataStore.getPlanEffortData(constraints, function(data){
+			        widget.data = data;
+			        widget.refresh();
+		        });
+		    } else {
+		        console.info("No project selected yet");
+		    }
 		});
 	},
 	/**
 	 * Draw graph with the current options
 	 */
 	refresh: function(){
+	    if(!this._initialized || !this.data){
+	        console.info("Not initialized yet (no project selected?)");
+	        return;
+	    }
 		RGraph.Clear(this.canvasElement[0]);
 		this.preparebreadCrumbs();
 		this.showPlanned = true; 
@@ -47,6 +66,10 @@ $.widget('ipc.controldatavis', {
 		this.showDetails = this.options.detailed;
 		this.canvasId = this.canvasElement.getUID();
 		var dataArrays = this.getDataArrays();
+		if(!dataArrays){
+		    console.info("no data to show.");
+		    return;
+		}
 
         // console.info(dataArrays.plannedEffortDetail);
 		if(this.showPlanned && (!this.showDetails || dataArrays.plannedEffortDetail[0].length==0)){
@@ -254,21 +277,6 @@ $.widget('ipc.controldatavis', {
 		return false;
 	},
 	/**
-	 * Default options
-	 */
-	options: {
-		dataStore: iks.ipc.dataStorage, 
-		constraints: {},
-		waitMsg: "collecting data...",
-		planned: 'pm-planned',
-		spent: 'pm-spent',
-		showPlan: true,
-		showSpent: false,
-		detailed: "wbs",
-		ecSwitch: 'effort',
-		zoomSwitch: 'smart'
-	},
-	/**
 	 * Collect records by periods
 	 * Extract data sets for planned AND/OR spent effort OR costs WITH/WITHOUT details in wbs OR organisation 
 	 * @returns {}
@@ -276,7 +284,8 @@ $.widget('ipc.controldatavis', {
 	getDataArrays: function() {
 		// Find relevant records and assign them to their quarter
 		// TODO Fix this.options.constraints
-		var children = this.getData().getRelevantChildren(/*this.options.constraints*/);
+		var children = this.getData().getRelevantChildren(this.options.constraints);
+		if(children.length== 0)return;
 		var records = this.getData().getRelevantRecords(this.options.constraints);
 		var periodIds = [];
 		for(var recI = 0; recI<records.length; recI++){
@@ -663,7 +672,7 @@ $.widget('ipc.controldatavis', {
 		$('input[name=' + radioName + ']', this.element).each(function(){
 			this.checked = val; $(this).button("refresh");
 		});
-	}
+	},
 	/**
 	 * Return the switch value
 	 * @returns one of ['effort', 'costs']
@@ -687,4 +696,19 @@ $.widget('ipc.controldatavis', {
 		}
 	}
 	 */
+	/**
+	 * Default options
+	 */
+	options: {
+		dataStore: iks.ipc.dataStorage, 
+		constraints: {},
+		waitMsg: "collecting data...",
+		planned: 'pm-planned',
+		spent: 'pm-spent',
+		showPlan: true,
+		showSpent: false,
+		detailed: "wbs",
+		ecSwitch: 'effort',
+		zoomSwitch: 'smart'
+	}
 });

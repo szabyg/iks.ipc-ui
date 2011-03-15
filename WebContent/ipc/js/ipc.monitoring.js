@@ -3,11 +3,10 @@
 	    $("#monitor-accordion").accordion({clearStyle: true, autoHeight: false})
 	        .accordion('resize');
 	    // Collect UI constraints for the presentation
-	    var constraints = iks.ipc.collectConstraints();
 	
 	    $("#monitoring-01").monitoring({
 		    dataStore: iks.ipc.dataStorage, 
-		    constraints: constraints,
+		    constraints: iks.ipc.constraints,
 		    onLoad: function(){
 			    $("#monitor-accordion").accordion("resize");
 		    },
@@ -29,7 +28,7 @@
 					    cl: "styleBold"
 				    }
 			    });
-			    var children = data.getRelevantChildren(constraints);
+			    var children = data.getRelevantChildren(iks.ipc.constraints.attributes);
 			    for(var wbsIndex in children)if(children.hasOwnProperty(wbsIndex)){
 				    var childNode = children[wbsIndex];
 				    // TODO fix this

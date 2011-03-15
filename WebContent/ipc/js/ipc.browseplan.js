@@ -3,11 +3,11 @@
 		iks.ipc.controlInit();
 	});
 	iks.ipc.controlInit = function(){
-		var constraints = iks.ipc.collectConstraints();
-		$('#control-rgraph').controldatavis({
+	    $('#control-rgraph').controldatavis({
 			dataStore: iks.ipc.dataStorage, 
-			constraints: constraints,
+			constraints: iks.ipc.constraints,
 			waitMsg: "collecting data..."
 		});
+		iks.ipc.constraintsChange(function(){$('#control-rgraph').controldatavis('refresh');});
 	}
 })();

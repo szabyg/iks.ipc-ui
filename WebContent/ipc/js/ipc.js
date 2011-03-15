@@ -42,7 +42,7 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
     function projectSelector_init(){
         $('#projectselect').bind('change', function(e){
             console.info("selected project: " + $(this).val());
-            iks.ipc.project = $(this).val();
+            iks.ipc.constraints.set({projectId: $(this).val()});
         });
 
         $.stanbolConnector.entityhubQuery("srfg", "*", function( data ) {
@@ -88,7 +88,7 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
 			        "Nothing selected, input was " + this.value);
 			    if(ui.item){
 			        var label = ui.item.label;
-			        console.info(label);
+			        // console.info(label);
 			        $.stanbolConnector.entityhubQuery("srfg", label, function( data ) {
                         var id = data[0].id;
 		                console.info(id);
@@ -104,7 +104,8 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
 		                        projects = _(projects)
 		                            .sortBy(function(project){return project.label.toLowerCase()});
                                 $('#projectselect').html(_.template(iks.ipc._projectSelectOptionsTmpl, {projects : projects}));
-		                        console.info(projects);
+                                $('#projectselect').trigger('change');
+		                        // console.info(projects);
                             },{constraints:[{ 
                                 "type": "reference", 
                                 "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
@@ -112,8 +113,8 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
                                 "value": "Project", 
                         }]});
 		                $.stanbolConnector.getEntity("srfg", id, function(data){
+                            console.info(["entity representation of " + id + ":", data.representation]);
 		                });
-		                    console.info(data);
 		            });
 			    }
 	        },
@@ -126,15 +127,53 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
         });
     }
     
+    function debug(){
+        iks.ipc.constraints.bind('change', function(model){
+            console.info(model.attributes);
+        });
+    }
+    
     $(document).ready(function(){
         stanbolconnector_init();
         dataStorage_init();
         if(withAloha)iks.ipc.alohaconfig();
         projectSelector_init();
+        
+        debug();
     });
 
+    var Constraints = Backbone.Model.extend({
+        periods: {},
+        loadPeriods: function(projectId, cb){
+            iks.ipc.dataStorage.getData(["periods"], function(data){
+                this.periods[projectId] = data.periods;
+                cb();
+            });
+        },
+        checkRecord: function(record){
+            var constKeys = _.keys(this.attributes);
+            var pStart = new Date(period.startdate), 
+                pEnd = new Date(period.enddate);
+            var res = true;
+            _.each(constKeys, function(key){
+                switch(key){
+                case 'startDate':
+                    var startDate = new Date(this.get('startDate'));
+                    res = res && startDate > pEnd;
+                    break;
+                case 'endDate':
+                    var endDate = new Date(this.get('endDate'));
+                    res = res && endDate > pStart;
+                    break;
+                }
+            });
+            return res;
+        }
+    });
+    
     $.extend(iks.ipc, {
         // Collect the set constraints from all the UI filter elements.
+        /*
         collectConstraints: function (){
 	        var res = {};
 	        // $.extend(res, $("#project-selector").projectautocomplete("getConstraints"));
@@ -144,8 +183,13 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
 	        console.info(["constraints:", res]);
 	        return res;
         },
+        */
         getLifecyclemode: function(){
             return $('input[name=lifecyclemode]:checked').val() || '';
+        },
+        constraints: new Constraints(),
+        constraintsChange: function(cb){
+            this.constraints.bind('change', cb);
         }
     });
 })();

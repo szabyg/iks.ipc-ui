@@ -140,17 +140,17 @@ $.extend(iks.ipc.dataStorage, {
 		} else {
 			var rep = repositories.pop();
 			var repObj = this.repository[rep];
+			var that = this;
 			// Existing repository?
 			if(repObj == null){
 				throw ("Undefined repository " + rep);
 			} else {
 				if(repObj.loaded){
 					// repository already loaded
-					res[rep]=getValues(eval(data).rows);
+					res[rep]=repObj.data;
 					that.getData(repositories, callback, res);
 				} else {
 					// new data to get, so get it
-					var that = this;
 					$.ajax({
 						type: "GET", url: repObj.getAddress(),
 						dataType: "jsonp",
@@ -158,6 +158,7 @@ $.extend(iks.ipc.dataStorage, {
 							// Data is here
 							repObj.data = repObj.postProcess((data));
 							res[rep]=repObj.data;
+							repObj.loaded = true;
 							that.getData(repositories, callback, res);
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -175,6 +176,11 @@ $.extend(iks.ipc.dataStorage, {
 			res.push(couchdbResultArray[i].value);
 		}
 		return res;
+	},
+	getPeriod: function(projectId, periodId, cb){
+	    this.getData(["periods"], function(data){
+	        cb(data.periods[periodId]);
+	    });
 	},
 	/**
 	 * Get the planned and spent data based on the constraints and call the callback function.

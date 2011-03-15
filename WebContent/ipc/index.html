@@ -101,14 +101,9 @@
     	]);
   	</script>
     <script type="text/javascript">
-        // setting external webservice addresses
-	    if (localDBs) {
-	        iks.ipc.stanbolUrl = "http://localhost:8080/";
-	        iks.ipc.couchdbUrl = "http://localhost:5984/ipctest/";
-	    } else {
-	        iks.ipc.stanbolUrl = "http://isr03:8080/";
-	        iks.ipc.couchdbUrl = "http://isr03:5984/ipctest/";
-	    }
+        // setting internal/external webservice addresses
+        iks.ipc.stanbolUrl = localDBs ? "http://localhost:8080/" : "http://isr03:8080/";
+        iks.ipc.couchdbUrl = localDBs ? "http://localhost:5984/ipctest/" : "http://isr03:5984/ipctest/";
 	</script>
 </head>
 <body>
