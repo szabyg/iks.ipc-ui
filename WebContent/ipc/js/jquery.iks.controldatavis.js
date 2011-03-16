@@ -29,7 +29,7 @@ $.widget('ipc.controldatavis', {
 	init: function(){
 	    iks.ipc.browseplanWidget = this;
 	    this.options.constraints.bind('change', function(){
-	        console.info("CHANGE!! :-)");
+	        console.info("Constraints changed: " + JSON.stringify(iks.ipc.constraints.toJSON()));
 	        var widget = iks.ipc.browseplanWidget
 	        // backbone doesn't allow using that._initialized
 	        if(!widget._initialized){
@@ -263,11 +263,12 @@ $.widget('ipc.controldatavis', {
 	 */
 	zoomIn: function(child){
 		// get actual position treenode
-		var actualTreeNode = this.getData();
-		// get children keys
-		var keys=[];for(var i in actualTreeNode.children) if(actualTreeNode.children.hasOwnProperty(i)){keys.push(i);};
-		// extend position
-		this.position.push(keys[child]);
+		var currentChildren = _.compact(this.getData().getRelevantChildren(this.options.constraints));
+		if (currentChildren.length == 0){
+		    console.info("No more WBS levels to zoom in");
+		    return;
+		}
+		this.position.push(currentChildren[child].id);
 		// redraw chart
 		this.refresh();
 	},
@@ -284,9 +285,9 @@ $.widget('ipc.controldatavis', {
 	getDataArrays: function() {
 		// Find relevant records and assign them to their quarter
 		// TODO Fix this.options.constraints
-		var children = this.getData().getRelevantChildren(this.options.constraints);
-		if(children.length== 0)return;
+//		var children = this.getData().getRelevantChildren(this.options.constraints);
 		var records = this.getData().getRelevantRecords(this.options.constraints);
+		if(records.length== 0)return;
 		var periodIds = [];
 		for(var recI = 0; recI<records.length; recI++){
 			var record = records[recI];
@@ -375,7 +376,7 @@ $.widget('ipc.controldatavis', {
 		 * TODO umgekehrte Reihenfolge
 		 */
 		
-		var children = this.getData().getRelevantChildren(/*this.options.constraints*/);
+		var children = this.getData().getRelevantChildren(this.options.constraints);
 //		var records = this.getData().getRelevantRecords(this.options.constraints);
 //		var periods = {};
 //		for(var recI = 0; recI<records.length; recI++){

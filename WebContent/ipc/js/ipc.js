@@ -139,34 +139,51 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
         if(withAloha)iks.ipc.alohaconfig();
         projectSelector_init();
         
-        debug();
+        // debug();
     });
 
     var Constraints = Backbone.Model.extend({
         periods: {},
         loadPeriods: function(projectId, cb){
+            var that = this;
             iks.ipc.dataStorage.getData(["periods"], function(data){
-                this.periods[projectId] = data.periods;
-                cb();
+                that.periods[projectId] = data.periods;
+                if(cb) cb();
             });
         },
+        
         checkRecord: function(record){
-            var constKeys = _.keys(this.attributes);
+            var key = _.detect(_.keys(this.periods), function(key){
+                return key.indexOf(record.project) != -1;
+            });
+            var periods = this.periods[key];
+            var period = periods[record.period];
             var pStart = new Date(period.startdate), 
                 pEnd = new Date(period.enddate);
             var res = true;
+            var constKeys = _.keys(this.attributes);
+            var constraints = this;
             _.each(constKeys, function(key){
                 switch(key){
-                case 'startDate':
-                    var startDate = new Date(this.get('startDate'));
-                    res = res && startDate > pEnd;
+                case 'startdate':
+                    var startDate = new Date(constraints.get('startdate'));
+                    res = res && startDate < pEnd; // is the constraint start before the period end?
                     break;
-                case 'endDate':
-                    var endDate = new Date(this.get('endDate'));
-                    res = res && endDate > pStart;
+                case 'enddate':
+                    var endDate = new Date(constraints.get('enddate'));
+                    res = res && endDate > pStart; // is the period start after the constraint end?
                     break;
                 }
             });
+            if(false){
+                var log = "";
+                if(res==true)
+                    log += "+++ recordcheck: " + record.period;
+                else
+                    log += "--- recordcheck: " + record.period;
+                console.info([log, {constr: constraints.toJSON(), period: period, rec: record}]);
+            }
+
             return res;
         }
     });
@@ -191,5 +208,9 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
         constraintsChange: function(cb){
             this.constraints.bind('change', cb);
         }
+    });
+    iks.ipc.constraints.bind('change:projectId', function(constraints, projectId){
+        console.info("projectId changed: " + projectId);
+        iks.ipc.constraints.loadPeriods(projectId);
     });
 })();

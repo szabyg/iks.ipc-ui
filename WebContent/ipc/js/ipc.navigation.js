@@ -43,6 +43,24 @@
 	        });
         });
         */
+        $("#timerange-selector").bind("rangeSelected", function(e, timeRange){
+            if(timeRange.startDate){
+                iks.ipc.constraints.set({'startdate': timeRange.startDate.clone()}, {silent: true});
+            } else {
+                iks.ipc.constraints.unset('startdate', {silent: true});
+            }
+            if(timeRange.endDate){
+                iks.ipc.constraints.set({'enddate': timeRange.endDate.clone()}, {silent: true});
+            } else {
+                iks.ipc.constraints.unset('enddate', {silent: true});
+            }
+            iks.ipc.constraints.change();
+	        console.info(
+//			        "value: " + timeRange.value + 
+//			        "label: " + timeRange.label + 
+			        " start date: " + timeRange.startDate +
+			        " end date: " + timeRange.endDate);
+        });
 
         $("#timerange-selector").timerangeselector({
 	        periodLabel: '3. Select Period', 
@@ -50,16 +68,7 @@
 	        endDateLabel: 'to<br/>',
 	        dateFormat: "yy-mm-dd",
 	        startYear: 2009
-        });
-        $("#timerange-selector").bind("rangeSelected", function(e, timeRange){
-            iks.ipc.constraints.set({'startdate': timeRange.startDate.clone()});
-            iks.ipc.constraints.set({'enddate': timeRange.endDate.clone()});
-	        console.info(
-//			        "value: " + timeRange.value + 
-//			        "label: " + timeRange.label + 
-			        " start date: " + timeRange.startDate +
-			        " end date: " + timeRange.endDate);
-        });
+        }).trigger("change");
     };
 
 	$(document).ready(function(){
