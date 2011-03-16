@@ -67,6 +67,10 @@ $.widget('ipc.controldatavis', {
 		this.canvasId = this.canvasElement.getUID();
 		var dataArrays = this.getDataArrays();
 		if(!dataArrays){
+		    // Don't redraw anymore!
+		    delete RGraph.objects['jQ-uid-2_bar'];
+		    RGraph.ClearEventListeners();
+		    this.canvasElement[0].removeEventListener('mousemove', this.canvas_onmousemove, false);
 		    console.info("no data to show.");
 		    return;
 		}
@@ -138,7 +142,7 @@ $.widget('ipc.controldatavis', {
 				})
 			);
 
-			canvas_onmousemove = function (e){
+			this.canvas_onmousemove = function (e){
 				var e = RGraph.FixEventObject(e);
 				RGraph.Redraw();
 				
@@ -227,7 +231,7 @@ $.widget('ipc.controldatavis', {
 				}
 			};
 			var that = this;
-			canvas_onclick = function(e){
+			this.canvas_onclick = function(e){
 				var e = RGraph.FixEventObject(e);
 				RGraph.Redraw();
 				
@@ -245,11 +249,11 @@ $.widget('ipc.controldatavis', {
 				}
 			};
 			RGraph.AddCustomEventListener(plannedDetailBarChart.canvas, 'ondraw', function(){
-				RGraph.AddEventListener(plannedDetailBarChart.canvas.id, 'mousemove', canvas_onmousemove);
-				plannedDetailBarChart.canvas.addEventListener('mousemove', canvas_onmousemove, false);
+				RGraph.AddEventListener(plannedDetailBarChart.canvas.id, 'mousemove', that.canvas_onmousemove);
+				plannedDetailBarChart.canvas.addEventListener('mousemove', that.canvas_onmousemove, false);
 
-				RGraph.AddEventListener(plannedDetailBarChart.canvas.id, 'click', canvas_onclick);
-				plannedDetailBarChart.canvas.addEventListener('click', canvas_onclick, false);
+				RGraph.AddEventListener(plannedDetailBarChart.canvas.id, 'click', that.canvas_onclick);
+				plannedDetailBarChart.canvas.addEventListener('click', that.canvas_onclick, false);
 			});
 			plannedDetailBarChart.Draw();
 			RGraph.Register(plannedDetailBarChart);
@@ -387,8 +391,10 @@ $.widget('ipc.controldatavis', {
 //		}
 
 		var childrenIds = [], periodNames = [];
-		for(var perI in periods)periodNames.push(periods[perI][0]);
-		for(var childId in children)childrenIds.push(childId);
+		for(var perI in periods)if(periods.hasOwnProperty(perI))
+		    periodNames.push(periods[perI][0]);
+		for(var childId in children)if(children.hasOwnProperty(childId))
+		    childrenIds.push(childId);
 		
 		// The result as an object. It has to be converted to an array then.
 		var resObj = {};

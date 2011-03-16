@@ -95,8 +95,7 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
 		                $.stanbolConnector.entityhubQuery("srfg", label, function( data ) {
                                 data = _.reject(data, function(item){return item.id.indexOf("INTERN") != -1});
 		                        var projects = $.map( data, function( item ) {
-		                            console.info(item);
-			                        return {
+		                            return {
 				                        label: item["http://www.w3.org/2000/01/rdf-schema#label"][0],
 				                        value: item.id
 			                        }
