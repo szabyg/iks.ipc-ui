@@ -40,8 +40,8 @@ $.widget('ipc.controldatavis', {
 		        that._initialized = true;
 	        }
 
-	        var constraints = widget.options.constraints.attributes;
-    		if(constraints && constraints.projectId){
+	        var constraints = widget.options.constraints;
+    		if(constraints && constraints.attributes.projectId){
         		widget.options.dataStore.getPlanEffortData(constraints, function(data){
 			        widget.data = data;
 			        widget.refresh();

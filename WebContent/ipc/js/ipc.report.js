@@ -2,6 +2,10 @@
     $(document).ready(function(){
 	    reportInit();
 	    reportFillOut();
+        iks.ipc.constraints.bind('change', function(){
+            reportFillOut();
+        });
+
     });
     function reportInit(){
 	    $("#reportAccordion").accordion({clearStyle: true, autoHeight: false});

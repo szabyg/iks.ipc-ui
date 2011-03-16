@@ -172,9 +172,9 @@ $.extend(iks.ipc.dataStorage, {
 	},
 	getValues: function(couchdbResultArray){
 		var res = [];
-		for(var i in couchdbResultArray){
+		for( var i = 0; i < couchdbResultArray.length; i++){
 			res.push(couchdbResultArray[i].value);
-		}
+		};
 		return res;
 	},
 	getPeriod: function(projectId, periodId, cb){
@@ -190,14 +190,24 @@ $.extend(iks.ipc.dataStorage, {
 		var that = this;
 		var getValues = function(couchdbResultArray){
 			var res = [];
-			for(var i in couchdbResultArray){
+			for(var i = 0;i < couchdbResultArray.length; i++){
 				res.push(couchdbResultArray[i].value);
 			}
 			return res;
 		};
 		this.getData(["planPmByWbsPeriod", "spentPmByWbsPeriodPartner"], function(data){
-			var wbsTree = new WBSTree({planned: {data: data.planPmByWbsPeriod}, spent:{data: data.spentPmByWbsPeriodPartner}});
-			callback(wbsTree);
+		    var filter = function(recordArray){
+		        return _.filter(recordArray, function(record){
+		            return constraints.checkRecord(record)
+                });
+		    };
+		    constraints.loadPeriods('', function(){
+			    var wbsTree = new WBSTree({
+                    planned: {data: filter(data.planPmByWbsPeriod)}, 
+                    spent:{data: filter(data.spentPmByWbsPeriodPartner)}
+                });
+			    callback(wbsTree);
+		    });
 		});
 	},
 	/**

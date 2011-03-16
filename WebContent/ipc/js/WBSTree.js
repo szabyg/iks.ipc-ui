@@ -124,7 +124,8 @@ TreeNode.prototype = {
 		 * makes the record relevant.
 		 */
 		_isRecordRelevant: function(record, constraints){
-			// constraits: {period: '2010', organisation: ['srfg', 'srdc']}
+			if(!constraints)
+			    console.info("no constraint object");
 			return constraints.checkRecord(record);
 			/*
 			var res = true;

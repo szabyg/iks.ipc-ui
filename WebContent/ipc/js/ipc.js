@@ -146,17 +146,16 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
         loadPeriods: function(projectId, cb){
             var that = this;
             iks.ipc.dataStorage.getData(["periods"], function(data){
-                that.periods[projectId] = data.periods;
+                that.periods = $.extend(that.periods, data.periods);
                 if(cb) cb();
             });
         },
         
         checkRecord: function(record){
-            var key = _.detect(_.keys(this.periods), function(key){
-                return key.indexOf(record.project) != -1;
-            });
-            var periods = this.periods[key];
-            var period = periods[record.period];
+            if(!this.periods[record.period]){
+                console.info("Period not known yet! " + record.period);
+            }
+            var period = this.periods[record.period];
             var pStart = new Date(period.startdate), 
                 pEnd = new Date(period.enddate);
             var res = true;
