@@ -113,33 +113,42 @@
                 templateData.push(delivObj);
             });
             $("#monitoring-03 .content").html("");
-            $('#monitoringDelivStatusTableStatic').tmpl([{}]).appendTo("#monitoring-03 .content");
-            $('#monitoringDelivStatusTable').tmpl(templateData, {
-                getHistory: function(history){
-                    var res = "", firstLine = "", rest = "";
-                    var toggleClass = "historyToggle" + Math.round(Math.random() * 100000000);
-                    $(history).each(function(i, hist){
-                        if(i==0){
-                            firstLine += "<p><u><a onclick='$(\"." + toggleClass + "\").toggle()'>";
-                            firstLine += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
-                            firstLine += "</a></u></p>"
-                        } else {
-                            rest += "<p >";
-                            rest += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
-                            rest += "</p>"                                        
+            $.get(templateroot + "ipc.monitoring.monitoringDelivStatusTableStatic.tmpl", 
+                    function(monitoringDelivStatusTableStatic_tmpl){
+                $.tmpl(monitoringDelivStatusTableStatic_tmpl, [{}])
+                    .appendTo("#monitoring-03 .content");
+                $.get(templateroot + "ipc.monitoring.monitoringDelivStatusTable.tmpl", 
+                        function(monitoringDelivStatusTable_tmpl){
+                        
+                    $.tmpl(monitoringDelivStatusTable_tmpl, templateData, {
+                        getHistory: function(history){
+                            var res = "", firstLine = "", rest = "";
+                            var toggleClass = "historyToggle" + Math.round(Math.random() * 100000000);
+                            $(history).each(function(i, hist){
+                                if(i==0){
+                                    firstLine += "<p><u><a onclick='$(\"." + toggleClass + "\").toggle()'>";
+                                    firstLine += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+                                    firstLine += "</a></u></p>"
+                                } else {
+                                    rest += "<p >";
+                                    rest += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+                                    rest += "</p>"                                        
+                                }
+                            });
+                            res = 
+                                "<div class='firstLine'>" + 
+                                firstLine + 
+                                "</div>" +
+                                "<div class='" + toggleClass + "' style='display:none'>" + 
+                                rest + 
+                                "</div>";
+                            return res;
                         }
-                    });
-                    res = 
-                        "<div class='firstLine'>" + 
-                        firstLine + 
-                        "</div>" +
-                        "<div class='" + toggleClass + "' style='display:none'>" + 
-                        rest + 
-                        "</div>";
-                    return res;
-                }
-            })
-            .appendTo('#monitoring-03 table.monitoringDelivStatusTable');
+                    })
+                    .appendTo('#monitoring-03 table.monitoringDelivStatusTable');
+                })
+
+            });
         });
     
     }

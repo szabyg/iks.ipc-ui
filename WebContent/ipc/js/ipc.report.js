@@ -105,16 +105,17 @@
 			    }
 			    // console.info(templateData);
 			    // debugger;
-
-			    $('#workProgressPerWP').tmpl(templateData, {
-				    test: function(){
-					    debugger;
-					    return "Template function testBlah";
-				    }
-			    })
-			    .appendTo('#project_objectives_and_work_progress .workProgressPerWPList');
-			    if(withAloha)
-			        $('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
+                $.get(templateroot + "ipc.report.workProgressPerWP.tmpl", function(workProgressPerWP_tmpl){
+			        $.tmpl(workProgressPerWP_tmpl, templateData, {
+				        test: function(){
+					        debugger;
+					        return "Template function testBlah";
+				        }
+			        })
+			        .appendTo('#project_objectives_and_work_progress .workProgressPerWPList');
+			        if(withAloha)
+			            $('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
+                });
 		    }
 	    );
 	

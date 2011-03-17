@@ -1,0 +1,34 @@
+<!-- <script id="workProgressPerWP" type="text/x-jquery-tmpl">
+{for each workpackage, active in reporting period, not for the management workpackage} -->
+	<h2>${wpLabel}</h2>
+    <ul>
+	    <li><b>Objectives</b>: <i>${wpDescription}</i></li>
+    	<li>Progress: <div class="editable freeText" id="${jsId}_progress">
+Because of the redesign, the final version of D1.1 is planned to be available at the end of July but the first experimental exercise will be delivered to the industrial partners early July, such that the delay for Task 1.2 is reduced.
+		</div></li>
+    
+    	<li>Planned vs. Spent efforts per Partner
+			<!-- {table for this workpackage: planned vs. spent effort per beneficiary * transposition} -->
+			<table>
+
+				<tr><td>Partner</td><td>Planned effort</td><td>Spent effort</td><td>Deviation</td><td>Explanation</td></tr>
+
+				{{each spentVsPlannedByPartner}}
+					<tr>
+					<tr>
+                        <td>${partnerLabel}</td>
+                        <td>${Math.round(plan)}</td>
+                        <td>${Math.round(spent)}</td>
+                        <td>${Math.round(spent-plan)}</td>
+                        <td><div id="${jsId}_explanation" class="editable freeText">Explanation...</div></td></tr>
+					</tr>
+				{{/each}}
+
+			</table>
+		</li>
+    
+    	<li>Explanation of use of resources: <div class="editable freeText" id="${jsId}_expl"> {a statement on use of resources, deviations and planning}</div></li>
+    	<li>Significant results: <div class="editable freeText" id="${jsId}_signResults"> <strong>{free text input: significant results}</strong></div></li>
+    	<li>Corrective actions: <div class="editable freeText" id="${jsId}_corrActions"> optional {possible corrective actions}</div></li>
+	</ul>
+
