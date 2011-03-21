@@ -8,11 +8,13 @@
 
     });
     function reportInit(){
-	    $("#reportAccordion").accordion({clearStyle: true, autoHeight: false});
-	    console.info("report clearstyle: " + $("#reportAccordion").accordion("option", "clearStyle"));
     }
     function reportFillOut() {
         $.get(templateroot + "ipc.report.yearlyreport.tmpl", function(yearlyreport){
+            $.tmpl(yearlyreport, {}).appendTo('#reportAccordion');
+    	    $("#reportAccordion").accordion({clearStyle: true, autoHeight: false});
+    	    console.info("report clearstyle: " + $("#reportAccordion").accordion("option", "clearStyle"));
+
 	        // TODO Move this to the database
 	        iks.ipc.partners = [
 		        "urn:organisation:srfg",

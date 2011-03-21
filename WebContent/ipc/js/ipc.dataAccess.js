@@ -103,7 +103,6 @@ $.extend(iks.ipc.dataStorage, {
 				return res;
 			}
 		},
-		http://localhost:5984/ipctest/urn%3Aeu%3Afp7%3Aict%3Aproject%3Aiks
 		"spenteffortByprojectWBS": {
 			getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "_design/ipc/_view/spenteffortByprojectWBS?group_level=4&callback=?";},
 			loaded: false,
