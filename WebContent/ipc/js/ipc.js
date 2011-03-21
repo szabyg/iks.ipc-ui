@@ -42,7 +42,10 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
     function projectSelector_init(){
         $('#projectselect').bind('change', function(e){
             console.info("selected project: " + $(this).val());
-            iks.ipc.constraints.set({projectId: $(this).val()});
+            iks.ipc.constraints.set({
+                projectId: $(this).val(), 
+                projectLabel: this.children[this.selectedIndex].innerHTML
+            });
         });
 
         $.stanbolConnector.entityhubQuery("srfg", "*", function( data ) {
@@ -187,18 +190,6 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
     });
     
     $.extend(iks.ipc, {
-        // Collect the set constraints from all the UI filter elements.
-        /*
-        collectConstraints: function (){
-	        var res = {};
-	        // $.extend(res, $("#project-selector").projectautocomplete("getConstraints"));
-	        // $.extend(res, $("#org-selector").projectautocomplete("getConstraints"));
-	        $.extend(res, $("#timerange-selector").timerangeselector("getConstraints"));
-	        res.projectId = iks.ipc.project;
-	        console.info(["constraints:", res]);
-	        return res;
-        },
-        */
         getLifecyclemode: function(){
             return $('input[name=lifecyclemode]:checked').val() || '';
         },

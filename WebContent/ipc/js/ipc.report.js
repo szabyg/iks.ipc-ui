@@ -10,7 +10,28 @@
     function reportInit(){
     }
     function reportFillOut() {
-        $.get(templateroot + "ipc.report.yearlyreport.tmpl", function(yearlyreport){
+        
+        $('#reportAccordion').accordion("destroy").html("");
+        var selectedPeriod = iks.ipc.constraints.get('period');
+        var projectId = iks.ipc.constraints.get('projectId');
+        var projectLabel = iks.ipc.constraints.get('projectLabel');
+        
+        console.info("Reporting, selected period: " + selectedPeriod);
+        var reportType, reportTitle;
+        if(selectedPeriod == "current" || !selectedPeriod){
+            console.info("Reporting, no selected period.");
+            return;
+        } else if(selectedPeriod.length == 4){
+            reportType = "annual";
+            reportTitle = projectLabel + " annual report " + selectedPeriod;
+        } else {
+            reportType = "quarterly";
+            reportTitle = projectLabel + " quarterly report " + selectedPeriod;
+        }
+        var reportTemplate = templateroot + "ipc.report." + reportType + "report.tmpl";
+        $('#reportTitle').html(reportTitle);
+        
+        $.get(reportTemplate, function(yearlyreport){
             $.tmpl(yearlyreport, {}).appendTo('#reportAccordion');
     	    $("#reportAccordion").accordion({clearStyle: true, autoHeight: false});
     	    console.info("report clearstyle: " + $("#reportAccordion").accordion("option", "clearStyle"));

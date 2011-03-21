@@ -49,6 +49,11 @@
             } else {
                 iks.ipc.constraints.unset('startdate', {silent: true});
             }
+            if(timeRange.label){
+                iks.ipc.constraints.set({'period': timeRange.label.replace(/&nbsp;/gi,"")}, {silent: true});
+            } else {
+                iks.ipc.constraints.unset('period', {silent: true});
+            }
             if(timeRange.endDate){
                 iks.ipc.constraints.set({'enddate': timeRange.endDate.clone()}, {silent: true});
             } else {
