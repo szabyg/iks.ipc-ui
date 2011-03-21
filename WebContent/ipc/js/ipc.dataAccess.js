@@ -96,11 +96,7 @@ $.extend(iks.ipc.dataStorage, {
 			loaded: false,
 			data: null,
 			postProcess: function(data){
-				var res = {};
-				$(data.rows).each(function(){
-					res[this.key] = this.value;
-				});
-				return res;
+				return data;
 			}
 		},
 		"spenteffortByprojectWBS": {

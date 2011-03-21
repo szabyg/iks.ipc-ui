@@ -14,22 +14,7 @@
             $.tmpl(yearlyreport, {}).appendTo('#reportAccordion');
     	    $("#reportAccordion").accordion({clearStyle: true, autoHeight: false});
     	    console.info("report clearstyle: " + $("#reportAccordion").accordion("option", "clearStyle"));
-
-	        // TODO Move this to the database
-	        iks.ipc.partners = [
-		        "urn:organisation:srfg",
-		        "urn:organisation:dfki",
-		        "urn:organisation:hsg",
-		        "urn:organisation:cnr",
-		        "urn:organisation:upb",
-		        "urn:organisation:srdc",
-		        "urn:organisation:nuxeo",
-		        "urn:organisation:alkacon",
-		        "urn:organisation:txt",
-		        "urn:organisation:pisano",
-		        "urn:organisation:nemein",
-		        "urn:organisation:day",
-		        "urn:organisation:hfu"];
+            
 	        iks.ipc.isQuarterInPeriod = function(key, period){
 		        if(this.periods[key] && this.periods[key]["startdate"].indexOf(period) != -1)
 			        return true;
@@ -41,10 +26,11 @@
 	            "plannedEffortPerPartnerPerQuartalPerWBS", 
 	            "spenteffortByprojectWBS", 
 	            "periods", 
-	            "planWorkpackages"],
+	            "planWorkpackages",
+	            "urn:iks:iks"],
 		        function(data){
 			        iks.ipc.periods = data.periods;
-			
+			        var partners = data["urn:iks:iks"]["beneficiary-list"];
 			        var templateDataObj = {};// Obj of WPs
 			        // var plannedPerWP = {};
 			        for(var wpI = 0; wpI < data.planWorkpackages.length;wpI++){
@@ -55,8 +41,8 @@
 					        jsId: wp._id.replace(".","_"),
 					        spentVsPlannedByPartner: {}
 				        };
-				        for(var p = 0;p < iks.ipc.partners.length; p++){
-					        var partner = iks.ipc.partners[p];
+				        for(var p = 0;p < partners.length; p++){
+					        var partner = partners[p];
 					        wpObj.spentVsPlannedByPartner[partner] = {plan: 0, spent:0, 
 							        partnerId: partner,
 							        jsId: wp._id.replace(".","_")+partner,
@@ -98,8 +84,8 @@
 					        wpDescription: wp["dc:description"]
 				        };
 				        templateData.push(wpObj);
-				        for(var p = 0;p < iks.ipc.partners.length; p++){
-					        var partner = iks.ipc.partners[p];
+				        for(var p = 0;p < partners.length; p++){
+					        var partner = partners[p];
 					        wpObj.spentVsPlannedByPartner.push(templateDataObj[wp._id].spentVsPlannedByPartner[partner]);
 				        }
 			        }
