@@ -62,7 +62,7 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
                 "<% _.each(projects, function(project) { %>" + 
                 " <option value='<%= project.value %>'>"+
                 "<%= project.label %></option> <% }); %>";
-            $('#projectselect').html(_.template(iks.ipc._projectSelectOptionsTmpl, {projects : projects}));
+            $('#projectselect').html(_.template("<option></option>" + iks.ipc._projectSelectOptionsTmpl, {projects : projects}));
         },{constraints:[{ 
             "type": "reference", 
             "field": "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type", 
