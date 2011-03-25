@@ -152,7 +152,7 @@
 			<li><a href="#tabs-plan">Plan</a></li>
 			<li><a href="#tabs-execute">Execute</a></li>
 			<li><a href="#tabs-monitoring">Monitor</a></li>
-			<li><a href="#tabs-control">Control</a></li>
+			<li><a href="#tabs-browse">Control</a></li>
 			<li><a href="#tabs-report">Report</a></li>
 		</ul>
 		<div id="tabs-plan">tabs-plan
@@ -231,10 +231,10 @@
 			<div id="monitoring-explanation01"></div>
 			<div id="monitoring-sheet-01"></div>
 		</div>
-		<div id="tabs-control">
+		<div id="tabs-browse">
 			<script type="text/javascript">
 				// Initialize the tab on activating it
-				$("#tabs").bind("tabsselect", function(event, ui){if(ui.panel.id=="tabs-control"){
+				$("#tabs").bind("tabsselect", function(event, ui){if(ui.panel.id=="tabs-browse"){
 					controlInit();
 				}});
 				function controlInit(){

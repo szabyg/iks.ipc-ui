@@ -136,14 +136,15 @@ $.extend(iks.ipc.dataStorage, {
 
     },
     storeDoc: function(doc, cb, error){
-        this.proxyRequest(iks.ipc.dataStorage.options.couchdbPersUrl + (doc._id||doc.id), {
-            method: "POST",
+        this.proxyRequest(iks.ipc.dataStorage.options.couchdbPersUrl + (doc._id||escape(doc.id)), {
+            method: "PUT",
             success: function(res){
                     if(cb)cb(res);
             },
             error: function(err){
                 if(error)error(err);
-            }
+            },
+            data: '{"a":"2"}'//doc
         });
         $.noop();
     },
@@ -214,12 +215,13 @@ $.extend(iks.ipc.dataStorage, {
             data: {
                 proxy_url: uri, 
                 Accept: options.acceptHeader || "application/json", 
-                verb: options.method || "GET"
+                verb: options.method || "GET",
+                data: options.data
             },
             success: options.success,
             error: options.error
         };
-        $.extend(ajaxOpt.data, options.data);
+        // $.extend(ajaxOpt.data, options.data);
         $.ajax(ajaxOpt);
         
     },

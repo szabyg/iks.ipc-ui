@@ -58,7 +58,7 @@
 	/* clear: left;*/
 }
 
-#tabs-control .switch {
+#tabs-browse .switch {
 	padding: 0 10px;
 }
 #mode-selector {
@@ -70,10 +70,13 @@
 	padding: 0.1em 0.5em;
 }
 
-#tabs-control .bcElement .ui-button-text {
+#tabs-browse .bcElement .ui-button-text {
 	padding: 0.1em 0.5em;
 }
 
+#report-lastsaved {
+    color: #ccc;
+}
 /* Typo */
 #header #userprofile {
 	/* font-size: 80%;*/

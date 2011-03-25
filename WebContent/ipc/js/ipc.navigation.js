@@ -6,23 +6,35 @@
 			switch(switchValue){
 			case "plan":
 				$("#pathApp").html("Browse Plan");
-				$("#tabs-control").show();
+				$("#tabs-browse").show();
 				$("#tabs-monitor").hide();
+				$("#tabs-audit").hide();
 				$("#tabs-report").hide();
 				// $("#reportAccordion").accordion("destroy");
 				break;
 			case "monitor":
 				$("#pathApp").html("Monitor Project");
-				$("#tabs-control").hide();
+				$("#tabs-browse").hide();
 				$("#tabs-report").hide();		
+				$("#tabs-audit").hide();
 				$("#tabs-monitor").show();
 				iks.ipc.monitoringInit();
 				break;			
 			case "report":
 				$("#pathApp").html("Write Report");
-				$("#tabs-control").hide();
+				$("#tabs-browse").hide();
 				$("#tabs-monitor").hide();
+				$("#tabs-audit").hide();
 				$("#tabs-report").show();
+				$("#reportAccordion").accordion('resize');
+				// $("#reportAccordion").accordion();
+				break;
+			case "audit":
+				$("#pathApp").html("Write Report");
+				$("#tabs-browse").hide();
+				$("#tabs-monitor").hide();
+				$("#tabs-report").hide();
+				$("#tabs-audit").show();
 				$("#reportAccordion").accordion('resize');
 				// $("#reportAccordion").accordion();
 				break;
@@ -45,7 +57,7 @@
         */
         $("#timerange-selector").bind("rangeSelected", function(e, timeRange){
             if(timeRange.startDate){
-                iks.ipc.constraints.set({'startdate': timeRange.startDate.clone()}, {silent: true});
+                iks.ipc.constraints.set({'startdate': new Date(timeRange.startDate)}, {silent: true});
             } else {
                 iks.ipc.constraints.unset('startdate', {silent: true});
             }
@@ -55,7 +67,7 @@
                 iks.ipc.constraints.unset('period', {silent: true});
             }
             if(timeRange.endDate){
-                iks.ipc.constraints.set({'enddate': timeRange.endDate.clone()}, {silent: true});
+                iks.ipc.constraints.set({'enddate': new Date(timeRange.endDate)}, {silent: true});
             } else {
                 iks.ipc.constraints.unset('enddate', {silent: true});
             }

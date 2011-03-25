@@ -29,7 +29,10 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
         });
     }
     function dataStorage_init(){ // couchdb connector init
-        iks.ipc.dataStorage.setConfig({couchdbUrl: iks.ipc.couchdbUrl});
+        iks.ipc.dataStorage.setConfig({
+            couchdbUrl: iks.ipc.couchdbUrl,
+            couchdbPersUrl: iks.ipc.couchdbPersUrl
+        });
         iks.ipc.dataStorage.isAlive(function(alive){
             if(!alive)
                 alert(iks.ipc.couchdbUrl + "is not reachable!");

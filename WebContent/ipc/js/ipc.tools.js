@@ -122,6 +122,20 @@ $.extend(iks.ipc.tools.sheet, {
 		return menu;
 	}
 });
+$.extend(iks.ipc.tools, {
+	formatDateTime: function(dateObj){
+        var dateTimeStrings = {
+            year: dateObj.getFullYear(),
+            month: dateObj.getMonth()+1,
+            date: dateObj.getDate(),
+            hours: dateObj.getHours(),
+            minutes: dateObj.getMinutes(),
+            seconds: dateObj.getSeconds()
+	    };
+	    return $.tmpl("${year} ${month} ${date} ${hours}:${minutes}:${seconds}",
+	        dateTimeStrings);
+	}
+});
 (function($) {
     var uid = 0;
     $.getUID = function() {
@@ -140,6 +154,7 @@ $.extend(iks.ipc.tools.sheet, {
         return id;
     };
 })(jQuery);
-
+/*
 $('#has-id').getUID(); // returns "has-id"
 $('<div>').getUID(); // sets id attribute to "jQ-uid-1" and returns it
+*/
