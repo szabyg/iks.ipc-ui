@@ -33,15 +33,18 @@ if (!$proxy_url) {
 if (!$h = new http()) {
     header("HTTP/1.0 501 Script Error");
     echo "proxy.php failed trying to initialize the http object";
+    echo $h->log;
     exit();
 }
 
+$h->headers["Referer"] = $proxy_url . '__';
 $h->url = $proxy_url;
 $h->postvars = $_POST;
 $h->verb = $_REQUEST['verb'];
 if (!$h->fetch($h->url,$h->verb)) {
     header("HTTP/1.0 501 Script Error");
-    echo "proxy.php had an error attempting to query the url";
+    echo "proxy.php had an error attempting to query the url\n";
+    echo $h->log;
     exit();
 }
 
