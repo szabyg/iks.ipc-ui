@@ -199,6 +199,12 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
         constraints: new Constraints(),
         constraintsChange: function(cb){
             this.constraints.bind('change', cb);
+        },
+        isQuarterInPeriod: function(key, period){
+            if(this.periods[key] && this.periods[key]["startdate"].indexOf(period) != -1)
+                return true;
+            else
+                return false;
         }
     });
     iks.ipc.constraints.bind('change:projectId', function(constraints, projectId){

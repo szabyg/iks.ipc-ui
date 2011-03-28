@@ -1,0 +1,27 @@
+<p>Grant Agreement number: ${basicData.projectGrantAgreementNumber}</P>
+<p>Project acronym: <abbr>${basicData.projectAcronym}</abbr></P>
+<p>Project title: ${basicData.projectLabel}</P>
+<p>Funding Scheme: ${basicData.fundingScheme}</P>
+<p>Date of latest version of Annex I against which the assessment will be made: ${basicData.projectContractDate}</P>
+
+<div id="period">
+    <form id="reportingperiod" action="">
+      <p>Periodic report: 
+        <input type="radio" name="reportingperiod" value="1"> 1st period
+        <input type="radio" name="reportingperiod" value="2"> 2nd period
+        <input type="radio" name="reportingperiod" value="3"> 3rd period
+        <input type="radio" name="reportingperiod" value="4"> 4th period</p>
+    </form>
+    <p>Period covered: from {date picker} to {date picker} </p>
+</div>
+<div id="address_of_scientific_representative_of_project">
+    <p>Name, title and organisation of the scientific representative of the project's coordinator</B>:</p>
+    <p>Name:</p>
+    <p>Organisation: ${basicData.leadOrganisation}</p>
+    <p>Tel:</p>
+    <p>Fax:</p>
+    <p>E-mail:</p>
+</div>
+
+<p>Project website address: {project_website_url}</P>
+
