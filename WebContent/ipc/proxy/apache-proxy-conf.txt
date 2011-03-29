@@ -1,0 +1,14 @@
+    <Proxy http://localhost:5984>
+        Order Allow,Deny
+        Allow from all
+    </Proxy>
+    ProxyPass /couchdb http://localhost:5984
+    ProxyPassReverse /couchdb http://localhost:5984
+
+    <Proxy http://localhost:8080>
+        Order Allow,Deny
+        Allow from all
+    </Proxy>
+    ProxyPass /stanbol http://localhost:8080
+    ProxyPassReverse /stanbol http://localhost:8080
+
