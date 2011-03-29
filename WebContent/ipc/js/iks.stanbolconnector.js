@@ -110,6 +110,27 @@ $.stanbolConnector = {
      * generic call to a stanbol backend through a proxy
      * 
      */
+    stanbolRequestProxy: function(uri, options){
+        var ajaxOpt = 
+        {
+            url: this.options.proxyUrl, 
+            type: options.method,
+            data: options.data,
+            headers: {
+                Accept: options.acceptHeader || "application/json", 
+            },
+            
+            success: options.success,
+            error: options.error
+        };
+//        $.extend(ajaxOpt.data, options.data);
+        $.ajax(ajaxOpt);
+        
+    },
+    /**
+     * generic call to a stanbol backend through a proxy
+     * 
+     */
     stanbolRequest: function(uri, options){
         var ajaxOpt = 
         {

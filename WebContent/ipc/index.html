@@ -15,8 +15,8 @@
 <script src="js/loader.js" type="text/javascript"></script>
 <script type="text/javascript">
     var withAloha = true;
-    var localDBs = true;
-    var proxytest = false;
+    var localDBs = false;
+    var proxytest = true;
     // setting directory variables
     var srcroot = "js/";
     var libroot = "js/lib/";
@@ -112,9 +112,9 @@
     <script type="text/javascript">
         // setting internal/external webservice addresses
         if(proxytest){
-            iks.ipc.stanbolUrl = localDBs ? "http://localhost/stanbol/" : "http://isr03/stanbol/";
-            iks.ipc.couchdbUrl = localDBs ? "http://localhost/couchdb/ipctest/" : "http://isr03/couchdb/ipctest/";
-            iks.ipc.couchdbPersUrl = localDBs ? "http://localhost/couchdb/ipcstore/" : "http://isr03/couchdb/ipcstore/";
+            iks.ipc.stanbolUrl = "http://localhost/stanbol/";
+            iks.ipc.couchdbUrl = "http://localhost/couchdb/ipctest/";
+            iks.ipc.couchdbPersUrl = "http://localhost/couchdb/ipcstore/";
         } else {
             iks.ipc.stanbolUrl = localDBs ? "http://localhost:8080/" : "http://isr03:8080/";
             iks.ipc.couchdbUrl = localDBs ? "http://localhost:5984/ipctest/" : "http://isr03:5984/ipctest/";
