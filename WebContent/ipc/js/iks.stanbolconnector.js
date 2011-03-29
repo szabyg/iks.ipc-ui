@@ -32,18 +32,18 @@ $.stanbolConnector = {
         var uri = this.options.stanbolUrl + "entityhub/site/" + site + "/query";
         if(!options)options={};
         var fieldQuery = {
-            "selected": [ 
-                "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label", 
-                "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type",
-                "http://xmlns.com/foaf/0.1/homepage"
+            'selected': [ 
+                'http:\/\/www.w3.org\/2000\/01\/rdf-schema#label', 
+                'http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#type',
+                'http://xmlns.com/foaf/0.1/homepage'
             ], 
-            "offset": "0", 
-            "limit": options.limit || "1000", 
-            "constraints": [{ 
-               "type": "text", 
-               "patternType": "wildcard", 
-               "text": s, 
-               "field": "http:\/\/www.w3.org\/2000\/01\/rdf-schema#label" 
+            'offset': '0', 
+            'limit': options.limit || '1000', 
+            'constraints': [{ 
+               'type': 'text', 
+               'patternType': 'wildcard', 
+               'text': s, 
+               'field': 'http:\/\/www.w3.org\/2000\/01\/rdf-schema#label' 
             }]
         };
         if(options && options.constraints)
