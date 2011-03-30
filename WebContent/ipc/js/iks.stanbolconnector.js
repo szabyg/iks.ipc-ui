@@ -110,10 +110,10 @@ $.stanbolConnector = {
      * generic call to a stanbol backend through a proxy
      * 
      */
-    stanbolRequestProxy: function(uri, options){
+    stanbolRequest: function(uri, options){
         var ajaxOpt = 
         {
-            url: this.options.proxyUrl, 
+            url: uri, 
             type: options.method,
             data: options.data,
             headers: {
@@ -131,7 +131,7 @@ $.stanbolConnector = {
      * generic call to a stanbol backend through a proxy
      * 
      */
-    stanbolRequest: function(uri, options){
+    stanbolRequestProxy: function(uri, options){
         var ajaxOpt = 
         {
             url: this.options.proxyUrl, 
