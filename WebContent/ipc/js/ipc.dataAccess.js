@@ -257,13 +257,11 @@ $.extend(iks.ipc.dataStorage, {
                     return constraints.checkRecord(record)
                 });
             };
-            constraints.loadPeriods('', function(){
-                var wbsTree = new WBSTree({
-                    planned: {data: filter(data.planPmByWbsPeriod)}, 
-                    spent:{data: filter(data.spentPmByWbsPeriodPartner)}
-                });
-                callback(wbsTree);
+            var wbsTree = new WBSTree({
+                planned: {data: filter(data.planPmByWbsPeriod)}, 
+                spent:{data: filter(data.spentPmByWbsPeriodPartner)}
             });
+            callback(wbsTree);
         });
     },
     /**

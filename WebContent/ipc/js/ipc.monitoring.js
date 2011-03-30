@@ -3,12 +3,15 @@
         $("#monitor-accordion").accordion({clearStyle: true, autoHeight: false})
             .accordion('resize');
         
-        monitoring01_init();
+        deviation_init();
         
-        monitoring03_init();
+        deliverables_init();
+        iks.ipc.constraintsChange(function(){
+            deliverables_init();
+        });
     };
         
-    function monitoring01_init(){
+    function deviation_init(){
         
         function createTable(){
             $("#monitoring-01").html("");
@@ -82,35 +85,37 @@
         iks.ipc.constraints.bind('change', function(){
             console.info('recreate monitoring widget in #monitoring-01');
             $("#monitoring-01 .monitoring-sheet").monitoring('destroy');
-            // monitoring03_init();
+            // deliverables_init();
             createTable();
         });
 
     }
 
-    function monitoring03_init(){
+    function deliverables_init(){
         // Fill out the deliverable status table
         iks.ipc.dataStorage.getData(["planDeliverables", "delivDocs"], function(data){
             var delivDocsObj = {};
             $(data.delivDocs).each(function(){delivDocsObj[this.key] = this.value;});
             var templateData = [];
             $(data.planDeliverables).each(function(){
-                var delivObj = {
-                    wbs: this.value._id,
-                    deadline: this.value.deadline,
-                };
-                if(delivDocsObj[delivObj.wbs]){
-                    var delivDoc = delivDocsObj[delivObj.wbs];
-                    delivObj.label = delivDoc["rdfs:label"];
-                    delivObj.history = delivDoc.deliveryStatusInformation;
-                    delivObj.source = delivDoc["dc:source"];
-                } else {
-                    delivObj.label = this.value["rdfs:label"];
-                    delivObj.history = [];
-                    delivObj.source = "javascript:void(false);";
+                if(iks.ipc.constraints.checkRecord(this.value)){
+                    var delivObj = {
+                        wbs: this.value._id,
+                        deadline: this.value.deadline,
+                    };
+                    if(delivDocsObj[delivObj.wbs]){
+                        var delivDoc = delivDocsObj[delivObj.wbs];
+                        delivObj.label = delivDoc["rdfs:label"];
+                        delivObj.history = delivDoc.deliveryStatusInformation;
+                        delivObj.source = delivDoc["dc:source"];
+                    } else {
+                        delivObj.label = this.value["rdfs:label"];
+                        delivObj.history = [];
+                        delivObj.source = "javascript:void(false);";
+                    }
+                
+                    templateData.push(delivObj);
                 }
-            
-                templateData.push(delivObj);
             });
             $("#monitoring-03 .content").html("");
             $.get(templateroot + "ipc.monitoring.monitoringDelivStatusTableStatic.tmpl", 

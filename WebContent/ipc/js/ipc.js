@@ -148,22 +148,25 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
     });
 
     var Constraints = Backbone.Model.extend({
-        periods: {},
-        loadPeriods: function(projectId, cb){
-            var that = this;
-            iks.ipc.dataStorage.getData(["periods"], function(data){
-                that.periods = $.extend(that.periods, data.periods);
-                if(cb) cb();
-            });
-        },
-        
         checkRecord: function(record){
-            if(!this.periods[record.period]){
-                console.info("Period not known yet! " + record.period);
-            }
-            var period = this.periods[record.period];
-            var pStart = new Date(period.startdate), 
+            var pStart, pEnd;
+            if(record['rdf:type']){
+                if(record['rdf:type'].indexOf('deliverable') != -1){
+                    var delivObj = record;
+                    var period = iks.ipc.monthPeriods[delivObj.deadline];
+                    if(period == undefined)
+                        $.noop();
+                    pStart = new Date(period.startdate);
+                    pEnd = new Date(period.enddate);
+                }
+            } else {
+                if(!iks.ipc.projectPeriods[record.period]){
+                    console.info("Period not known yet! " + record.period);
+                }
+                var period = iks.ipc.projectPeriods[record.period];
+                pStart = new Date(period.startdate);
                 pEnd = new Date(period.enddate);
+            }
             var res = true;
             var constKeys = _.keys(this.attributes);
             var constraints = this;
@@ -201,14 +204,43 @@ if (typeof iks.ipc == 'undefined' || !iks.ipc) {
             this.constraints.bind('change', cb);
         },
         isQuarterInPeriod: function(key, period){
-            if(this.periods[key] && this.periods[key]["startdate"].indexOf(period) != -1)
+            if(iks.ipc.projectPeriods[key] && iks.ipc.projectPeriods[key]["startdate"].indexOf(period) != -1)
                 return true;
             else
                 return false;
         }
     });
+    iks.ipc.projectPeriods = {};
     iks.ipc.constraints.bind('change:projectId', function(constraints, projectId){
         console.info("projectId changed: " + projectId);
-        iks.ipc.constraints.loadPeriods(projectId);
+        iks.ipc.selectedProject = null;
+        iks.ipc.dataStorage.getData([projectId], function(data){
+            iks.ipc.selectedProject = data[projectId];
+            
+            // Create M01, M02, .. periods for the full length of the project.
+            var projectStartDate = new Date(iks.ipc.selectedProject.startDate);
+            var projectEndDate = new Date(iks.ipc.selectedProject.endDate);
+            var monthPeriods = iks.ipc.monthPeriods = {};
+            var rangeBegin = new Date(projectStartDate.getFullYear(), projectStartDate.getMonth(), 1);
+            var rangeEnd = new Date(projectStartDate.getFullYear(), projectStartDate.getMonth()+1, 0);
+            var monthPerInd = 0;
+            while(rangeBegin < projectEndDate.add('mo', 3)){
+                var label = 'M' + (++monthPerInd<10?'0':'') + monthPerInd;
+                monthPeriods[label] = {
+                    startdate: rangeBegin,
+                    enddate: rangeEnd,
+                    label: label
+                };
+                rangeBegin = rangeBegin.add("mo",1);
+                rangeEnd = new Date(rangeBegin.getFullYear(), rangeBegin.getMonth()+1, 0);
+            }
+            
+        });
+        
+        iks.ipc.projectPeriods = null;
+        iks.ipc.dataStorage.getData(["periods"], function(data){
+            iks.ipc.projectPeriods = data.periods;
+        });
+        
     });
 })();

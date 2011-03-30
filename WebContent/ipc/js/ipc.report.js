@@ -179,10 +179,6 @@
             // Get project data from the back end and fill them into 
             // the report template
             iks.ipc.dataStorage.getData([
-                // the projects basic data, partner ids
-                iks.ipc.constraints.get('projectId'),
-                // periods and their start and end dates
-                'periods', 
                 // have the textual description of the work packages
                 'planWorkpackages',
                 // planned and spent effort per partner, quarter and workpackage
@@ -190,11 +186,8 @@
                 'spenteffortByprojectWBS'
                 ],
                 function(data){
-                    // the constraint evaluation will need the periods data
-                    iks.ipc.periods = data.periods;
-                    
                     // The order in which the partners are shown
-                    var partners = data['urn:iks:iks']['beneficiary-list'];
+                    var partners = iks.ipc.selectedProject['beneficiary-list'];
                     
                     // Build the data needed for filling out the template
                     var templateDataObj = {};
@@ -220,7 +213,7 @@
                         var partnerUri = this.key[0];
                         var recordPeriod = this.key[1];
                         if( templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri] &&
-                                iks.ipc.isQuarterInPeriod(recordPeriod), period){
+                                iks.ipc.isQuarterInPeriod(recordPeriod, period)  ){
                             // console.info(this);
                             templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].plan += this.value;
                         } else
@@ -232,7 +225,7 @@
                         var partnerUri = this.key[0];
                         var recordPeriod = this.key[1];
                         if(templateDataObj[wpWbs][partnerUri] &&
-                                iks.ipc.isQuarterInPeriod(recordPeriod), period)
+                                iks.ipc.isQuarterInPeriod(recordPeriod, period)
                             templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].spent += this.value;
                         else
                             console.error(this);
