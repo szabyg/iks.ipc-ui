@@ -18,8 +18,8 @@ if (typeof iks.ipc.dataStorage == 'undefined' || !iks.ipc.dataStorage) {
 
 $.extend(iks.ipc.dataStorage, {
     options: {
-        couchdbUrl: "http://localhost:5984/ipctest/",
-        couchdbPersUrl: "http://localhost:5984/ipcstore/",
+        couchdbUrl: "/ipctest/",
+        couchdbPersUrl: "/ipcstore/",
         proxyUrl: "proxy/proxy.php"
     },
     /**
