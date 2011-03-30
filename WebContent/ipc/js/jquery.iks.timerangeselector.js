@@ -16,10 +16,13 @@ $.widget("iks.timerangeselector", {
 		// this.element.find("select, input").wrap("<div/>");
 		this.element.find(".rangeSelector").bind("change", function(e){
 			var timeRanges = $(this).data("timeRanges");
-			_this.element.trigger("rangeSelected", timeRanges[$(this).val()]);
-		});
-		this.rangeSelectorEl.bind("change", function(e){
-			_this.currentRange = _this.timeRanges[$(e.target).val()];
+			_this.currentRange = _(timeRanges).detect(function(range){
+			    return range.value == this.value;
+			}, this);
+			_this.element.trigger("rangeSelected", _this.currentRange);
+/*		});
+		this.rangeSelectorEl.bind("change", function(e){*/
+//			_this.currentRange = _this.timeRanges[$(e.target).val()];
 			
 			// Set min and max dates for start and end date pickers
 			_this.startDateSelector.datepicker('option', 'minDate', '');
@@ -97,37 +100,37 @@ $.widget("iks.timerangeselector", {
 		var yearFrom = 2008, yearTo = 2011;
 		var res = [];
 		// Empty entry
-		res["null"] = {
+		res.push({
 				value: "null", 
 				label: "",
 				startDate: null,
 				endDate: null
-			};
+			});
 		// uptonow entry
-		res["current"] = {
+		res.push({
 				value: "current", 
 				label: "current",
 				startDate: null,
 				endDate: new Date()
-			};
+			});
 		for(var year = this.options.startYear; year<=this.options.endYear; year++){
 			// Whole year entry
 			var value = year + "";
-			res[value] = {
+			res.push({
 				value: value, 
 				label: year + "",
 				startDate: new Date(year, 0,1),
 				endDate: new Date(year, 12, 0)
-			};
+			});
 			for(var quartal = 1; quartal <=4; quartal++){
 				// Quartal entry
 				var value = year + "Q" + quartal;
-				res[value] = {
+				res.push({
 					value: value, 
 					label: "&nbsp;&nbsp;" + year + " Q" + quartal,
 					startDate: new Date(year, (quartal-1)*3,1),
 					endDate: new Date(year, quartal*3, 0)
-				};
+				});
 			}
 		}
 		this.timeRanges = res;
