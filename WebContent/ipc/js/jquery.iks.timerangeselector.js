@@ -138,7 +138,7 @@ $.widget("iks.timerangeselector", {
 	},
 	setTimeRanges: function(timeRanges){
 		res = "";
-		for(r in timeRanges){
+		for(r in timeRanges)if(timeRanges.hasOwnProperty(r)){
 			var range = timeRanges[r];
 			res += "<option value='" + range.value + "'>" + range.label + "</option>";  
 		};
