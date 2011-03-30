@@ -31,15 +31,7 @@ $.widget("iks.timerangeselector", {
 			_this.startDateSelector.datepicker("setDate", _this.currentRange.startDate);
 			_this.endDateSelector.datepicker("setDate", _this.currentRange.endDate);
 		});
-		$(".startDate, .endDate").bind("change", function(e){
-			_this.currentRange = {
-				value: "custom", 
-				label: "",
-				startDate: _this.startDateSelector.datepicker("getDate"),
-				endDate: _this.endDateSelector.datepicker("getDate")
-			};
-			_this.element.trigger("rangeSelected", _this.currentRange);
-			_this.rangeSelectorEl.val("null");
+		$(".startDate, .endDate").bind("select", function(e){
 		});
 		this._generateTimeRanges();
 	},
@@ -70,10 +62,10 @@ $.widget("iks.timerangeselector", {
 		this.rangeSelectorEl = this.element.find(".rangeSelector");
 	},
 	_drawBeginEndSelectors: function(){
-		this.element.append("<span style=''><b>" + this.options.startDateLabel + "</b><input type='date' id='startDate' /></span> ");
-		this.element.append("<span style=''><b>" + this.options.endDateLabel + "</b><input type='date' id='endDate' /></span> ");
+		this.element.append("<span style=''><b>" + this.options.startDateLabel + "</b><input type='date' class='startDate' id='startDate' /></span> ");
+		this.element.append("<span style=''><b>" + this.options.endDateLabel + "</b><input type='date' class='endDate' id='endDate' /></span> ");
 		var that = this;
-		this.dates = this.element.find("#startDate, #endDate").datepicker({
+		this.dates = this.element.find(".startDate, .endDate").datepicker({
 				dateFormat: this.options.dateFormat,
 				autoSize: true,
 				onSelect: function( selectedDate ) {
@@ -84,10 +76,20 @@ $.widget("iks.timerangeselector", {
 							$.datepicker._defaults.dateFormat,
 							selectedDate, instance.settings );
 					that.dates.not( this ).datepicker( "option", option, date );
+
+					that.currentRange = {
+				        value: "custom", 
+				        label: "",
+				        startDate: that.startDateSelector.datepicker("getDate"),
+				        endDate: that.endDateSelector.datepicker("getDate")
+			        };
+			        that.element.trigger("rangeSelected", that.currentRange);
+			        //that.element.trigger("rangeSelected", timeRanges[$(this).val()]);
+			        that.rangeSelectorEl.val("null");
 				}
 		});
-		this.startDateSelector = this.dates.filter('#startDate');
-		this.endDateSelector = this.dates.filter('#endDate');
+		this.startDateSelector = this.dates.filter('.startDate');
+		this.endDateSelector = this.dates.filter('.endDate');
 
 		$.noop();
 	},
