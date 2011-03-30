@@ -6,9 +6,9 @@
 iks.ipc.rules = {
 	companyRules: {
 		statusByDeviationPercent: function(deviationPercent){
-			if(Math.abs(deviationPercent) < 10) return "GREEN";
-			else if(Math.abs(deviationPercent) < 25) return "YELLOW";
-			else return "RED";
+			if(Math.abs(deviationPercent) < 10) return '<span style="color: green;" title="Deviation under 10%">GREEN</span>';
+			else if(Math.abs(deviationPercent) < 25) return '<span style="color: orange;" title="Deviation over 10%">YELLOW</span>';
+			else return '<span style="color: red;" title="Deviation over 25%">RED</span>';
 			
 		},
 		deviationAlert: function(task){
