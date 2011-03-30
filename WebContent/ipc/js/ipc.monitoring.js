@@ -53,7 +53,7 @@
                                     "=(C%R0%-B%R0%)<0?Math.round(C%R0%-B%R0%):(\"+\" + Math.round(C%R0%-B%R0%))",
                                     "=(C%R0%-B%R0%)<0? Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\" :\"+\" + Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\"",
                                     "=iks.ipc.monitoring.deviationRule(Math.round((C%R0%-B%R0%)/B%R0% *100))",
-                                    "=CHART.HBAR(B%R0%:C%R0%)"
+                                    "=CHART.HBAR(B%R0%:C%R0%,{colors:[\"green\",\"blue\"]})"
                                 ]
                             });
                         }
@@ -66,7 +66,7 @@
                                  "=(C%R0%-B%R0%)<0?(C%R0%-B%R0%):(\"+\" + (C%R0%-B%R0%))",
                                  "=(C%R0%-B%R0%)<0? Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\" :\"+\" + Math.round((C%R0%-B%R0%)/B%R0% *100)+\" %\"",
                                  "=iks.ipc.monitoring.deviationRule(Math.round((C%R0%-B%R0%)/B%R0% *100))",
-                                 "=CHART.HBAR(B%R0%:C%R0%)"
+                                 "=CHART.HBAR(B%R0%:C%R0%,{colors:[\"green\",\"blue\"]})"
                                  ],
                                  conf: { 
                                      cl: "styleBold"
