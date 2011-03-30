@@ -22,7 +22,7 @@ $.stanbolConnector = {
             acceptHeader: "application/json", 
             success: function (data, textStatus, jqXHR){
                 var res = _.map(data, function(siteUri){
-                    return siteUri.replace(this.options.stanbolUrl + "entityhub/site/","").replace("/","")
+                    return _(_.compact(siteUri.split("/"))).last();
                 }, that);
                 cb(res);
             }

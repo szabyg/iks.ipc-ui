@@ -25,7 +25,7 @@
 <script type="text/javascript">
 	(function($) {
 		$(document).ready(function(){
-		    var stanbolUrl = "http://isr03:8080/";
+		    var stanbolUrl = "/stanbol/";
 		    $.stanbolConnector.setConfig({stanbolUrl: stanbolUrl});
 		    $.stanbolConnector.isAlive(function(alive){
 		        if(!alive)
@@ -68,7 +68,7 @@
                         {
                             limit: $('#limit').val(),
                             error: function(jqXHR, textStatus, errorThrown){
-                                write("error loading <strong>" + item.id + "</strong>: " + jqXHR.status +jqXHR.statusText+"<br/>"+
+                                write("error loading: " + jqXHR.status +jqXHR.statusText+"<br/>"+
                                     "response: " + jqXHR.response);
                                 console.info(jqXHR);
                             },
