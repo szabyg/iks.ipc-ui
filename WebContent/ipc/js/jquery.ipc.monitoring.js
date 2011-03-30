@@ -35,11 +35,12 @@ $.widget('ipc.monitoring', {
 			
 			// create the sheet
 			that._sheet = that.sheetEl.sheet({
-				autoFiller: true,
+				// autoFiller: true,
 				// inlineMenu: iks.ipc.tools.sheet.inlineMenu($.sheet.instance),
 				urlMenu: libroot + "jquery.sheet/menu.html",
 				buildSheet: false,
 				urlGet: false,
+				editable: false,
 				minSize: {rows: 3, cols: 3}
 			}).sheetInstance;
 			// Listen zoom event
