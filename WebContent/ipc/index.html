@@ -112,9 +112,9 @@
     <script type="text/javascript">
         // setting internal/external webservice addresses
         if(proxytest){
-            iks.ipc.stanbolUrl = "http://localhost/stanbol/";
-            iks.ipc.couchdbUrl = "http://localhost/couchdb/ipctest/";
-            iks.ipc.couchdbPersUrl = "http://localhost/couchdb/ipcstore/";
+            iks.ipc.stanbolUrl = "/stanbol/";
+            iks.ipc.couchdbUrl = "/couchdb/ipctest/";
+            iks.ipc.couchdbPersUrl = "/couchdb/ipcstore/";
         } else {
             iks.ipc.stanbolUrl = localDBs ? "http://localhost:8080/" : "http://isr03:8080/";
             iks.ipc.couchdbUrl = localDBs ? "http://localhost:5984/ipctest/" : "http://isr03:5984/ipctest/";
