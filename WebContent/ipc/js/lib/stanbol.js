@@ -13,7 +13,7 @@ GENTICS.Aloha.Repositories.stanbolRepository = new GENTICS.Aloha.Repository('iks
  * @property
  * @cfg
  */
-GENTICS.Aloha.Repositories.stanbolRepository.settings.stanbolUrl = 'http://localhost:8080/';
+GENTICS.Aloha.Repositories.stanbolRepository.settings.stanbolUrl = '/stanbol/';
 
 /**
  * Init method of the repository. Called from Aloha Core to initialize this repository

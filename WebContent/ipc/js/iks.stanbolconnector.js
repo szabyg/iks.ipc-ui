@@ -6,7 +6,7 @@
 (function($){
 $.stanbolConnector = {
     options: {
-        stanbolUrl: "http://localhost:8080/",
+        stanbolUrl: "/stanbol/",
         proxyUrl: "proxy/proxy.php",
         error: function(errMsg){alert(errMsg);}
     },
