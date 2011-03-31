@@ -16,10 +16,21 @@
         //
         reportInit: function(){
             iks.ipc.constraints.bind('change', reportView.constraintChangeHandler);
+            $('#report-buttons').append($('<button id="printButton">Print</button>'));
             $('#report-buttons').append($('<button id="saveButton">Save</button>'));
             $('#saveButton').button()
                 .click(reportView.saveHandler);
+            $('#printButton').button()
+                .click(function(){
+                    reportView.printmode = !reportView.printmode;
+                    if(reportView.printmode){
+                        $('#reportAccordion').accordion('destroy').html();
+                    } else {
+                        $('#reportAccordion').accordion(accordionStyle);
+                    }
+                });
         },
+        printmode: false,
          // Whenever constraints change check them.
          // If the constraints are valid for a report 
          // check if a stored report is there and load it. If not, 
