@@ -20,7 +20,7 @@
 			var switchValue = $('#mode-selector input:checked').val();
 			switch(switchValue){
 			case "home":
-				$("#pathApp").html("Home");
+				$("#pathApp").html("");
 				activatePart("home");
 				break;
 			case "plan":

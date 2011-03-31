@@ -130,13 +130,16 @@
                             var res = "", firstLine = "", rest = "";
                             var toggleClass = "historyToggle" + Math.round(Math.random() * 100000000);
                             $(history).each(function(i, hist){
+                                var status = hist[0];
+                                var org = iks.ipc.tools.getLastUrnPart(hist[2]).toUpperCase();
+                                var date = hist[1];
                                 if(i==0){
                                     firstLine += "<p><u><a onclick='$(\"." + toggleClass + "\").toggle()'>";
-                                    firstLine += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+                                    firstLine += "<b>" + status + "</b> by " + org + " (" + date + ")" 
                                     firstLine += "</a></u></p>"
                                 } else {
                                     rest += "<p >";
-                                    rest += "<b>" + hist[0] + "</b> " + hist[2] + " (" + hist[1] + ")" 
+                                    rest += "<b>" + status + "</b> by " + org + " (" + date + ")" 
                                     rest += "</p>"                                        
                                 }
                             });
