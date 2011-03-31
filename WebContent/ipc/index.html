@@ -145,9 +145,10 @@
             </div>
              <div id="mode-selector">
                  <b>2. Select activity</b><br/>
+                 <input type='radio' name='lifecyclemode' class='lifecyclemode' value='home' checked="true" id='lifecyclemode-home'> <label for='lifecyclemode-home'>Home</label><br/>
                  <input type='radio' name='lifecyclemode' class='lifecyclemode' value='plan' id='lifecyclemode-plan'> <label for='lifecyclemode-plan'>Browse Plan</label><br/>
                  <input type='radio' name='lifecyclemode' class='lifecyclemode' value='monitor' id='lifecyclemode-monitor'> <label for='lifecyclemode-monitor'>Monitor Project</label><br/>
-                 <input type='radio' name='lifecyclemode' class='lifecyclemode' value='report' checked="true" id='lifecyclemode-report'> <label for='lifecyclemode-report'>Write Report</label><br/>
+                 <input type='radio' name='lifecyclemode' class='lifecyclemode' value='report' id='lifecyclemode-report'> <label for='lifecyclemode-report'>Write Report</label><br/>
                  <input type='radio' name='lifecyclemode' class='lifecyclemode' value='audit' id='lifecyclemode-audit'> <label for='lifecyclemode-audit'>Audit Project</label><br/>
              </div>
             <span id="timerange-selector">
@@ -155,7 +156,36 @@
             </span>
         </div>
         <div id="tabs">
+            <div id="home">
+                <h1>Intelligent Project Controlling Tool</h1>
+                <p>The Intelligent Project Controlling Tool is a demonstrator of the European Research Project IKS (2009-2012). 
+                It demonstrates user interaction with project controlling specific objects and its support through a layered 
+                stack provided by the IKS project.</p>
 
+                <p>Selection of project, period and phase:
+                <ol>
+                    <li>1. Select one specific project from a free text search interface.</li>
+                    <li>2. Select the according activity such as “Browse plan”, “Monitor Project”, “Write Report” or "Audit Project".</li>
+                    <li>3. Specify a controlling period.</li>
+                </ol>
+
+                <h2>Supported controlling activities</h2>
+                <p>Browse Plan: Browsing the latest plan is part of the controlling cycle. We show for a selected project a chart 
+                visualisation of planned efforts for all periods. The two dimensions are time (quarters of a project) and efforts 
+                (in PM) for each work package or task of a project.</p>
+
+                <p>Monitor Project: Monitoring projects data involves planned vs. actual data. Such datasets include efforts, costs 
+                and deadlines and delivery dates for project results. The comparison of these datasets is usually accompanied by 
+                rules which trigger further activities, such as marking items as critical.</p>
+
+                <p>Writing a Report: We show, how a "project progress report” can be generated from a template-structure based on 
+                the actual data retrieved from the projects execution database.</p>
+
+                <p>Audit a Project: Every cost item related for the project controlling needs to have a corresponding documentation 
+                in the project execution repository, such as travel expense reports. The items are annotated according to multiple 
+                dimensions, time and location for geo-temporal coverage, partners and persons as social relationship, actual cost 
+                as hierarchy and the work breakdown structure and cost types as categories.</p>
+            </div>
             <div id="tabs-browse">
                 <div id="control-rgraph"></div>
             </div>

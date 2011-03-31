@@ -1,42 +1,46 @@
 (function($){
+    var parts = [
+        "home",
+        "tabs-browse",
+        "tabs-monitor",
+        "tabs-audit",
+        "tabs-report"
+    ];
+    iks.ipc.activePart = "home";
+    function activatePart(partToActivate){
+        _(parts).each(function(part){
+            $('#' + part).hide();
+        });
+        $('#' + partToActivate).show();
+        iks.ipc.activePart = partToActivate;
+    }
     function modeSelector_init(){
 	    // mode selector
 		$("#mode-selector input").change(function(){
 			var switchValue = $('#mode-selector input:checked').val();
 			switch(switchValue){
+			case "home":
+				$("#pathApp").html("Home");
+				activatePart("home");
+				break;
 			case "plan":
 				$("#pathApp").html("Browse Plan");
-				$("#tabs-browse").show();
-				$("#tabs-monitor").hide();
-				$("#tabs-audit").hide();
-				$("#tabs-report").hide();
-				// $("#reportAccordion").accordion("destroy");
+				activatePart("tabs-browse");
 				break;
 			case "monitor":
 				$("#pathApp").html("Monitor Project");
-				$("#tabs-browse").hide();
-				$("#tabs-report").hide();		
-				$("#tabs-audit").hide();
-				$("#tabs-monitor").show();
+				activatePart("tabs-monitor");
 				iks.ipc.monitoringInit();
 				break;			
 			case "report":
 				$("#pathApp").html("Write Report");
-				$("#tabs-browse").hide();
-				$("#tabs-monitor").hide();
-				$("#tabs-audit").hide();
-				$("#tabs-report").show();
+				activatePart("tabs-report");
 				$("#reportAccordion").accordion('resize');
-				// $("#reportAccordion").accordion();
 				break;
 			case "audit":
 				$("#pathApp").html("Write Report");
-				$("#tabs-browse").hide();
-				$("#tabs-monitor").hide();
-				$("#tabs-report").hide();
-				$("#tabs-audit").show();
+				activatePart("tabs-audit");
 				$("#reportAccordion").accordion('resize');
-				// $("#reportAccordion").accordion();
 				break;
 			default:
 				alert("sorry, not implemented yet");
