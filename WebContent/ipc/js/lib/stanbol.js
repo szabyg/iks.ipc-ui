@@ -85,7 +85,7 @@ GENTICS.Aloha.Repositories.stanbolRepository.query = function( p, callback ) {
 				        repositoryId: that.repositoryId,
 				        type: 'website', 
 				        url: item.id,
-				        weight: that.settings.weight + (15-1)/100
+				        weight: item['http://www.iks-project.eu/ontology/rick/query/score']
 			        }));
 		        }
             }
