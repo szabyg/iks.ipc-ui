@@ -72,7 +72,7 @@ GENTICS.Aloha.Repositories.stanbolRepository.query = function( p, callback ) {
     if ( p.objectTypeFilter.length && jQuery.inArray('website', p.objectTypeFilter) == -1) {
         callback.call( that, []);
     } else {
-        var site = "dbPedia";
+        var site = "";
         s = p.query + "*";
         $.stanbolConnector.entityhubQuery(site, s, function(data){
 	        for (var i = 0; i < data.length; i++) {

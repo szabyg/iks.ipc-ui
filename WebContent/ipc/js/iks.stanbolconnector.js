@@ -29,7 +29,7 @@ $.stanbolConnector = {
         });
     },
     entityhubQuery: function(site, s, cb, options){
-        var uri = this.options.stanbolUrl + "entityhub/site/" + site + "/query";
+        var uri = this.options.stanbolUrl + (site==""?"entityhub/sites":"entityhub/site/") + site + "/query";
         if(!options)options={};
         var fieldQuery = {
             'selected': [ 
@@ -38,7 +38,7 @@ $.stanbolConnector = {
                 'http://xmlns.com/foaf/0.1/homepage'
             ], 
             'offset': '0', 
-            'limit': options.limit || '1000', 
+            'limit': options.limit || '7', 
             'constraints': [{ 
                'type': 'text', 
                'patternType': 'wildcard', 
@@ -97,7 +97,7 @@ $.stanbolConnector = {
     getEntityLabel: function(item, lan){
       var labels = item["http://www.w3.org/2000/01/rdf-schema#label"];
       var defaultLabel = "";
-      for(lab in labels){
+      for(lab in labels)if(labels.hasOwnProperty(lab)){
         var label = labels[lab];
         var language = label.substring(label.length-2,label.length);
         cleanLabel = label.indexOf("@") != -1 ? label.substring(0,label.length-3):label;
@@ -105,6 +105,7 @@ $.stanbolConnector = {
         if(!lan)return defaultLabel;
         if(language == lan)return cleanLabel;
       }
+      return defaultLabel;
     },
     /**
      * generic call to a stanbol backend through a proxy
