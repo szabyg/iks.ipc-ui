@@ -122,19 +122,28 @@ $.extend(iks.ipc.tools.sheet, {
 		return menu;
 	}
 });
+/* iks.ipc.tools.formatDateTime */
 $.extend(iks.ipc.tools, {
 	formatDateTime: function(dateObj){
+	    return this.formatDate(dateObj) + " " + this.formatTime(dateObj);
+	},formatDate: function(dateObj){
         var dateTimeStrings = {
             year: dateObj.getFullYear(),
             month: dateObj.getMonth()+1,
-            date: dateObj.getDate(),
+            date: dateObj.getDate()
+	    };
+	    return $.tmpl("${year}/${month}/${date}",
+	        dateTimeStrings)[0].nodeValue;
+	},formatTime: function(dateObj){
+        var dateTimeStrings = {
             hours: dateObj.getHours(),
             minutes: dateObj.getMinutes(),
             seconds: dateObj.getSeconds()
 	    };
-	    return $.tmpl("${year} ${month} ${date} ${hours}:${minutes}:${seconds}",
-	        dateTimeStrings);
-	}
+	    return $.tmpl("${hours}:${minutes}:${seconds}",
+	        dateTimeStrings)[0].nodeValue;
+	},
+	
 });
 (function($) {
     var uid = 0;
