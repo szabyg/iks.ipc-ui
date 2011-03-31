@@ -212,23 +212,26 @@
                         var wpWbs = this.key[2]+'.'+this.key[3];
                         var partnerUri = this.key[0];
                         var recordPeriod = this.key[1];
-                        if( templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri] &&
-                                iks.ipc.isQuarterInPeriod(recordPeriod, period)  ){
-                            // console.info(this);
-                            templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].plan += this.value;
-                        } else
-                            console.error(this);
+                        if( templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri]){
+                            if(iks.ipc.constraints.checkRecord({period: recordPeriod})){
+                                templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].plan += this.value;
+                            }
+                        } else {
+                            console.error(['not added plan value', recordPeriod, this]);
+                        }
                     });
                     // Iterate through SPENT values
                     $(data.spenteffortByprojectWBS.rows).each(function(){
                         var wpWbs = this.key[2]+'.'+this.key[3];
                         var partnerUri = this.key[0];
                         var recordPeriod = this.key[1];
-                        if(templateDataObj[wpWbs][partnerUri] &&
-                                iks.ipc.isQuarterInPeriod(recordPeriod, period)
-                            templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].spent += this.value;
-                        else
-                            console.error(this);
+                        if(templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri]) {
+                            if(iks.ipc.constraints.checkRecord({period: recordPeriod})){
+                                templateDataObj[wpWbs].spentVsPlannedByPartner[partnerUri].spent += this.value;
+                            }
+                        } else {
+                            console.error(['not added spent value', recordPeriod, this]);
+                        }
                     });
                     // Convert templateDataObject to templateData array
                     var templateData = [];
