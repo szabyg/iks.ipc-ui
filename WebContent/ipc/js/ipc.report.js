@@ -177,12 +177,15 @@
             $.get(templateroot + 'ipc.report.basicData.tmpl', function(basicData_tmpl) {
                 $('#basic_data').html('');
                 $.tmpl(basicData_tmpl, {basicData: {
-                    projectGrantAgreementNumber: 'iks...',
+                    projectGrantAgreementNumber: iks.ipc.selectedProject['grantAgreementNumber'],
                     projectAcronym: iks.ipc.constraints.get('projectLabel'),
-                    projectLabel: iks.ipc.constraints.get('projectLabel'),
-                    fundingScheme: '{fundingScheme}',
-                    projectContractDate: '12/34/56',
-                    leadOrganisation: 'SRFG'
+                    projectLabel: iks.ipc.selectedProject['rdfs:label'],
+                    fundingScheme: iks.ipc.selectedProject['ec:funding-scheme'],
+                    projectContractDate: iks.ipc.selectedProject['projectContractDate'],
+                    leadOrganisation: iks.ipc.selectedProject['lead-organisation'],
+                    projectWebsiteUrl: iks.ipc.selectedProject['foaf:homepage'],
+                    reportStartDate: iks.ipc.tools.formatDate(iks.ipc.constraints.get('startdate')),
+                    reportEndDate: iks.ipc.tools.formatDate(iks.ipc.constraints.get('enddate'))
                 }}).appendTo('#basic_data');
             });
         },

@@ -94,7 +94,7 @@ $.extend(iks.ipc.dataStorage, {
             }
         },
         "urn:iks:iks": {
-            getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "urn%3Aeu%3Afp7%3Aict%3Aproject%3Aiks?callback=?";},
+            getAddress: function(){return iks.ipc.dataStorage.options.couchdbUrl + "urn:iks:iks?callback=?";},
             loaded: false,
             data: null,
             postProcess: function(data){
