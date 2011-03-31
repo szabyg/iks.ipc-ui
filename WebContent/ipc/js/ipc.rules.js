@@ -2,13 +2,15 @@
  * Intelligent project controlling
  * Project controlling-specific business rules.
  */
+var yellowFrom = 10; // could come from configuration component
+var redFrom = 25;
 
 iks.ipc.rules = {
 	companyRules: {
 		statusByDeviationPercent: function(deviationPercent){
-			if(Math.abs(deviationPercent) < 10) return '<span style="color: green;" title="Deviation under 10%">GREEN</span>';
-			else if(Math.abs(deviationPercent) < 25) return '<span style="color: orange;" title="Deviation over 10%">YELLOW</span>';
-			else return '<span style="color: red;" title="Deviation over 25%">RED</span>';
+			if(Math.abs(deviationPercent) < yellowFrom) return '<span style="color: green;" title="Deviation under ' + yellowFrom + '%">GREEN</span>';
+			else if(Math.abs(deviationPercent) < redFrom) return '<span style="color: orange;" title="Deviation over ' + yellowFrom + '%">YELLOW</span>';
+			else return '<span style="color: red;" title="Deviation over ' + redFrom + '%">RED</span>';
 			
 		},
 		deviationAlert: function(task){
