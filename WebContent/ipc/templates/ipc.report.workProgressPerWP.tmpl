@@ -17,8 +17,8 @@ Because of the redesign, the final version of D1.1 is planned to be available at
                     <td>${partnerLabel}</td>
                     <td>${Math.round(plan*10)/10}</td>
                     <td>${Math.round(spent*10)/10}</td>
-                    <td>${Math.round(spent-plan*10)/10}</td>
-                    <td><div id="${jsId}_explanation" class="editable freeText">Explanation...</div></td></tr>
+                    <td>${Math.round((spent-plan)*10)/10}</td>
+                    <td><div id="${jsId}_explanation" class="editable freeText">{{if ((Math.abs(spent-plan)/plan) > 0.25)}}Explanation...{{/if}}</div></td></tr>
 				</tr>
 			{{/each}}
 
