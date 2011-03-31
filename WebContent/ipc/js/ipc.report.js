@@ -233,15 +233,20 @@
                             console.error(['not added spent value', recordPeriod, this]);
                         }
                     });
-                    // Convert templateDataObject to templateData array
+                    
+                    // Convert templateDataObject to templateData array and filter
                     var templateData = [];
                     _.each(templateDataObj, function(wpObj){
                         var spentVsPlannedByPartner = wpObj.spentVsPlannedByPartner;
                         wpObj.spentVsPlannedByPartner = [];
                         _.each(spentVsPlannedByPartner, function(spPartner){
-                            wpObj.spentVsPlannedByPartner.push(spPartner);
+                            if(spPartner.plan + spPartner.spent > 0){
+                                wpObj.spentVsPlannedByPartner.push(spPartner);
+                            }
                         });
-                        templateData.push(wpObj);
+                        if(wpObj.spentVsPlannedByPartner.length){
+                            templateData.push(wpObj);
+                        }
                     });
                     callback(templateData);
                 }
