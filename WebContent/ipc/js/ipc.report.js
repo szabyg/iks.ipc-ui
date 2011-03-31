@@ -182,7 +182,8 @@
                     projectLabel: iks.ipc.selectedProject['rdfs:label'],
                     fundingScheme: iks.ipc.selectedProject['ec:funding-scheme'],
                     projectContractDate: iks.ipc.selectedProject['projectContractDate'],
-                    leadOrganisation: iks.ipc.selectedProject['lead-organisation'],
+                    leadOrganisation: iks.ipc.tools.getLastUrnPart(
+                            iks.ipc.selectedProject['lead-organisation']).toUpperCase(),
                     projectWebsiteUrl: iks.ipc.selectedProject['foaf:homepage'],
                     reportStartDate: iks.ipc.tools.formatDate(iks.ipc.constraints.get('startdate')),
                     reportEndDate: iks.ipc.tools.formatDate(iks.ipc.constraints.get('enddate'))

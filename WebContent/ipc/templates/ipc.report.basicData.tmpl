@@ -1,29 +1,13 @@
-<p>Grant Agreement number: ${basicData.projectGrantAgreementNumber}</P>
-<p>Project acronym: <abbr>${basicData.projectAcronym}</abbr></P>
-<p>Project title: ${basicData.projectLabel}</P>
-<p>Funding Scheme: ${basicData.fundingScheme}</P>
-<p>Date of latest version of Annex I against which the assessment will be made: ${basicData.projectContractDate}</P>
+<p>Grant Agreement number: <b>${basicData.projectGrantAgreementNumber}</b></P>
+<p>Project acronym: <abbr><b>${basicData.projectAcronym}</b></abbr></P>
+<p>Project title: <b>${basicData.projectLabel}</b></P>
+<p>Project website address: <a href="${basicData.projectWebsiteUrl}" target="_blank">${basicData.projectWebsiteUrl}</a></p>
+<p>Funding Scheme: <b>${basicData.fundingScheme}</b></P>
+<p>Date of latest version of Annex I against which the assessment will be made: <b>${basicData.projectContractDate}</b></P>
 
 <div id="period">
-<!--
-    <form id="reportingperiod" action="">
-      <p>Periodic report: 
-        <input type="radio" name="reportingperiod" value="1"> 1st period
-        <input type="radio" name="reportingperiod" value="2"> 2nd period
-        <input type="radio" name="reportingperiod" value="3"> 3rd period
-        <input type="radio" name="reportingperiod" value="4"> 4th period</p>
-    </form>
--->
-    <p>Period covered: from ${basicData.reportStartDate} to ${basicData.reportEndDate} </p>
+    <p>Period covered: from <b>${basicData.reportStartDate}</b> to <b>${basicData.reportEndDate}</b> </p>
 </div>
 <div id="address_of_scientific_representative_of_project">
-    <p>Name, title and organisation of the scientific representative of the project's coordinator</B>:</p>
-    <p>Name:</p>
-    <p>Organisation: ${basicData.leadOrganisation}</p>
-    <p>Tel:</p>
-    <p>Fax:</p>
-    <p>E-mail:</p>
+    <p>Project coordinator: <b>${basicData.leadOrganisation}</b></p>
 </div>
-
-<p>Project website address: ${basicData.projectWebsiteUrl}</P>
-

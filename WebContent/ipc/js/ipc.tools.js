@@ -126,7 +126,8 @@ $.extend(iks.ipc.tools.sheet, {
 $.extend(iks.ipc.tools, {
 	formatDateTime: function(dateObj){
 	    return this.formatDate(dateObj) + " " + this.formatTime(dateObj);
-	},formatDate: function(dateObj){
+	},
+	formatDate: function(dateObj){
         var dateTimeStrings = {
             year: dateObj.getFullYear(),
             month: dateObj.getMonth()+1,
@@ -134,7 +135,8 @@ $.extend(iks.ipc.tools, {
 	    };
 	    return $.tmpl("${year}/${month}/${date}",
 	        dateTimeStrings)[0].nodeValue;
-	},formatTime: function(dateObj){
+	},
+	formatTime: function(dateObj){
         var dateTimeStrings = {
             hours: dateObj.getHours(),
             minutes: dateObj.getMinutes(),
@@ -143,7 +145,10 @@ $.extend(iks.ipc.tools, {
 	    return $.tmpl("${hours}:${minutes}:${seconds}",
 	        dateTimeStrings)[0].nodeValue;
 	},
-	
+	getLastUrnPart: function(urn){
+	    var parts = urn.split(':');
+    	return parts[parts.length-1];
+	}
 });
 (function($) {
     var uid = 0;
