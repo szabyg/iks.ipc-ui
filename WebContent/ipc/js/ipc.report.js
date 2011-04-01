@@ -25,8 +25,10 @@
                     reportView.printmode = !reportView.printmode;
                     if(reportView.printmode){
                         $('#reportAccordion').accordion('destroy').html();
+                        reportView.deactivateEditables();
                     } else {
                         $('#reportAccordion').accordion(accordionStyle);
+                        // reportView.makeEditable(); buggy
                     }
                 });
         },
@@ -136,11 +138,11 @@
         },
         makeEditable: function(){
             if(withAloha)
-                $('#project_objectives_and_work_progress .workProgressPerWPList .editable.freeText').aloha();
+                $('#reportAccordion .editable.freeText').aloha();
         },
         // If necessary, deactivate editable parts
         deactivateEditables: function() {
-        
+            // $('#reportAccordion .editable.freeText').aloha('destroy'); // buggy!
         },
         //
         // Generate a quarterly or annual report based on the 

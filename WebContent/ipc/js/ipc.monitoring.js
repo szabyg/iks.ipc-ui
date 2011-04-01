@@ -1,4 +1,20 @@
 (function(){
+    // iks.ipc.monitoring.deliverableStatus
+    iks.ipc.monitoring = {
+        deliverableStatus: {
+            '': 0,
+            'work in progress': 1,
+            'draft': 2,
+            'quality-checked': 3,
+            'submitted': 4,
+            'rejected': 5,
+            'approved in part': 6,
+            'approved subject to the conditions listed under remarks': 7,
+            'resubmitted': 8,
+            'approved in full': 9
+        }
+    };
+
     iks.ipc.monitoringInit = function(){
         $("#monitor-accordion").accordion({clearStyle: true, autoHeight: false})
             .accordion('resize');
@@ -151,7 +167,13 @@
                                 rest + 
                                 "</div>";
                             return res;
+                        },
+                        getStatus: function(deadline, history){
+                            if(!history.length)return "";
+                            console.info(['history: ', history]);
+                            return iks.ipc.rules.projectManagementRules.deliverableAlert(deadline, history[0][0], new Date());
                         }
+                        
                     })
                     .appendTo('#monitoring-03 table.monitoringDelivStatusTable');
                 })

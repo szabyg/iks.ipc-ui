@@ -8,17 +8,17 @@
         <li>The attached periodic report represents an accurate description of the work carried out in this project for this reporting period;</FONT></P>
         <li><p> The project (tick as appropriate): </p>
             <div id="goals">
-                <form id="achieved goals" action="">
-                    <p> <input type="radio" name="achieved full" value="1"> has fully achieved its objectives and technical goals for the period;</p>
-                    <p> <input type="radio" name="achieved most" value="2"> has achieved most of its objectives and technical goals for the period with relatively minor deviations.</p>
-                    <p> <input type="radio" name="failed" value="3"> has failed to achieve critical objectives and/or is not at all on schedule.</p>
+                <form id="achieved-goals" action="">
+                    <p> <input type="radio" name="achieved-goals" value="full"> has fully achieved its objectives and technical goals for the period;</p>
+                    <p> <input type="radio" name="achieved-goals" value="most"> has achieved most of its objectives and technical goals for the period with relatively minor deviations.</p>
+                    <p> <input type="radio" name="achieved-goals" value="failed"> has failed to achieve critical objectives and/or is not at all on schedule.</p>
                 </form>
             </div>        
         </li>
         <li><p>The public website, if applicable</p>
-            <form id="website status" action="">
-                <p> <input type="radio" name="achieved full" value="1"> is up to date</p>
-                <p> <input type="radio" name="achieved most" value="2"> is not up to date</p>
+            <form id="website-status" action="">
+                <p> <input type="radio" name="website-status" value="uptodate"> is up to date</p>
+                <p> <input type="radio" name="website-status" value="notuptodate"> is not up to date</p>
             </form>
         </li>
         <li>To my best knowledge, the financial statements which are being submitted as part of this report are in line with the actual work carried out and are consistent with the report on the resources used for the project (section 3.4) and if applicable with the certificate on financial statement.</li>
@@ -27,15 +27,15 @@
     
     <div id="signature">
         <p>Signature</p> 
-        <p>Name of scientific representative of the Coordinator: {signature}</p>
-        <p>Date: <time datetime="{datetime}"></time></p>
+        <p>Name of scientific representative of the Coordinator: /signature/</p>
+        <p>Date: <time>${iks.ipc.tools.formatDate(new Date())}</time></p>
         For most of the projects, the signature of this declaration could be done directly via the IT reporting tool through an adapted IT mechanism.</FONT></FONT></P>
     </div>
 </div>
 
 <h2><a>3. Publishable summary</a></h2>
-<div id="publishable summary">
-    {link to publishable summary}
+<div>
+    <div id="publishable-summary" class="editable freeText">http://</div>
 </div>
 
 <h2><a>4. Project objectives, work progress and achievements during the period</a></h2>

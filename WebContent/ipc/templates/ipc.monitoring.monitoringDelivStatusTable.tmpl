@@ -2,6 +2,7 @@
 	<td>${wbs}</td>
 	<td>${deadline}</td>
 	<td><a href="${source}" target="_blank">${label}</a></td>
+	<td>{{html $item.getStatus(deadline, history)}}
 	<td>{{html $item.getHistory(history)}}</td>
 </tr>
 

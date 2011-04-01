@@ -113,5 +113,5 @@ $.widget('ipc.monitoring', {
 });
 
 iks.ipc.monitoring.deviationRule = function(deviationPercent){
-	return iks.ipc.rules.companyRules.statusByDeviationPercent(deviationPercent);
+	return iks.ipc.rules.projectManagementRules.statusByDeviationPercent(deviationPercent);
 };
