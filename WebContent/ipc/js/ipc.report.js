@@ -166,6 +166,7 @@
                 
                 // Show basic report data header paragraph
                 reportView._basicData();
+                reportView._delivList();
                 reportView._workProgressPerWP(function(templateData){
                     $.get(templateroot + 'ipc.report.workProgressPerWP.tmpl', function(workProgressPerWP_tmpl){
                         $.tmpl(workProgressPerWP_tmpl, templateData)
@@ -269,13 +270,93 @@
                 }
             );
         },
-        _fillInForms: function(formData) {
-            _(formData).each(function(oneForm){
-                _(oneForm).each(function(formElement){
-                    $('input[name=' + formElement.name + '][value=' + formElement.value + ']').click();
+        _delivList: function(){
+            // Fill out the deliverable status table
+            iks.ipc.dataStorage.getData(["planDeliverables", "delivDocs"], function(data){
+                var delivDocsObj = {};
+                $(data.delivDocs).each(function(){delivDocsObj[this.key] = this.value;});
+                var templateData = [];
+                $(data.planDeliverables).each(function(){
+                    if(iks.ipc.constraints.checkRecord(this.value)){
+                        var delivObj = {
+                            wbs: this.value._id,
+                            deadline: this.value.deadline,
+                        };
+                        if(delivDocsObj[delivObj.wbs]){
+                            var delivDoc = delivDocsObj[delivObj.wbs];
+                            delivObj.label = delivDoc["rdfs:label"];
+                            delivObj.history = delivDoc.deliveryStatusInformation;
+                            delivObj.source = delivDoc["dc:source"];
+                        } else {
+                            delivObj.label = this.value["rdfs:label"];
+                            delivObj.history = [];
+                            delivObj.source = "javascript:void(false);";
+                        }
+                    
+                        templateData.push(delivObj);
+                    }
                 });
-            });        
-        }
+                $("#delivList .content").html("");
+                $.get(templateroot + "ipc.report.delivTableStatic.tmpl", 
+                        function(monitoringDelivStatusTableStatic_tmpl){
+                    $.tmpl(monitoringDelivStatusTableStatic_tmpl, [{}])
+                        .appendTo("#delivList .content");
+                    $.get(templateroot + "ipc.report.delivTable.tmpl", 
+                            function(monitoringDelivStatusTable_tmpl){
+                            
+                        $.tmpl(monitoringDelivStatusTable_tmpl, templateData, {
+                            getHistory: function(history){
+                                var res = "", firstLine = "", rest = "";
+                                var toggleClass = "historyToggle" + Math.round(Math.random() * 100000000);
+                                $(history).each(function(i, hist){
+                                    var status = hist[0];
+                                    var org = iks.ipc.tools.getLastUrnPart(hist[2]).toUpperCase();
+                                    var date = hist[1];
+                                    if(i==0){
+                                        firstLine += "<p><u><a onclick='$(\"." + toggleClass + "\").toggle()'>";
+                                        firstLine += "<b>" + status + "</b> by " + org + " (" + date + ")" 
+                                        firstLine += "</a></u></p>"
+                                    } else {
+                                        rest += "<p >";
+                                        rest += "<b>" + status + "</b> by " + org + " (" + date + ")" 
+                                        rest += "</p>"                                        
+                                    }
+                                });
+                                res = 
+                                    "<div class='firstLine'>" + 
+                                    firstLine + 
+                                    "</div>" +
+                                    "<div class='" + toggleClass + "' style='display:none'>" + 
+                                    rest + 
+                                    "</div>";
+                                return res;
+                            },
+                            getStatus: function(deadline, history){
+                                if(!history.length)return "";
+                                var i = 0;
+                                var lastHistory = history[i];
+                                while(new Date(lastHistory[1]) > iks.ipc.constraints.get('enddate')) {
+                                    if(history.length > i+1){
+                                        i++;
+                                        lastHistory = history[i];
+                                    } else {
+                                        lastHistory = [''];
+                                    }
+                                }
+                                console.info(['history: ', lastHistory[1], history]);
+                                return iks.ipc.rules.projectManagementRules.deliverableAlert(
+                                    deadline, 
+                                    lastHistory[0], 
+                                    iks.ipc.constraints.get('enddate')
+                                );
+                            }
+                            
+                        })
+                        .appendTo('#delivList table.monitoringDelivStatusTable');
+                    })
 
+                });
+            });
+        }
     }
 })();
