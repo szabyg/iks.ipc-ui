@@ -33,6 +33,9 @@ iks.ipc.rules = {
 		    	return true;
 		    else 
 		    	return false;
+		},
+		deviationExplanationRule: function(plan, spent){
+		    return ((Math.abs(spent-plan)/plan) > 0.5)
 		}
 		
 	},

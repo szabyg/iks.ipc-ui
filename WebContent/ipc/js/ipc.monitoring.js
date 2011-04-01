@@ -10,7 +10,8 @@
             'rejected': 5,
             'approved in part': 6,
             'approved subject to the conditions listed under remarks': 7,
-            'resubmitted': 8,
+            'resubmitted': 8, 
+            're-submitted': 8,
             'approved in full': 9
         }
     };
@@ -170,8 +171,22 @@
                         },
                         getStatus: function(deadline, history){
                             if(!history.length)return "";
-                            console.info(['history: ', history]);
-                            return iks.ipc.rules.projectManagementRules.deliverableAlert(deadline, history[0][0], new Date());
+                            var i = 0;
+                            var lastHistory = history[i];
+                            while(new Date(lastHistory[1]) > iks.ipc.constraints.get('enddate')) {
+                                if(history.length > i+1){
+                                    i++;
+                                    lastHistory = history[i];
+                                } else {
+                                    lastHistory = [''];
+                                }
+                            }
+                            console.info(['history: ', lastHistory[1], history]);
+                            return iks.ipc.rules.projectManagementRules.deliverableAlert(
+                                deadline, 
+                                lastHistory[0], 
+                                iks.ipc.constraints.get('enddate')
+                            );
                         }
                         
                     })

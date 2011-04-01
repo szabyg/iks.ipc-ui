@@ -1,4 +1,4 @@
-<h2>${wpLabel}</h2>
+<h4>${wpLabel}</h4>
 <ul>
     <li><b>Objectives</b>: <i>{{html wpDescription}}</i></li>
 	<li>Progress: <div class="editable freeText" id="${jsId}_progress">
@@ -18,7 +18,7 @@ Because of the redesign, the final version of D1.1 is planned to be available at
                     <td>${Math.round(plan*10)/10}</td>
                     <td>${Math.round(spent*10)/10}</td>
                     <td>${Math.round((spent-plan)*10)/10}</td>
-                    <td><div id="${jsId}_explanation" class="editable freeText">{{if ((Math.abs(spent-plan)/plan) > 0.25)}}Explanation...{{/if}}</div></td></tr>
+                    <td><div id="${jsId}_explanation" class="editable freeText">{{if iks.ipc.rules.sponsorRules.deviationExplanationRule(plan, spent)}}Explanation...{{/if}}</div></td></tr>
 				</tr>
 			{{/each}}
 

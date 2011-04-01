@@ -41,7 +41,7 @@ $.stanbolConnector = {
             'limit': options.limit || '7', 
             'constraints': [{ 
                'type': 'text', 
-               'patternType': 'regex', 
+               'patternType': 'wildcard', 
                'text': s + '*', 
                'field': 'http:\/\/www.w3.org\/2000\/01\/rdf-schema#label' 
             }]
