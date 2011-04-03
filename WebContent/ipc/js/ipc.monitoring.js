@@ -181,7 +181,7 @@
                                     lastHistory = [''];
                                 }
                             }
-                            console.info(['history: ', lastHistory[1], history]);
+                            //console.info(['history: ', lastHistory[1], history]);
                             return iks.ipc.rules.projectManagementRules.deliverableAlert(
                                 deadline, 
                                 lastHistory[0], 

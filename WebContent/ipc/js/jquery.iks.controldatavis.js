@@ -77,7 +77,7 @@ $.widget('ipc.controldatavis', {
 
         // console.info(dataArrays.plannedEffortDetail);
 		if(this.showPlanned && (!this.showDetails || dataArrays.plannedEffortDetail[0].length==0)){
-		    console.info("show planned");
+		    //console.info("show planned");
 			// BarChart for planned data
 			var planBarChart = new RGraph.Bar(this.canvasId, dataArrays.planArr);
 			RGraph.SetConfig(planBarChart, 
@@ -95,7 +95,7 @@ $.widget('ipc.controldatavis', {
 		}
 
 		if(this.showSpent && !this.showDetails){
-		    console.info("show spent");
+		    //console.info("show spent");
 			// BarChart for spent data
 			var spentBarChart = new RGraph.Bar(this.canvasId, dataArrays.spentArr);
 			RGraph.SetConfig(spentBarChart, 
@@ -108,7 +108,7 @@ $.widget('ipc.controldatavis', {
 	    }
 		
 		if(this.showDetails && dataArrays.plannedEffortDetail[0].length){
-		    console.info("show details");
+		    // console.info("show details");
 			// BarChart for planned data
 			var plannedDetailBarChart = new RGraph.Bar(this.canvasId, dataArrays.plannedEffortDetail);
 			RGraph.SetConfig(plannedDetailBarChart, 

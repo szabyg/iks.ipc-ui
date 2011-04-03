@@ -82,7 +82,7 @@
             reportView.deactivateEditables();
             var htmlContent = $('#reportAccordion').accordion('destroy').html();
             $('#reportAccordion').accordion(accordionStyle);
-            console.info(htmlContent);
+            //console.info(htmlContent);
             
             // form data: check boxes, radio buttons, select boxes
             var formData = {};
@@ -162,7 +162,6 @@
             $.get(reportTemplateFilename, function(yearlyreport){
                 $.tmpl(yearlyreport, {}).appendTo('#reportAccordion');
                 $('#reportAccordion').accordion(accordionStyle);
-                console.info('report clearstyle: ' + $('#reportAccordion').accordion('option', 'clearStyle'));
                 
                 // Show basic report data header paragraph
                 reportView._basicData();
@@ -343,7 +342,7 @@
                                         lastHistory = [''];
                                     }
                                 }
-                                console.info(['history: ', lastHistory[1], history]);
+                                // console.info(['history: ', lastHistory[1], history]);
                                 return iks.ipc.rules.projectManagementRules.deliverableAlert(
                                     deadline, 
                                     lastHistory[0], 
@@ -357,6 +356,13 @@
 
                 });
             });
+        },
+        _fillInForms: function(formData) {
+            _(formData).each(function(oneForm){
+                _(oneForm).each(function(formElement){
+                    $('input[name=' + formElement.name + '][value=' + formElement.value + ']').click();
+                });
+            });        
         }
     }
 })();
